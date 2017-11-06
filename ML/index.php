@@ -140,8 +140,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        Manage Lab
+        <small>Chemical Management System</small>
       </h1>
     </section>
 

@@ -38,7 +38,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Registration</p>
 
-    <form action="dashboard.html" method="post">
+    <form action="#" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Matric ID">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
