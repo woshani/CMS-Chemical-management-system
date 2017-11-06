@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="dashboard.html" class="logo">
+    <a href="../dashboard.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +101,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="#" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -124,22 +124,11 @@ desired effect
       </div>
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li class="active"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Register Lab</span></a></li>
+        <li><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Assign Lab</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -158,11 +147,20 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
+      <div class="row col-md-12 tab-content">
+            <div class="thumbnail">     
+              <div id="regis_lab" class="none fade in active">
+                <h3 style="margin: 0px; padding: 0px;">Register Lab </h3>
+                <hr/>
+                  <?php include 'new_lab.php';?>
+              </div>
+              <div id="assign_lab" class="none fade">
+                <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
+                <hr/>
+                  <?php include 'assign_lab.php';?>
+              </div>
+          </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

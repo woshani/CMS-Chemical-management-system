@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="dashboard.html" class="logo">
+    <a href="../dashboard.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +101,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="#" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -124,22 +124,11 @@ desired effect
       </div>
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li class="active"><a role="tab" data-toggle="tab" href="#approve_stud"><i class="fa fa-user-plus"></i> <span>Approve Student</span></a></li>
+        <li><a role="tab" data-toggle="tab" href="#empty"><i class="fa fa-user-plus"></i> <span>Empty</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -151,18 +140,27 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        Manage Student
+        <small>Chemical Management System</small>
       </h1>
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
-
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
+    <section class="content container-fluid ">
+      <div class="row col-md-12 tab-content">
+            <div class="thumbnail">     
+              <div id="approve_stud" class="tab-pane fade in active swapping-tab">
+                <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
+                <hr/>
+                  <?php include 'approve_student.php';?>
+              </div>
+              <div id="empty" class="tab-pane fade swapping-tab">
+                <h3 style="margin: 0px; padding: 0px;">Empty</h3>
+                <hr/>
+                  <?php include 'empty.php';?>
+              </div>
+          </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

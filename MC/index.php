@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="dashboard.html" class="logo">
+    <a href="../dashboard.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +101,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="#" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -124,22 +124,14 @@ desired effect
       </div>
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li class="active"><a href="#regis_chemical"><i class="fa fa-link"></i> <span>Register</span></a></li>
+        <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Reuse</span></a></li>
+        <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Return</span></a></li>
+        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Dispose</span></a></li>
+        <li class=""><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Approve(Private)</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -159,10 +151,36 @@ desired effect
     <!-- Main content -->
     <section class="content container-fluid">
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
+      <div class="row col-md-12 tab-content">
+            <div class="thumbnail">     
+              <div id="regis_chemical" class="none fade in active">
+                <h3 style="margin: 0px; padding: 0px;">Register Chemical </h3>
+                <hr/>
+                  <?php include 'register_chemical.php';?>
+              </div>
+              <div id="return_chemical" class="none fade">
+                <h3 style="margin: 0px; padding: 0px;">Return Chemical</h3>
+                <hr/>
+                  <?php include 'return_chemical.php';?>
+              </div>
+              <div id="reuse_chemical" class="none fade">
+                <h3 style="margin: 0px; padding: 0px;">Reuse Chemical</h3>
+                <hr/>
+                  <?php include 'reuse_chemical.php';?>
+              </div>
+              <div id="dispose_chemical" class="none fade">
+                <h3 style="margin: 0px; padding: 0px;">Dispose Chemical</h3>
+                <hr/>
+                  <?php include 'dispose_chemical.php';?>
+              </div>
+              <div id="approve_chemical" class="none fade">
+                <h3 style="margin: 0px; padding: 0px;">Approve Chemical</h3>
+                <hr/>
+                  <?php include 'approve_chemical.php';?>
+              </div>
+          </div>
+      </div>
+      
     </section>
     <!-- /.content -->
   </div>
