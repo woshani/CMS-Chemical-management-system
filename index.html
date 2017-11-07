@@ -38,18 +38,18 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="dashboard.html" method="post">
+    <form>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Matric/Staff ID">
+        <input type="text" class="form-control" placeholder="Matric/Staff ID" id="userid">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" id="pass">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="button" class="btn btn-primary btn-block btn-flat" id="btnSignIn">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
@@ -63,12 +63,30 @@
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jqueryMD5/jquery.md5.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script>
-  $(function () {
+    $('#btnSignIn').on('click',function(){
+        var userid = $('#userid').val();
+        var pass = $.md5($('#pass').val());
+        console.log(userid + " "+pass);
+        $.ajax({
+          type:"post",
+          url:"login.php",
+          data:{'userid':userid,'password':pass},
+          success:function(databack){
+            console.log(databack);
+            if(databack.trim()==="valid"){
+              window.location.href="dashboard.php";
+            }else{
+              alert("Wrong password or ID");
+            }
+          }
+        })
+    });
 </script>
 </body>
 </html>

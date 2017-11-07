@@ -3,6 +3,14 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+<?php
+  session_start();
+  if(!isset($_SESSION['userid']))
+{
+    header("Location: ../index.html");
+    exit;
+} 
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -60,7 +68,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../dashboard.html" class="logo">
+    <a href="../dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +109,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="../out.php" class="btn" id="btnSignOut"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -119,7 +127,8 @@ desired effect
           <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>User Name</p>
+          <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+          <p><?php echo $_SESSION['identifyid'];?></p>
         </div>
       </div>
 
@@ -127,8 +136,8 @@ desired effect
       <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a role="tab" data-toggle="tab" href="#account_detail"><i class="fa fa-user-plus"></i> <span>Accounts Details</span></a></li>
-        <li class=""><a role="tab" data-toggle="tab" href="#change_pass"><i class="fa fa-user-plus"></i> <span>Change Password</span></a></li>
+        <li class="active"><a role="tab" data-toggle="tab" href="#account_detail"><i class="fa fa-user-circle"></i> <span>Accounts Details</span></a></li>
+        <li class=""><a role="tab" data-toggle="tab" href="#change_pass"><i class="fa fa-key"></i> <span>Change Password</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -189,11 +198,76 @@ desired effect
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/jqueryMD5/jquery.md5.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+  $('#btnUpdateUser').on('click',function(e){
+    e.preventDefault();
+    var fname = $('#fname').val();
+    var lname = $('#lname').val();
+    var email = $('#email').val();
+    var notel = $('#notel').val();
+    var userid = $('#userid').val();
+    var userkey = "<?php echo $_SESSION['userid'];?>";
+    var datas = {fname:fname,lname:lname,email:email,notel:notel,userid:userid,method:"updateUser",key:userkey};
+    console.log(datas);
+    $.ajax({
+      type:"post",
+      url:"function/manageAccountFunction.php",
+      data:datas,
+      success:function(databack){
+        console.log(databack);
+        if(databack.trim()==="updateSuccess"){
+          alert("your profile is saved!");
+        }else{
+          alert("you cannot do that now,something is wrong,try again later");
+        }
+      }
+    });
+  });
 
+  $('#btnUpdatePass').on('click',function(e){
+    e.preventDefault();
+    var old = $.md5($('#old').val());
+    var newPass = $.md5($('#new').val());
+    var retypePass = $.md5($('#retype').val());
+    var ori = "<?php echo $_SESSION['password'];?>";
+
+    if(old != ori){
+      alert("your old password is incorrect!");
+      $('#old').focus();
+    }else if(newPass != retypePass){
+      alert("please make sure you re-type the new password correctly.");
+      $('#retype').focus();
+    }else if(old ==="" || newPass === "" || retypePass ===""){
+      alert("do not leave the fields empty!");
+    }else{
+      var userkey = "<?php echo $_SESSION['userid'];?>";
+      var userid = "<?php echo $_SESSION['identifyid']?>";
+      var datas = {new:newPass,method:"updatePass",key:userkey,userid:userid};
+      $.ajax({
+        type:"post",
+        url:"function/manageAccountFunction.php",
+        data:datas,
+        success:function(databack){
+          console.log(databack);
+          if(databack.trim()==="updateSuccess"){
+            alert("your password is changed!");
+            $('#old').val('');
+            $('#new').val('');
+            $('#retype').val('');
+            location.reload();
+          }else{
+            alert("you cannot do that now,something is wrong,try again later");
+          }
+        }
+      });
+    }
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

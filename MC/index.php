@@ -3,6 +3,14 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+<?php
+  session_start();
+  if(!isset($_SESSION['userid']))
+{
+    header("Location: index.html");
+    exit;
+} 
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -60,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="../dashboard.html" class="logo">
+                <a href="../dashboard.php" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>C</b>MS</span>
                     <!-- logo for regular state and mobile devices -->
@@ -101,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                             <!-- Sign Out Button -->
                             <li>
-                                <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+                                <a href="../out.php" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
                             </li>
                             <!-- End of Sign Out -->
                         </ul>
@@ -119,7 +127,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>User Name</p>
+                            <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+                            <p><?php echo $_SESSION['identifyid'];?></p>
                         </div>
                     </div>
 
@@ -127,11 +136,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
                         <li class="header">Menus</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Register</span></a></li>
-                        <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Reuse</span></a></li>
-                        <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Return</span></a></li>
-                        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Dispose</span></a></li>
-                        <li class=""><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-link"></i> <span>Approve(Private)</span></a></li>
+                        <li class="active"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
+                        <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Reuse</span></a></li>
+                        <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
+                        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
+                        <li class=""><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Approve(Private)</span></a></li>
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>

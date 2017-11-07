@@ -1,0 +1,9 @@
+<?php
+session_start();
+session_destroy();
+header("Refresh:0");
+if(!isset($_SESSION['userid'])){
+    header("Location:index.html");
+    exit;
+} 
+?>

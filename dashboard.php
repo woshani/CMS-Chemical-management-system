@@ -3,6 +3,15 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+
+<?php
+  session_start();
+  if(!isset($_SESSION['userid']))
+{
+    header("Location: index.html");
+    exit;
+} 
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -60,7 +69,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="dashboard.html" class="logo">
+    <a href="dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +110,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="out.php" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -119,7 +128,8 @@ desired effect
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>User Name</p>
+          <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+          <p><?php echo $_SESSION['identifyid'];?></p>
         </div>
       </div>
 
@@ -147,7 +157,7 @@ desired effect
 
       <div class="row">
         <div class="col-md-12">
-            <div class="col-xs-6 col-sm-6 col-md-3">
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MSM">
               <a href="MS/index.php" class="thumbnail">
                 <div class="text-center">
                   <i class="fa fa-users" aria-hidden="true" style="color: gray;font-size: 4em;"></i>
@@ -155,7 +165,7 @@ desired effect
                 </div>
               </a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-3">
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MCM">
               <a href="MC/index.php" class="thumbnail">
                 <div class="text-center">
                   <i class="fa fa-flask" aria-hidden="true" style="color: green;font-size: 4em;"></i>
@@ -163,7 +173,7 @@ desired effect
                 </div>
               </a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-3">
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MLM">
               <a href="ML/index.php" class="thumbnail">
                 <div class="text-center">
                   <i class="fa fa-building-o" aria-hidden="true" style="color: #337ab7;font-size: 4em;"></i>
@@ -204,7 +214,33 @@ desired effect
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    var role = "<?php echo $_SESSION['role'];?>";
+    console.log(role);
+        switch(role) {
+        case "Student":
+            $('#MSM').hide();
+            $('#MLM').hide();
+            $('#MCM').show();
+            break;
+        case "Lecturer":
+            $('#MLM').hide();
+            $('#MSM').show();
+            $('#MCM').show();
+            break;
+        case "PJ":
+            $('#MSM').show();
+            $('#MLM').show();
+            $('#MCM').show();
+            break;
+        default:
+            $('#MSM').show();
+            $('#MLM').show();
+            $('#MCM').show();
+        }
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
