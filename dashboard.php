@@ -217,6 +217,7 @@ desired effect
 <script type="text/javascript">
   $(document).ready(function(){
     var role = "<?php echo $_SESSION['role'];?>";
+    var admin = "<?php echo $_SESSION['admin'];?>";
     console.log(role);
         switch(role) {
         case "Student":
@@ -225,14 +226,27 @@ desired effect
             $('#MCM').show();
             break;
         case "Lecturer":
-            $('#MLM').hide();
-            $('#MSM').show();
-            $('#MCM').show();
+            if(admin==="No"){
+              $('#MLM').hide();
+              $('#MSM').show();
+              $('#MCM').show();
+            }else{
+              $('#MLM').show();
+              $('#MSM').show();
+              $('#MCM').show();
+            }
+            
             break;
         case "PJ":
-            $('#MSM').show();
-            $('#MLM').show();
-            $('#MCM').show();
+            if(admin==="No"){
+              $('#MLM').hide();
+              $('#MSM').hide();
+              $('#MCM').show();
+            }else{
+              $('#MLM').show();
+              $('#MSM').hide();
+              $('#MCM').show();
+            }
             break;
         default:
             $('#MSM').show();
