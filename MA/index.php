@@ -10,17 +10,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>CMS | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="dashboard.html" class="logo">
+    <a href="../dashboard.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>MS</span>
       <!-- logo for regular state and mobile devices -->
@@ -101,7 +101,7 @@ desired effect
           </li>
           <!-- Sign Out Button -->
           <li>
-            <a href="index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
+            <a href="../index.html" class="btn"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Sign out</a>
           </li>
           <!-- End of Sign Out -->
         </ul>
@@ -116,7 +116,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>User Name</p>
@@ -124,8 +124,11 @@ desired effect
       </div>
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li><a href="MA/index.php"><i class="fa fa-user-circle"></i> <span>Manage Account</span></a></li>
+      <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
+        <li class="header">Menus</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a role="tab" data-toggle="tab" href="#account_detail"><i class="fa fa-user-plus"></i> <span>Accounts Details</span></a></li>
+        <li class=""><a role="tab" data-toggle="tab" href="#change_pass"><i class="fa fa-user-plus"></i> <span>Change Password</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -137,43 +140,29 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
+        Manage Account
         <small>Chemical Management System</small>
       </h1>
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
-
-      <div class="row">
-        <div class="col-md-12">
-            <div class="col-xs-6 col-sm-6 col-md-3">
-              <a href="MS/index.php" class="thumbnail">
-                <div class="text-center">
-                  <i class="fa fa-users" aria-hidden="true" style="color: gray;font-size: 4em;"></i>
-                  <h3>Manage Students</h3>
+    <section class="content container-fluid ">
+      <div class="row col-md-12">
+            <div class="thumbnail col-md-12">  
+              <div class="tab-content">   
+                <div role="tabpanel" id="account_detail" class="tab-pane active">
+                  <h3 style="margin: 0px; padding: 0px;">Accounts Details </h3>
+                  <hr/>
+                    <?php include 'account_detail.php';?>
                 </div>
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-3">
-              <a href="MC/index.php" class="thumbnail">
-                <div class="text-center">
-                  <i class="fa fa-flask" aria-hidden="true" style="color: green;font-size: 4em;"></i>
-                  <h3>Manage Chemicals</h3>
+                <div role="tabpanel" id="change_pass" class="tab-pane">
+                  <h3 style="margin: 0px; padding: 0px;">Change Password </h3>
+                  <hr/>
+                    <?php include 'change_pass.php';?>
                 </div>
-              </a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-3">
-              <a href="ML/index.php" class="thumbnail">
-                <div class="text-center">
-                  <i class="fa fa-building-o" aria-hidden="true" style="color: #337ab7;font-size: 4em;"></i>
-                  <h3>Manage Labs</h3>
-                </div>
-              </a>
-            </div>
-        </div>
+          </div>
       </div>
-
     </section>
     <!-- /.content -->
   </div>
@@ -199,11 +188,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
