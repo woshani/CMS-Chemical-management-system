@@ -52,10 +52,11 @@
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Supervisor/Lecturer Name" id="supervisorId">
-        <input type="hidden" class="form-control"  id="supervisor" value="0">
+        <input type="hidden" class="form-control"  id="supervisor">
         <input type="hidden" class="form-control"  id="admin" value="no">
         <input type="hidden" class="form-control"  id="role" value="Pending">
         <span class=" form-control-feedback"></span>
+        <div id="matchSupervisor"></div>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" id="password">
@@ -92,8 +93,8 @@
                 var admin = $('#admin').val();
                 var identifyId = $('#identifyId').val();
                 var password = $('#password').val();
-                var supervisorId = $('#supervisorId').val();
-
+                var supervisorId = $('#supervisor').val();
+                
                 if(identifyId==="" || password==="" || fname==="" || lname===""){
                   alert("please fill in all fields to proceed with registration");
                 }else{
@@ -112,9 +113,51 @@
                      }
                     });
                 }
-          
-                
             });
+
+
+ $("#supervisorId").on('keyup', function () { 
+        var input = $(this).val(); 
+        if (input.length >= 2) { 
+            $('#matcEMPoccu').html('<img src="../img/LoaderIcon.gif"/>'); 
+            var dataFields = {'input': input};
+            $.ajax({
+                type: "POST",
+                url: "query/searchSupervisor.php",
+                data: dataFields, 
+                timeout: 3000,
+                success: function (dataBack) { 
+                    $('#matchSupervisor').html(dataBack); 
+                    $('#matchListSupervisor li').on('click', function () { 
+                        $('#supervisorId').val($(this).text());
+                        $('#matchSupervisor').text('');
+                        searchSVid(); 
+                    });
+                },
+                error: function () { 
+                    $('#matchSupervisor').text('Problem!');
+                }
+            });
+        } else {
+            $('#matchSupervisor').text('');
+        }
+});
+
+ function searchSVid() {
+
+    var id = $.trim($('#supervisorId').val());
+    console.log(id);
+    $.ajax({
+        type: 'post',
+        url: 'query/searchSupervisorID.php',
+        data: {'input': id},
+        success: function (reply_data) {
+          console.log(reply_data);
+          $('#supervisor').val(reply_data.trim());
+        }
+    });
+
+}
 	</script>
 </body>
 </html>
