@@ -70,6 +70,16 @@
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script>
     $('#btnSignIn').on('click',function(){
+        login();
+    });
+
+    $('#pass').keypress(function(e) {
+      if(e.which == 13) {
+          login();
+      }
+    });
+
+    function login(){
         var userid = $('#userid').val();
         var pass = $.md5($('#pass').val());
         console.log(userid + " "+pass);
@@ -81,12 +91,14 @@
             console.log(databack);
             if(databack.trim()==="valid"){
               window.location.href="dashboard.php";
+            }else if(databack.trim()==="pending"){
+              alert("Your account still pending verivication from supervisor,please contact your supervisor");
             }else{
               alert("Wrong password or ID");
             }
           }
-        })
-    });
+        })      
+    }
 </script>
 </body>
 </html>
