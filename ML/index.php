@@ -147,17 +147,19 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-      <div class="row col-md-12 tab-content">
-            <div class="thumbnail">     
-              <div id="regis_lab" class="none fade in active">
-                <h3 style="margin: 0px; padding: 0px;">Register Lab </h3>
-                <hr/>
-                  <?php include 'new_lab.php';?>
-              </div>
-              <div id="assign_lab" class="none fade">
-                <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
-                <hr/>
-                  <?php include 'assign_lab.php';?>
+      <div class="row col-md-12">
+            <div class="thumbnail">
+              <div class="tab-content">     
+                <div role="tabpanel" class="tab-pane active" id="regis_lab">
+                  <h3 style="margin: 0px; padding: 0px;">Register Lab </h3>
+                  <hr/>
+                    <?php include 'new_lab.php';?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="assign_lab">
+                  <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
+                  <hr/>
+                    <?php include 'assign_lab.php';?>
+                </div>
               </div>
           </div>
       </div>

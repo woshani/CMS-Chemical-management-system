@@ -147,18 +147,20 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid ">
-      <div class="row col-md-12 tab-content">
-            <div class="thumbnail">     
-              <div id="approve_stud" class="tab-pane fade in active swapping-tab">
-                <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
-                <hr/>
-                  <?php include 'approve_student.php';?>
-              </div>
-              <div id="empty" class="tab-pane fade swapping-tab">
-                <h3 style="margin: 0px; padding: 0px;">Empty</h3>
-                <hr/>
-                  <?php include 'empty.php';?>
-              </div>
+      <div class="row col-md-12">
+            <div class="thumbnail">  
+              <div class="tab-content">   
+                <div role="tabpanel" id="approve_stud" class="tab-pane active">
+                  <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
+                  <hr/>
+                    <?php include 'approve_student.php';?>
+                </div>
+                <div role="tabpanel" id="empty" class="tab-pane fade swapping-tab">
+                  <h3 style="margin: 0px; padding: 0px;">Empty</h3>
+                  <hr/>
+                    <?php include 'empty.php';?>
+                </div>
+            </div>
           </div>
       </div>
     </section>
