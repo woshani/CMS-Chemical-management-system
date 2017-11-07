@@ -38,7 +38,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Registration</p>
 
-    <form action="" method="post">
+    <form>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Matric ID" id="identifyId">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -55,7 +55,7 @@
         <input type="text" class="form-control" placeholder="Supervisor/Lecturer Name" id="supervisorId">
         <input type="hidden" class="form-control"  id="supervisor" value="0">
         <input type="hidden" class="form-control"  id="admin" value="no">
-        <input type="hidden" class="form-control"  id="role" value="pending">
+        <input type="hidden" class="form-control"  id="role" value="Pending">
         <span class=" form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -64,7 +64,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button id="btnRegister" name="btnRegister" type="submit" class="btn btn-success btn-block btn-flat">Register</button>
+          <button id="btnRegister" name="btnRegister" class="btn btn-success btn-block btn-flat">Register</button>
         </div>
         <!-- /.col -->
       </div>
@@ -85,8 +85,8 @@
 
 
 	<script>
-            $('#btnRegister').on('click',function(){
-                
+            $('#btnRegister').on('click',function(e){
+                e.preventDefault();
                 var fname = $('#fname').val();
                 var lname = $('#lname').val();
                 var role = $('#role').val();
@@ -94,20 +94,27 @@
                 var identifyId = $('#identifyId').val();
                 var password = $('#password').val();
                 var supervisorId = $('#supervisorId').val();
+
+                if(identifyId==="" || password==="" || fname==="" || lname===""){
+                  alert("please fill in all fields to proceed with registration");
+                }else{
+                    $.ajax({
+                     type:"post",
+                     url:"query/registerUser.php",
+                     data:{"fname":fname,"lname":lname,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId},
+                     success:function(databack){
+                         console.log(databack);
+                         if(databack.trim()==="success"){
+                             alert("Registration succeed!,Please wait for supervisor approval to Log in.");
+                             window.location = "../index.html";
+                         }else{
+                             alert("Registration Fail,Something wrong and please try again later");
+                         }
+                     }
+                    });
+                }
           
-                $.ajax({
-                   type:"post",
-                   url:"query/registerUser.php",
-                   data:{"fname":fname,"lname":lname,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId},
-                   success:function(databack){
-                       console.log(databack);
-                       if(databack.trim()==="1"){
-                           alert("berjaya");
-                       }else{
-                           alert("gagal");
-                       }
-                   }
-                });
+                
             });
 	</script>
 </body>
