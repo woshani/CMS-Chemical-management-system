@@ -10,8 +10,7 @@ if($result->num_rows > 0){
 		$id =  $row['userid'];
 		$email =  $row['email'];
 	}
-	echo $id;
-	echo $email;
+	echo $id."|".$email;
 }
 mysqli_close($conn);
 ?>

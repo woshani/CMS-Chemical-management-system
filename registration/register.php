@@ -154,8 +154,11 @@
         data: {'input': id},
         success: function (reply_data) {
           console.log(reply_data);
-          $('#supervisor').val(reply_data.trim());
-		  $('#supervisorEmail').val(reply_data.trim());
+          var array_data = reply_data.split("|");
+          var email = array_data[1];
+          var userid = array_data[0];
+          $('#supervisor').val(userid.trim());
+		      $('#supervisorEmail').val(email.trim());
         }
     });
 
