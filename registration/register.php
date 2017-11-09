@@ -52,8 +52,8 @@
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Supervisor/Lecturer Name" id="supervisorId">
-        <input type="text" class="form-control"  id="supervisor">
-		<input type="text" class="form-control"  id="supervisorEmail">
+        <input type="hidden" class="form-control"  id="supervisor">
+		<input type="hidden" class="form-control"  id="supervisorEmail">
         <input type="hidden" class="form-control"  id="admin" value="No">
         <input type="hidden" class="form-control"  id="role" value="Pending">
         <span class=" form-control-feedback"></span>
