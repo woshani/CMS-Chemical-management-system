@@ -202,7 +202,34 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-
+<script type="text/javascript">
+  $('#btnAccept').on('click',function(e){
+    e.preventDefault();
+	
+	var datas = {method:"updateRole"};
+	
+	$('#userTable').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "function/manageStudentApprove.php",
+            "type": "POST"
+			data:datas,
+			success:function(databack){
+			console.log(databack);
+			if(databack.trim()==="updateSuccess"){
+			alert("Request already approve!");
+			}else{
+			alert("Request rejected!");
+			}
+		}		
+        },
+        "columns": [
+            { "data": "identifyid" }
+        ]
+    } );
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
