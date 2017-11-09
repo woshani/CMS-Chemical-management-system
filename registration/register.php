@@ -50,6 +50,14 @@
         <input type="text" class="form-control" placeholder="Last Name" id="lname">
         <span class=" form-control-feedback"></span>
       </div>
+	  <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Email" id="email">
+        <span class=" form-control-feedback"></span>
+      </div>
+	  <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Phone No" id="telno">
+        <span class=" form-control-feedback"></span>
+      </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Supervisor/Lecturer Name" id="supervisorId">
         <input type="hidden" class="form-control"  id="supervisor">
@@ -90,19 +98,21 @@
                 e.preventDefault();
                 var fname = $('#fname').val();
                 var lname = $('#lname').val();
+				var email = $('#email').val();
+                var telno = $('#telno').val();
                 var role = $('#role').val();
                 var admin = $('#admin').val();
                 var identifyId = $('#identifyId').val();
                 var password = $('#password').val();
                 var supervisorId = $('#supervisor').val();
                 
-                if(identifyId==="" || password==="" || fname==="" || lname===""){
+                if(identifyId==="" || password==="" || fname==="" || lname==="" || email==="" || telno===""){
                   alert("please fill in all fields to proceed with registration");
                 }else{
                     $.ajax({
                      type:"post",
                      url:"query/registerUser.php",
-                     data:{"fname":fname,"lname":lname,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId},
+                     data:{"fname":fname,"lname":lname,"email":email,"telno":telno,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId},
                      success:function(databack){
                          console.log(databack);
                          if(databack.trim()==="success"){
