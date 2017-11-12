@@ -1,23 +1,34 @@
 <?php
-class ChemicalsController extends ApiController
+class ChemicalInController extends ApiController
 {
-/** :GET :{method} */
-    public function chemicals()
+/** :GET :{method}*/
+    public function chemicalqrcode($qrcode)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT * from chemical";
+        $query = "SELECT * FROM chemicalin WHERE qrcode = ?";
         if($stmt = $conn->prepare($query)) {
+            $stmt->bind_param("s", $qrcode);
             $stmt->execute();
             $result = $stmt->get_result();
-            $response = $result->fetch_all( MYSQLI_ASSOC );
+            if (mysqli_num_rows($result) >= 1) {
+                $response = $result->fetch_all( MYSQLI_ASSOC );
+            } else {
+                $error = new HttpResponse(404, 'Not Found', (object)[
+                    'exception' => (object)[
+                        'type' => 'NotFoundApiException',
+                        'message' => 'No Chemicalin Found For QRCode',
+                        'code' => 404
+                    ]
+                ]);
+            }
         } else {
-            $error = new HttpResponse(500, 'Internal Server Error', (object)[
+             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In Chemicals Method Chemical API',
+                    'message' => 'Error In chemicalqrcode Method ChemicalIn API',
                     'code' => 500
                 ]
             ]);
@@ -31,34 +42,33 @@ class ChemicalsController extends ApiController
         }
     }
 
-/** :GET :{method}*/
-    public function chemical($chemicalid)
+    /** :POST :{method}*/
+    public function updateChemicalinStatus($ciid, $status)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT * FROM chemical WHERE chemicalid = ?";
+        $query = "UPDATE chemicalin SET status = ? WHERE ciid = ?";
         if($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("s", $chemicalid);
+            $stmt->bind_param("ss", $status, $ciid);
             $stmt->execute();
-            $result = $stmt->get_result();
-            if (mysqli_num_rows($result) >= 1) {
-                $response = $result->fetch_all( MYSQLI_ASSOC );
+            if ($stmt->affected_rows >= 1) {
+                $response = 'Successful';
             } else {
-                $error = new HttpResponse(404, 'Not Found', (object)[
+               $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[
                         'type' => 'NotFoundApiException',
-                        'message' => 'Chemical not found',
+                        'message' => 'No Chemicalin Record is Updated',
                         'code' => 404
                     ]
-                ]);
+                ]); 
             }
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In chemical Method Chemical API',
+                    'message' => 'Error In updateStudentStatus Method Student API',
                     'code' => 500
                 ]
             ]);

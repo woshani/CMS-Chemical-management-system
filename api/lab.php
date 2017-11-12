@@ -1,14 +1,14 @@
 <?php
-class ChemicalsController extends ApiController
+class LabsController extends ApiController
 {
 /** :GET :{method} */
-    public function chemicals()
+    public function labs()
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT * from chemical";
+        $query = "SELECT * from lab";
         if($stmt = $conn->prepare($query)) {
             $stmt->execute();
             $result = $stmt->get_result();
@@ -17,7 +17,7 @@ class ChemicalsController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In Chemicals Method Chemical API',
+                    'message' => 'Error In labs Method Lab API',
                     'code' => 500
                 ]
             ]);
@@ -32,15 +32,15 @@ class ChemicalsController extends ApiController
     }
 
 /** :GET :{method}*/
-    public function chemical($chemicalid)
+    public function lab($labid)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT * FROM chemical WHERE chemicalid = ?";
+        $query = "SELECT * FROM lab WHERE labid = ?";
         if($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("s", $chemicalid);
+            $stmt->bind_param("s", $labid);
             $stmt->execute();
             $result = $stmt->get_result();
             if (mysqli_num_rows($result) >= 1) {
@@ -49,7 +49,7 @@ class ChemicalsController extends ApiController
                 $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[
                         'type' => 'NotFoundApiException',
-                        'message' => 'Chemical not found',
+                        'message' => 'Lab not found',
                         'code' => 404
                     ]
                 ]);
@@ -58,7 +58,7 @@ class ChemicalsController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In chemical Method Chemical API',
+                    'message' => 'Error In lab Method Lab API',
                     'code' => 500
                 ]
             ]);

@@ -2,13 +2,6 @@
 class UsersController extends ApiController
 {
     /** :POST :{method} */
-    public function loginTest($test = '1234567')
-    {
-
-        return $test;
-    }
-
-    /** :POST :{method} */
     public function login($identifyid, $password)
     {
         require 'connection/connection.php';
@@ -22,7 +15,7 @@ class UsersController extends ApiController
             $stmt->bind_param("ss", $identifyid, $md5password);
             $stmt->execute();
             $stmt->store_result();
-            if ($stmt->num_rows === 1) {
+            if ($stmt->num_rows >= 1) {
                 $stmt->bind_result($userid, $fname, $lname, $email, $telno, $role, $admin, $identifyid, $supervisorid);
                 $stmt->fetch();
                 $token = array();
@@ -46,7 +39,6 @@ class UsersController extends ApiController
                     $response['role'] = $role;
                     $response['admin'] = $admin;
                     $response['identifyid'] = $identifyid;
-                    $response['supervisorid'] = $supervisorid;
                 }
             } else {
                 $error = new HttpResponse(401, 'Unauthorized', (object)[
@@ -61,7 +53,7 @@ class UsersController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In Login Method User API',
+                    'message' => 'Error In login Method User API',
                     'code' => 500
                 ]
             ]);
