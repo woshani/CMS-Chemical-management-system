@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Register No Chemical :</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="register" name="register" type="text" class="form-control input-md"></div>
                 </div>
 				<div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Used Date :</label>
-                    <div class='col-md-4'>
+                    <div class='col-md-6'>
 						<div class='input-group date' id='datetimepicker1'>
 							<input type='text' class="form-control" id="datein" name="datein"/>
 							<span class="input-group-addon">
@@ -58,6 +58,7 @@
 				<div class="form-group control-label">
 					<div class="col-md-12" align="center">
 						<button type="submit" name="insert_btn" class="btn btn-success">Request</button>
+						<button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
                     </div>
 	        	</div>
 </fieldset>

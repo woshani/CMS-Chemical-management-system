@@ -81,17 +81,17 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Eng. Control :</label>
                     <div class="col-md-6">
-                        <input type="checkbox" class="form-check-input" id="eng" name="eng"> Yes
+                        <input type="radio" class="form-check-input" name="eng" id="eng" value="option1" checked>Yes
 						<br>
-						<input type="checkbox" class="form-check-input" id="eng" name="eng"> No
+						<input type="radio" class="form-check-input" name="eng" id="eng" value="option1">No
                     </div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">PPE :</label>
                     <div class="col-md-6">
-                        <input type="checkbox" class="form-check-input" id="ppe" name="ppe"> Yes
+                        <input type="radio" class="form-check-input" name="ppe" id="ppe" value="option1" checked>Yes
 						<br>
-						<input type="checkbox" class="form-check-input" id="ppe" name="ppe"> No
+						<input type="radio" class="form-check-input" name="ppe" id="ppe" value="option1">No
                     </div>
                 </div>
 				<div class="form-group">
@@ -112,9 +112,9 @@
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">GHS Label :</label>
                     <div class="col-md-6">
-                        <input type="checkbox" class="form-check-input" id="ghs" name="ghs"> Yes
+                        <input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1" checked>Yes
 						<br>
-						<input type="checkbox" class="form-check-input" id="ghs" name="ghs"> No
+						<input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1">No
 					</div>
                 </div>
 				<div class="form-group">
