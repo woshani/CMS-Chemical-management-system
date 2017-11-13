@@ -169,14 +169,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <?php include 'register_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reuse_chemical">
-                                    <h3 style="margin: 0px; padding: 0px;">Return Chemical</h3>
-                                    <hr/>
-                                    <?php include 'return_chemical.php';?>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="return_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Reuse Chemical</h3>
                                     <hr/>
                                     <?php include 'reuse_chemical.php';?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="return_chemical">
+                                    <h3 style="margin: 0px; padding: 0px;">Return Chemical</h3>
+                                    <hr/>
+                                    <?php include 'return_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="dispose_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Dispose Chemical</h3>
