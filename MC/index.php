@@ -223,7 +223,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
 
-		
+		<script type="text/javascript">
+             $("#owner").on('keyup', function () { 
+                    var input = $(this).val(); 
+                    if (input.length >= 2) { 
+                        $('#matchOwner').html('<img src="../img/LoaderIcon.gif"/>'); 
+                        var dataFields = {'input': input};
+                        $.ajax({
+                            type: "POST",
+                            url: "function/searchOwner.php",
+                            data: dataFields, 
+                            timeout: 3000,
+                            success: function (dataBack) { 
+                                $('#matchOwner').html(dataBack); 
+                                $('#matchListOwner li').on('click', function () { 
+                                    $('#owner').val($(this).text());
+                                    $('#matchOwner').text('');
+                                    searchOwnerid(); 
+                                });
+                            },
+                            error: function () { 
+                                $('#matchOwner').text('Problem!');
+                            }
+                        });
+                    } else {
+                        $('#matchOwner').text('');
+                    }
+            });
+
+             function searchOwnerid() {
+
+                var id = $.trim($('#matchOwner').val());
+                console.log(id);
+                $.ajax({
+                    type: 'post',
+                    url: 'function/searchOwnerID.php',
+                    data: {'input': id},
+                    success: function (reply_data) {
+                      console.log(reply_data);
+                      var array_data = reply_data.split("|");
+                      var email = array_data[1];
+                      var userid = array_data[0];
+                      $('#ownerID').val(userid.trim());
+                    }
+                });
+
+            }
+
+            $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });  
+            $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });    
+        </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
              user experience. -->

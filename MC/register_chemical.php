@@ -1,3 +1,9 @@
+<?php 
+include "../connection/connection.php";
+$sqlLab = "SELECT labid,name FROM lab;";
+$resultLab = mysqli_query($conn, $sqlLab);
+mysqli_close($conn);
+?>
 <form class="form-horizontal">
 <fieldset>
 <!-- Text input--> 
@@ -11,15 +17,23 @@
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
                     <div class="col-md-6">
-                        <input id="owner" name="owner" type="text" placeholder="Supervisor Name" class="form-control input-md"></div>
+                        <input id="owner" name="owner" type="text" placeholder="Owner Name" class="form-control input-md">
+                        <input type="hidden" class="form-control"  id="ownerID">
+                        <div id="matchOwner"></div>
+                    </div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Lab :</label>
                     <div class="col-md-6">
 					<select class="form-control" id="lab" name="lab">
-					  <option>Please Select</option>
-					  <option>Makmal Bahan 1</option>
-					  <option>Makmal Bahan 2</option>
+						<option selected="" disabled="">Please choose..</option>
+					  <?php
+					  	if($resultLab->num_rows > 0){
+							while ($row = mysqli_fetch_array($resultLab)){
+								echo "<option value='".$row['labid']."'>".$row['name']."</option>";
+							}
+						} 
+					  ?>
 					</select>
                     </div>
                 </div>
@@ -33,11 +47,6 @@
 							</span>
 						</div>
 					</div>
-					<script type="text/javascript">
-						$(function () {
-							$('#datetimepicker1').datetimepicker();
-						});
-					</script>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Expired Date :</label>
@@ -49,11 +58,6 @@
 							</span>
 						</div>
 					</div>
-					<script type="text/javascript">
-						$(function () {
-							$('#datetimepicker1').datetimepicker();
-						});
-					</script>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Status Chemical :</label>

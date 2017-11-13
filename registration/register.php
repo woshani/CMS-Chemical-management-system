@@ -98,7 +98,7 @@
                 e.preventDefault();
                 var fname = $('#fname').val();
                 var lname = $('#lname').val();
-				var email = $('#email').val();
+				        var email = $('#email').val();
                 var telno = $('#telno').val();
                 var role = $('#role').val();
                 var admin = $('#admin').val();
@@ -130,7 +130,7 @@
  $("#supervisorId").on('keyup', function () { 
         var input = $(this).val(); 
         if (input.length >= 2) { 
-            $('#matcEMPoccu').html('<img src="../img/LoaderIcon.gif"/>'); 
+            $('#matchSupervisor').html('<img src="../img/LoaderIcon.gif"/>'); 
             var dataFields = {'input': input};
             $.ajax({
                 type: "POST",
