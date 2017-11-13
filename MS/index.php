@@ -203,31 +203,48 @@ desired effect
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
-  $('#btnAccept').on('click',function(e){
+  $('#userTable #btnAccept').on('click',function(e){
     e.preventDefault();
+	   var row = $(this).closest('tr');
+     var key = row.find('#keyStud').text();
+     // alert(key);
+	   var datas = {method:"updateRole",identifyid:key};
+     $.ajax({
+        type:"post",
+        url:"function/manageStudentApprove.php",
+        data: datas,
+        success:function(databack){
+          if(databack.trim() === "updateSuccess"){
+            alert("Student successfully approve");
+          }else{
+            alert("Failed to approve the studet!,try again later.");
+          }
+          location.reload();
+        }
+     });
 	
-	var datas = {method:"updateRole"};
-	
-	$('#userTable').DataTable( {
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "function/manageStudentApprove.php",
-            "type": "POST"
-			data:datas,
-			success:function(databack){
-			console.log(databack);
-			if(databack.trim()==="updateSuccess"){
-			alert("Request already approve!");
-			}else{
-			alert("Request rejected!");
-			}
-		}		
-        },
-        "columns": [
-            { "data": "identifyid" }
-        ]
-    } );
+  });
+
+    $('#userTable #btnReject').on('click',function(e){
+    e.preventDefault();
+     var row = $(this).closest('tr');
+     var key = row.find('#keyStud').text();
+     // alert(key);
+     var datas = {method:"rejectApprove",identifyid:key};
+     $.ajax({
+        type:"post",
+        url:"function/manageStudentApprove.php",
+        data: datas,
+        success:function(databack){
+          if(databack.trim() === "updateSuccess"){
+            alert("Student rejected");
+          }else{
+            alert("Failed to reject the studet!,try again later.");
+          }
+          location.reload();
+        }
+     });
+  
   });
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
