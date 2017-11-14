@@ -9,23 +9,23 @@ class UsersController extends ApiController
 
         $response = array();
         $error = false;
-        $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, supervisorid FROM user WHERE identifyid = ? AND password = ?";
+        $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, status, supervisorid FROM user WHERE identifyid = ? AND password = ?";
         if($stmt = $conn->prepare($query)) {
             $md5password = md5($password);
             $stmt->bind_param("ss", $identifyid, $md5password);
             $stmt->execute();
             $stmt->store_result();
             if ($stmt->num_rows >= 1) {
-                $stmt->bind_result($userid, $fname, $lname, $email, $telno, $role, $admin, $identifyid, $supervisorid);
+                $stmt->bind_result($userid, $fname, $lname, $email, $telno, $role, $admin, $identifyid, $status, $supervisorid);
                 $stmt->fetch();
                 $token = array();
                 $token['userid'] = $userid;
                 $jwt = JWT::encode($token, JWT::$secret);
-                if ($role === 'Pending') {
+                if ($status != 'Approve') {
                     $error = new HttpResponse(401, 'Unauthorized', (object)[
                         'exception' => (object)[
                             'type' => 'UnauthorizedException',
-                            'message' => 'Account Access Pending',
+                            'message' => 'Account Access: ' . $status,
                             'code' => 401
                         ]
                     ]);
@@ -39,6 +39,7 @@ class UsersController extends ApiController
                     $response['role'] = $role;
                     $response['admin'] = $admin;
                     $response['identifyid'] = $identifyid;
+                    $response['status'] = $status;
                     $response['supervisorid'] = $supervisorid;
                 }
             } else {

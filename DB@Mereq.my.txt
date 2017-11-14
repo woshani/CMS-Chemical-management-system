@@ -1,0 +1,3 @@
+DB: mereqcom_zerowaste
+Username: mereqcom_zerowaste_admin
+Password: Abc@1234567890!
