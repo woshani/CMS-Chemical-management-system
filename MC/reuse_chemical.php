@@ -6,7 +6,13 @@
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
-                        <input id="qrCode" name="qrCode" type="text" class="form-control input-md"></div>
+                        <div class='input-group date' id='qrcodeReuse'>
+                            <input type='text' class="form-control" id="qrcodeReuse" name="qrcodeReuse" readonly="" />
+                            <span class="input-group-addon">
+                                <span class="fa fa-qrcode"></span>
+                            </span>
+                        </div>
+                        <video id="camReuse"></video>
                         
                 </div>
                 <!-- Text input-->

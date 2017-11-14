@@ -460,10 +460,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 });
 			  
 			  });	
+              $('#qrcodeReuse').on('click',function(){
+                $('#camReuse').toggle();
+                 let scanner = new Instascan.Scanner({ video: document.getElementById('camReuse') });
+                  scanner.addListener('scan', function (content) {
+                    console.log(content);
+                    //document.getElementById("qrcodeReuse").value=content;
+                    $('#qrcodeReuse').val(content);
+                    getReuse();
+                    $('#camReuse').hide();
+                  });
+                  Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                      scanner.start(cameras[0]);
+                    } else {
+                      console.error('No cameras found.');
+                    }
+                  }).catch(function (e) {
+                    console.error(e);
+                  });
+            });
 
-              $('#qrCode').on('keyup',function(e){
-				e.preventDefault();
-                var QrCode = $('#qrCode').val();
+            function getReuse(){
+                var QrCode = $('#qrcodeReuse').val();
 				 // alert(key);
 				 
 				 $.ajax({
@@ -475,8 +494,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         $('#insert_btnReuse').prop('disabled', false);
 					}
 				 });
+            }
+            //   $('#qrcodeReuse').on('keyup',function(e){
+			// 	e.preventDefault();
+                
 			  
-			  });
+			//   });
 
               $('#insert_btnReuse').on('click',function(e){
                 var chemicalId = $('#chemicalInId').val();
