@@ -130,6 +130,11 @@ mysqli_close($conn);
                     <div class="col-md-6">
                         <input id="supplier" name="supplier" type="text" class="form-control input-md"></div>
                 </div>
+				<div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">QR Code :</label>
+                    <div class="col-md-6">
+                        <input id="qrcode" name="qrcode" type="text" class="form-control input-md"></div>
+                </div>
 				
             </div>
             
