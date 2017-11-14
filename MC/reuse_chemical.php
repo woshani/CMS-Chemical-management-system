@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Register No Chemical :</label>
+                    <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
                         <input id="register" name="register" type="text" class="form-control input-md"></div>
                 </div>
@@ -32,17 +32,6 @@
                     <label class="col-md-4 control-label" for="textinput">SDS File :</label>
                     <div class="col-md-6">
                         <?php echo $_SESSION['fname'];?></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Used Date :</label>
-                    <div class='col-md-6'>
-						<div class='input-group date' id='datetimepicker1'>
-							<input type='text' class="form-control" id="datein" name="datein"/>
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
-							</span>
-						</div>
-					</div>
                 </div>
                 <!-- Text input-->
 				
