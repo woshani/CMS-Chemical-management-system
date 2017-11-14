@@ -93,6 +93,8 @@
               window.location.href="dashboard.php";
             }else if(databack.trim()==="pending"){
               alert("Your account still pending verivication from supervisor,please contact your supervisor");
+            }else if(databack.trim()==="reject"){
+              alert("Your account has been rejected from supervisor,please contact your supervisor");
             }else{
               alert("Wrong password or ID");
             }

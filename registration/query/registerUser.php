@@ -32,15 +32,15 @@ include "../../connection/connection.php";
 
 	if(!$mailer->Send())
 	{
-	echo "<script>alert('Email Sending failed.')</script>";
+	echo "fail";
 
 	}
 	else
 	{
 
 		$query = "INSERT INTO 
-				user (Fname, Lname, email, telno, Role, Admin, IdentifyId, password, supervisorId) 
-				VALUES ('".$Fname."','".$Lname."','".$email."','".$telno."','".$Role."','".$Admin."','".$IdentifyId."',md5('".$password."'),'".$supervisorId."')";
+				user (Fname, Lname, email, telno, Role, Admin, IdentifyId, password, supervisorId,status) 
+				VALUES ('".$Fname."','".$Lname."','".$email."','".$telno."','".$Role."','".$Admin."','".$IdentifyId."',md5('".$password."'),'".$supervisorId."','Pending')";
 		$insert = mysqli_query($conn,$query);
 				if($insert){
 					 echo "success";

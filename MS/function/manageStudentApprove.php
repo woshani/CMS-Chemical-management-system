@@ -30,7 +30,7 @@
 		}
 		else
 		{
-			$sqlupdate = "UPDATE user SET role='Student' WHERE identifyid='".$identifyid."';";
+			$sqlupdate = "UPDATE user SET status='Approve' WHERE identifyid='".$identifyid."';";
 			$resultUpdate = mysqli_query($conn,$sqlupdate);
 			if($resultUpdate){
 				echo "updateSuccess";
@@ -61,7 +61,7 @@
 		else
 		{
 			
-			$sqlupdate = "UPDATE user SET role='Rejected' WHERE identifyid='".$identifyid."';";
+			$sqlupdate = "UPDATE user SET status='Rejected' WHERE identifyid='".$identifyid."';";
 			$resultUpdate = mysqli_query($conn,$sqlupdate);
 			if($resultUpdate){
 				echo "updateSuccess";

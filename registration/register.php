@@ -65,7 +65,7 @@
         <input type="hidden" class="form-control"  id="supervisor">
 		<input type="hidden" class="form-control"  id="supervisorEmail">
         <input type="hidden" class="form-control"  id="admin" value="No">
-        <input type="hidden" class="form-control"  id="role" value="Pending">
+        <input type="hidden" class="form-control"  id="role" value="Student">
         <span class=" form-control-feedback"></span>
         <div id="matchSupervisor"></div>
       </div>
