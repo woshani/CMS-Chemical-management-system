@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2017 at 02:22 PM
+-- Generation Time: Nov 14, 2017 at 06:51 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `chemical` (
 --
 
 INSERT INTO `chemical` (`chemicalid`, `name`, `type`, `physicaltype`, `engcontrol`, `ppe`, `class`, `ghs`) VALUES
-(1, 'Ethanol 95% Denatured, Methanol (3% - 5%)', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(2, 'Aluminium Nitrate', 'Powder', 'Powder', 'No', 'No', '', ''),
-(3, 'N,N - Dimethylformamide', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(4, 'Ethyl Methyl Ketone', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(5, 'Methyl isobutyl ketone', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(6, 'Ethylene Glycol', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(7, 'Methanol', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(8, 'Formaldehyde', 'Liquid', 'Liquid', 'Yes', 'Yes', '', ''),
-(9, 'Montmorillonite', 'Powder', 'Powder', 'Yes', 'Yes', '', ''),
-(10, 'Sodium Hydroxide', 'Powder', 'Powder', 'Yes', 'Yes', '', '');
+(1, 'Ethanol 95% Denatured, Methanol (3% - 5%)', 'Liquid', 'Liquid', 'Yes', 'Yes', '3', 'Yes'),
+(2, 'Aluminium Nitrate', 'Powder', 'Powder', 'No', 'No', '2', 'Yes'),
+(3, 'N,N - Dimethylformamide', 'Liquid', 'Liquid', 'Yes', 'Yes', 'N/A', 'No'),
+(4, 'Ethyl Methyl Ketone', 'Liquid', 'Liquid', 'Yes', 'Yes', 'N/A', 'Yes'),
+(5, 'Methyl isobutyl ketone', 'Liquid', 'Liquid', 'Yes', 'Yes', 'N/A', 'Yes'),
+(6, 'Ethylene Glycol', 'Liquid', 'Liquid', 'Yes', 'Yes', 'N/A', 'No'),
+(7, 'Methanol', 'Liquid', 'Liquid', 'Yes', 'Yes', 'N/A', 'Yes'),
+(8, 'Formaldehyde', 'Liquid', 'Liquid', 'Yes', 'Yes', '1', 'Yes'),
+(9, 'Montmorillonite', 'Powder', 'Powder', 'Yes', 'Yes', '2', 'Yes'),
+(10, 'Sodium Hydroxide', 'Powder', 'Powder', 'Yes', 'Yes', '1', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `chemicalin` (
 --
 
 INSERT INTO `chemicalin` (`ciid`, `type`, `datein`, `expireddate`, `status`, `qrcode`, `sds`, `supliername`, `chemicalid`, `userid`, `labid`) VALUES
-(1, 'Private', '2017-11-07', '2017-11-25', 'Available', '', '', '', 1, 3, 1),
-(2, 'Public', '2017-11-07', '2017-11-29', 'Available', '', '', '', 2, 2, 1),
-(3, 'Private', '2017-11-06', '2017-11-25', 'Available', '', '', '', 2, 4, 1);
+(1, 'Private', '2017-11-07', '2017-11-25', 'Available', '1111', '', '', 1, 3, 1),
+(2, 'Public', '2017-11-07', '2017-11-29', 'Available', '1222', '', '', 2, 2, 1),
+(3, 'Private', '2017-11-06', '2017-11-25', 'Available', '2222', '', '', 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -90,13 +90,26 @@ INSERT INTO `chemicalin` (`ciid`, `type`, `datein`, `expireddate`, `status`, `qr
 
 CREATE TABLE IF NOT EXISTS `chemicalusage` (
   `cuid` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL,
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `status` varchar(20) NOT NULL,
   `userid` int(11) NOT NULL,
   `ciid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chemicalusage`
+--
+
+INSERT INTO `chemicalusage` (`cuid`, `startdate`, `enddate`, `status`, `userid`, `ciid`) VALUES
+(1, '2017-11-15', '0000-00-00', 'Pending', 0, 1),
+(2, '2017-11-15', '0000-00-00', 'Pending', 0, 1),
+(3, '2017-11-15', '0000-00-00', 'Pending', 0, 1),
+(4, '2017-11-15', '0000-00-00', 'Pending', 0, 3),
+(5, '2017-11-15', '0000-00-00', 'Pending', 0, 1),
+(6, '2017-11-15', '0000-00-00', 'Pending', 4, 3),
+(7, '2017-11-15', '0000-00-00', 'Pending', 0, 1),
+(8, '2017-11-15', '0000-00-00', 'Pending', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -163,7 +176,7 @@ INSERT INTO `user` (`userid`, `fname`, `lname`, `email`, `telno`, `role`, `admin
 (1, 'Ummi', 'Humaira', 'ummi@student.utem.edu.my', '0163452441', 'Student', 'No', 'B031520006', 'e99a18c428cb38d5f260853678922e03', '', 5),
 (2, 'Ahmad', 'Zulkarnaen', 'zulkarnaen@student.utem.edu.my', '0163452412', 'Student', 'No', 'B031520004', 'e99a18c428cb38d5f260853678922e03', '', 5),
 (3, 'Muhammad', 'Ammar', 'ammarsdc@gmail.com', '0192303004', 'Student', 'No', 'B031520002', 'e99a18c428cb38d5f260853678922e03', '', 5),
-(4, 'Muhamad', 'Syahiran', 'shay@gmail.com', '0177167223', 'Student', 'No', 'B031520027', 'e99a18c428cb38d5f260853678922e03', '', 5),
+(4, 'Muhamad', 'Syahiran', 'shay@gmail.com', '0177167223', 'Student', 'No', 'B031520027', 'e99a18c428cb38d5f260853678922e03', 'Approve', 5),
 (5, 'Ahmad', 'Fakruddin', 'fakruddin@gmail.com', '0122392012', 'Lecturer', 'No', '00201', 'e99a18c428cb38d5f260853678922e03', '', 0),
 (6, 'Ahmad', 'Zulfakar', 'zulfakar@gmail.com', '0132445232', 'PJ', 'No', '00202', 'e99a18c428cb38d5f260853678922e03', '', 0),
 (7, 'Shay', 'Ran', '', '', 'Pending', 'No', 'D031310001', 'e99a18c428cb38d5f260853678922e03', '', 0),
@@ -237,7 +250,7 @@ ALTER TABLE `chemicalin`
 -- AUTO_INCREMENT for table `chemicalusage`
 --
 ALTER TABLE `chemicalusage`
-  MODIFY `cuid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cuid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `lab`
 --

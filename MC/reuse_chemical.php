@@ -6,45 +6,22 @@
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
-                        <input id="register" name="register" type="text" class="form-control input-md"></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
-                    <div class="col-md-6">
-                        <?php echo $_SESSION['fname'];?></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
-                    <div class="col-md-6">
-                        <?php echo $_SESSION['fname'];?></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Status :</label>
-                    <div class="col-md-6">
-                        <?php echo $_SESSION['fname'];?></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Expired Date :</label>
-                    <div class="col-md-6">
-                        <?php echo $_SESSION['fname'];?></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">SDS File :</label>
-                    <div class="col-md-6">
-                        <?php echo $_SESSION['fname'];?></div>
+                        <input id="qrCode" name="qrCode" type="text" class="form-control input-md"></div>
+                        
                 </div>
                 <!-- Text input-->
+                <div id="reuseData">
+                </div>
+                <div class="form-group control-label">
+					<div class="col-md-12" align="center">
+						<button type="button" disabled name="insert_btnReuse" id="insert_btnReuse" class="btn btn-success">Request</button>
+						<button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
+                    </div>
+	        	</div>
 				
             </div>
             
 		</div>
-		
-				<div class="form-group control-label">
-					<div class="col-md-12" align="center">
-						<button type="submit" name="insert_btn" class="btn btn-success">Request</button>
-						<button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
-                    </div>
-	        	</div>
+				
 </fieldset>
-</form>
 </form>

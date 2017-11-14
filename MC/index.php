@@ -402,6 +402,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 });
 			  
 			  });	
+
+              $('#qrCode').on('keyup',function(e){
+				e.preventDefault();
+                var QrCode = $('#qrCode').val();
+				 // alert(key);
+				 
+				 $.ajax({
+					type:"post",
+					url:"function/reuseChemical.php",
+					data: {'QrCode': QrCode},
+					success:function(databack){
+                        $('#reuseData').html(databack);
+                        $('#insert_btnReuse').prop('disabled', false);
+					}
+				 });
+			  
+			  });
+
+              $('#insert_btnReuse').on('click',function(e){
+                var chemicalId = $('#chemicalInId').val();
+                var cserId = $('#chemicalUserId').val();
+				  //alert("test");
+				 
+				 $.ajax({
+					type:"post",
+					url:"function/reuseNewChemical.php",
+					data: {'chemicalId': chemicalId, 'cserId':cserId},
+					success:function(databack){
+                        if(databack.trim() === "success"){
+						alert("Request success");
+					  }else{
+						alert("Request failed! Please request later");
+					  }
+					  location.reload();
+					}
+				 });
+			  
+			  });	
         </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
