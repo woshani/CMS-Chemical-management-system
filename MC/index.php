@@ -235,6 +235,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $('#datetimepickerIN').datepicker();
                 $('#datetimepickerEXP').datepicker();
 
+                var role = "<?php echo $_SESSION['role'];?>";
+                switch(role) {
+                    case "PJ":
+                        $('#ownerNamePJ').show();
+                        break;
+                    default:
+                        $('#ownerNamePJ').hide();
+                        $('#ownerNamePJ').val("<?php echo $_SESSION['userid'];?>");
+                }
             });
 
              $("#owner").on('keyup', function () { 
