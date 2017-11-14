@@ -15,10 +15,9 @@ mysqli_close($conn);
                         <input id="Chemicalname" name="Chemicalname" type="text" placeholder="" class="form-control input-md">
                         <input type="hidden" class="form-control"  id="chemicalID">
                         <div id="matchChemical"></div>
-                    </div>
-                        
+                    </div>   
                 </div>
-				<div class="form-group">
+				<div class="form-group" id="ownerNamePJ">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
                     <div class="col-md-6">
                         <input id="owner" name="owner" type="text" placeholder="Owner Name" class="form-control input-md">
@@ -42,17 +41,6 @@ mysqli_close($conn);
                     </div>
                 </div>
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Date In :</label>
-                    <div class='col-md-6'>
-						<div class='input-group date' id='datetimepickerIN'>
-							<input type='text' class="form-control" id="datein" name="datein"/>
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar ui-datepicker-trigger"></span>
-							</span>
-						</div>
-					</div>
-                </div>
-				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Expired Date :</label>
                     <div class='col-md-6'>
 						<div class='input-group date' id='datetimepickerEXP'>
@@ -64,7 +52,7 @@ mysqli_close($conn);
 					</div>
                 </div>
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Status Chemical :</label>
+                    <label class="col-md-4 control-label" for="textinput">Type Chemical :</label>
                     <div class="col-md-6">
 					<select class="form-control" id="status">
 					  <option selected="" disabled="">Please Select</option>
@@ -73,57 +61,10 @@ mysqli_close($conn);
 					</select>
                     </div>
                 </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Physical Form of Chemical :</label>
-                    <div class="col-md-6">
-					<select class="form-control" id="type" name="type">
-					  <option selected="">Please Select</option>
-					  <option value="Liquid">Liquid</option>
-					  <option value="Powder">Powder</option>
-					</select>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Eng. Control :</label>
-                    <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="eng" id="eng" value="Yes">Yes
-						<br>
-						<input type="radio" class="form-check-input" name="eng" id="eng" value="No">No
-                    </div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">PPE :</label>
-                    <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="ppe" id="ppe" value="Yes">Yes
-						<br>
-						<input type="radio" class="form-check-input" name="ppe" id="ppe" value="No">No
-                    </div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Usage of Chemical :</label>
-                    <div class="col-md-6">
-                        <input id="quatity" name="quatity" type="text" placeholder="Quantity" class="form-control input-md"></div>
-                </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">SDS :</label>
                     <div class="col-md-6">
                         <input type="file" class="form-control-file" id="sds" name="sds" aria-describedby="fileHelp"></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Class :</label>
-                    <div class="col-md-6">
-                        <input id="class" name="class" type="text" class="form-control input-md"></div>
-                </div>
-				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">GHS Label :</label>
-                    <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1">Yes
-						<br>
-						<input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1">No
-					</div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Supplier Name :</label>
@@ -135,9 +76,12 @@ mysqli_close($conn);
                     <div class="col-md-6">
                         <input id="qrcode" name="qrcode" type="text" class="form-control input-md"></div>
                 </div>
-				
+				<div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput"></label>
+                    <div class="col-md-6">
+                        <input type="checkbox" class="form-check-input"> Used Chemical</div>
+                </div>
             </div>
-            
 		</div>
 		
 				<div class="form-group control-label">
