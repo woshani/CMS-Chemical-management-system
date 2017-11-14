@@ -12,7 +12,11 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
                     <div class="col-md-6">
-                        <input id="name" name="name" type="text" placeholder="" class="form-control input-md"></div>
+                        <input id="Chemicalname" name="Chemicalname" type="text" placeholder="" class="form-control input-md">
+                        <input type="hidden" class="form-control"  id="chemicalID">
+                        <div id="matchChemical"></div>
+                    </div>
+                        
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
@@ -40,10 +44,10 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Date In :</label>
                     <div class='col-md-6'>
-						<div class='input-group date' id='datetimepicker1'>
+						<div class='input-group date' id='datetimepickerIN'>
 							<input type='text' class="form-control" id="datein" name="datein"/>
 							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
+								<span class="glyphicon glyphicon-calendar ui-datepicker-trigger"></span>
 							</span>
 						</div>
 					</div>
@@ -51,10 +55,10 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Expired Date :</label>
                     <div class='col-md-6'>
-						<div class='input-group date' id='datetimepicker1'>
+						<div class='input-group date' id='datetimepickerEXP'>
 							<input type='text' class="form-control" id="expired" name="expired"/>
 							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
+								<span class="glyphicon glyphicon-calendar ui-datepicker-trigger"></span>
 							</span>
 						</div>
 					</div>
@@ -63,9 +67,9 @@ mysqli_close($conn);
                     <label class="col-md-4 control-label" for="textinput">Status Chemical :</label>
                     <div class="col-md-6">
 					<select class="form-control" id="status">
-					  <option>Please Select</option>
-					  <option>Public</option>
-					  <option>Private</option>
+					  <option selected="" disabled="">Please Select</option>
+					  <option value="Public">Public</option>
+					  <option value="Private">Private</option>
 					</select>
                     </div>
                 </div>
@@ -74,9 +78,9 @@ mysqli_close($conn);
                     <label class="col-md-4 control-label" for="textinput">Physical Form of Chemical :</label>
                     <div class="col-md-6">
 					<select class="form-control" id="type" name="type">
-					  <option>Please Select</option>
-					  <option>Liquid</option>
-					  <option>Powder</option>
+					  <option selected="">Please Select</option>
+					  <option value="Liquid">Liquid</option>
+					  <option value="Powder">Powder</option>
 					</select>
                     </div>
                 </div>
@@ -85,17 +89,17 @@ mysqli_close($conn);
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Eng. Control :</label>
                     <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="eng" id="eng" value="option1" checked>Yes
+                        <input type="radio" class="form-check-input" name="eng" id="eng" value="Yes">Yes
 						<br>
-						<input type="radio" class="form-check-input" name="eng" id="eng" value="option1">No
+						<input type="radio" class="form-check-input" name="eng" id="eng" value="No">No
                     </div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">PPE :</label>
                     <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="ppe" id="ppe" value="option1" checked>Yes
+                        <input type="radio" class="form-check-input" name="ppe" id="ppe" value="Yes">Yes
 						<br>
-						<input type="radio" class="form-check-input" name="ppe" id="ppe" value="option1">No
+						<input type="radio" class="form-check-input" name="ppe" id="ppe" value="No">No
                     </div>
                 </div>
 				<div class="form-group">
@@ -116,7 +120,7 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">GHS Label :</label>
                     <div class="col-md-6">
-                        <input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1" checked>Yes
+                        <input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1">Yes
 						<br>
 						<input type="radio" class="form-check-input" name="ghs" id="ghs" value="option1">No
 					</div>
@@ -133,7 +137,7 @@ mysqli_close($conn);
 		
 				<div class="form-group control-label">
 					<div class="col-md-12" align="center">
-						<button type="submit" name="insert_btn" class="btn btn-success">Submit</button>
+						<button type="button" name="insert_btn" class="btn btn-success">Submit</button>
 						<button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
                     </div>
 	        	</div>

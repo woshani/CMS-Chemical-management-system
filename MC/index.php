@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   session_start();
   if(!isset($_SESSION['userid']))
 {
-    header("Location: index.html");
+    header("Location: ../index.html");
     exit;
 } 
 ?>
@@ -218,12 +218,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- jQuery 3 -->
         <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- JQUERY UI -->
+        <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
 
 		<script type="text/javascript">
+            $(document).ready(function(){
+                $('#datetimepickerIN').datepicker();
+                $('#datetimepickerEXP').datepicker();
+
+            });
+
              $("#owner").on('keyup', function () { 
                     var input = $(this).val(); 
                     if (input.length >= 2) { 
@@ -252,7 +260,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
 
              function searchOwnerid() {
-
                 var id = $.trim($('#matchOwner').val());
                 console.log(id);
                 $.ajax({
@@ -270,12 +277,70 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             }
 
-            $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });  
-            $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });    
+            $("#Chemicalname").on('keyup', function () { 
+                    var input = $(this).val(); 
+                    if (input.length >= 2) { 
+                        $('#matchChemical').html('<img src="../img/LoaderIcon.gif"/>'); 
+                        var dataFields = {'input': input};
+                        $.ajax({
+                            type: "POST",
+                            url: "function/searchChemical.php",
+                            data: dataFields, 
+                            timeout: 3000,
+                            success: function (dataBack) { 
+                                $('#matchChemical').html(dataBack); 
+                                $('#matchListChemical li').on('click', function () { 
+                                    $('#Chemicalname').val($(this).text());
+                                    $('#matchChemical').text('');
+                                    searchChemicalid(); 
+                                });
+                            },
+                            error: function () { 
+                                $('#matchChemical').text('Problem!');
+                            }
+                        });
+                    } else {
+                        $('#matchChemical').text('');
+                    }
+            });
+
+             function searchChemicalid() {
+
+                var id = $.trim($('#Chemicalname').val());
+                console.log(id);
+                $.ajax({
+                    type: 'post',
+                    url: 'function/searchChemicalID.php',
+                    data: {'input': id},
+                    success: function (reply_data) {
+                      console.log(reply_data);
+                      var array_data = reply_data.split("|");
+                      var name = array_data[1];
+                      var id = array_data[0];
+                      var typeC = array_data[2];
+                      var physicalType = array_data[3];
+                      var engcontrol = array_data[4];
+                      var ppe = array_data[5];
+                      $('#chemicalID').val(id.trim());
+                      $('#type').val(typeC.trim());
+                      $('input[name=eng][value=' + engcontrol.trim() + ']').prop('checked',true);
+                      $('input[name=ppe][value=' + ppe.trim() + ']').prop('checked',true);
+                    }
+                });
+
+            }
+
+            $('#insert_btn').on('click',function(e){
+                e.preventDefault();
+                var id_chemical = $('#chemicalID').val();
+                var id_owner  = $('#ownerID').val();
+                var id_lab = $('#lab').val();
+                var datein = $('#datein').val();
+                var dateexp = $('#expired').val();
+                var status = $('#status').val();
+                var chemical_type = $('#type').val();
+
+            });    
         </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the

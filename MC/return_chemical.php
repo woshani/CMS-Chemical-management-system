@@ -38,11 +38,6 @@
 							</span>
 						</div>
 					</div>
-					<script type="text/javascript">
-						$(function () {
-							$('#datetimepicker1').datetimepicker();
-						});
-					</script>
                 </div>
 				 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Status :</label>

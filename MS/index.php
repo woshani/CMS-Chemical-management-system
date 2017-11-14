@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   session_start();
   if(!isset($_SESSION['userid']))
 {
-    header("Location: index.html");
+    header("Location: ../index.html");
     exit;
 } 
 ?>
