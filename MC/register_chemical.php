@@ -17,7 +17,7 @@ mysqli_close($conn);
                         <div id="matchChemical"></div>
                     </div>   
                 </div>
-				<div class="form-group">
+				<div class="form-group" id="ownerNamePJ">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
                     <div class="col-md-6">
                         <input id="owner" name="owner" type="text" placeholder="Owner Name" class="form-control input-md">
