@@ -52,8 +52,8 @@
       </div>
 	  <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Email" id="email">
-		<input type="hidden" class="form-control"  id="sub" value="CMS- User Authentication Request">
-        <input type="hidden" class="form-control"  id="message" value="Please Check CMS account to accept / reject user autentication request">
+		<input type="hidden" class="form-control"  id="sub" value="ZeroWaste - User Authentication Request">
+        <input type="hidden" class="form-control"  id="message" value="Please Check ZeroWaste account to accept / reject user autentication request">
         <span class=" form-control-feedback"></span>
       </div>
 	  <div class="form-group has-feedback">

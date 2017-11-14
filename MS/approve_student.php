@@ -16,7 +16,7 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT * FROM user WHERE role = 'Pending' AND supervisorid=".$user_id;
+				$selectSql = "SELECT * FROM user WHERE status = 'Pending' AND supervisorid=".$user_id;
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)
 				{
