@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Register No Chemical :</label>
+                    <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
                         <input id="register" name="register" type="text" class="form-control input-md"></div>
                 </div>

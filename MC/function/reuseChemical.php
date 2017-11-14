@@ -3,7 +3,7 @@ include "../../connection/connection.php";
 session_start();
 $qrcode = $_POST['QrCode'];
 
-$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds  
+$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email  
             FROM chemical c, chemicalIn ci, user u 
             WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."'";
 $resultSelect = mysqli_query($conn, $query);
@@ -17,6 +17,9 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         <?php echo $row['name'];?></div>
                         <input type="hidden" id="chemicalInId" value="<?php echo $row['ciid'];?>">
                         <input type="hidden" id="chemicalUserId" value="<?php echo $_SESSION["userid"];?>">
+						<input type="hidden" id="email" value="<?php echo $row['email'];?>">
+						<input type="hidden" id="sub" value="ZeroWaste - User Reuse Chemical Request">
+						<input type="hidden" id="message" value="Please Check ZeroWaste account to accept / reject reuse Chemical request">
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>

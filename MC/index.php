@@ -501,15 +501,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			  
 			//   });
 
-              $('#insert_btnReuse').on('click',function(e){
+               $('#insert_btnReuse').on('click',function(e){
                 var chemicalId = $('#chemicalInId').val();
                 var cserId = $('#chemicalUserId').val();
+				var email = $('#email').val();
+				var sub = $('#sub').val();
+				var message = $('#message').val();
+				
 				  //alert("test");
 				 
 				 $.ajax({
 					type:"post",
 					url:"function/reuseNewChemical.php",
-					data: {'chemicalId': chemicalId, 'cserId':cserId},
+					data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message},
 					success:function(databack){
                         if(databack.trim() === "success"){
 						alert("Request success");
