@@ -39,6 +39,7 @@ class UsersController extends ApiController
                     $response['role'] = $role;
                     $response['admin'] = $admin;
                     $response['identifyid'] = $identifyid;
+                    $response['supervisorid'] = $supervisorid;
                 }
             } else {
                 $error = new HttpResponse(401, 'Unauthorized', (object)[
