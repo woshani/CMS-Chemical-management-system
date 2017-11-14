@@ -136,7 +136,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
                         <li class="header">Menus</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
+                        <li class="active"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
+                        <li class=""><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Reuse</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
                         <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
@@ -162,8 +163,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row col-md-12">
                         <div class="thumbnail">
                             <div class="tab-content">
-
-                                <div role="tabpanel" class="tab-pane active" id="regis_chemical">
+                                <div role="tabpanel" class="tab-pane active" id="list_chemical">
+                                    <h3 style="margin: 0px; padding: 0px;">List Chemical</h3>
+                                    <hr/>
+                                    <?php include 'list_chemical.php';?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="regis_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Register Chemical </h3>
                                     <hr/>
                                     <?php include 'register_chemical.php';?>
