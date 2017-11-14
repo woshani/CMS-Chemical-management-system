@@ -74,20 +74,27 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
-                        <input id="qrcode" name="qrcode" type="text" class="form-control input-md"></div>
+                        <div class='input-group date' id='qrcodeRegister'>
+                            <input type='text' class="form-control" id="qrcode" name="qrcode" readonly="" />
+                            <span class="input-group-addon">
+                                <span class="fa fa-qrcode"></span>
+                            </span>
+                        </div>
+                        <video id="camRegister"></video>
+                    </div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput"></label>
                     <div class="col-md-6">
-                        <input type="checkbox" class="form-check-input"> Used Chemical</div>
+                        <input type="checkbox" id="REGtypechemical" class="form-check-input"> Used Chemical?</div>
                 </div>
             </div>
 		</div>
 		
 				<div class="form-group control-label">
 					<div class="col-md-12" align="center">
-						<button type="button" name="insert_btn" class="btn btn-success">Submit</button>
-						<button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
+						<button type="button" id="btn_register_chemical" class="btn btn-success">Submit</button>
+						<button type="reset" id="reset_btn" class="btn btn-success">Reset</button>
                     </div>
 	        	</div>
 </fieldset>

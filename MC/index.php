@@ -40,6 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Google Font -->
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+              <script type="text/javascript" src="../bower_components/scannerQR/instascan.min.js"></script>
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -232,8 +233,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<script type="text/javascript">
             $(document).ready(function(){
-                $('#datetimepickerIN').datepicker();
                 $('#datetimepickerEXP').datepicker();
+                $('#camRegister').hide();
 
                 var role = "<?php echo $_SESSION['role'];?>";
                 switch(role) {
@@ -242,7 +243,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         break;
                     default:
                         $('#ownerNamePJ').hide();
-                        $('#ownerNamePJ').val("<?php echo $_SESSION['userid'];?>");
+                        $('#ownerNamePJ #ownerID').val("<?php echo $_SESSION['userid'];?>");
                 }
             });
 
@@ -344,15 +345,72 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             }
 
-            $('#insert_btn').on('click',function(e){
-                e.preventDefault();
-                var id_chemical = $('#chemicalID').val();
-                var id_owner  = $('#ownerID').val();
-                var id_lab = $('#lab').val();
-                var datein = $('#datein').val();
-                var dateexp = $('#expired').val();
-                var status = $('#status').val();
-                var chemical_type = $('#type').val();
+            $('#btn_register_chemical').on('click',function(e){
+                var id_chemical = $.trim($('#chemicalID').val());
+                var id_owner  = $.trim($('#ownerID').val());
+                var id_lab = $.trim($('#lab').val());
+                var dateexp = $.trim($('#expired').val());
+                var splitdate = dateexp.split("/");
+                var newDate = splitdate[2]+"-"+splitdate[0]+"-"+splitdate[1];
+                var status = $.trim($('#status').val());
+                var supplier = $.trim($('#supplier').val());
+                var qrcode = $.trim($('#qrcode').val());
+                var stats = "";
+                var sds = uploadFile();
+                console.log(sds);
+                if($("#REGtypechemical").is(':checked')){
+                    stats = "In Use";
+                }else{
+                    stats = "Available";
+                }
+
+                if(id_chemical==""){
+                    alert("Please make sure you entered the correct chemical name");
+                }else if(id_owner==""){
+                    alert("Please make sure you entered the correct owner name");
+                }else if(id_lab==""){
+                    alert("Please make sure you select the lab");
+                }else if(dateexp==""){
+                    alert("Please make sure you select the expired date for this chemical");
+                }else if(status==""){
+                    alert("Please make sure you select the type of chemical for public or private");
+                }else if(qrcode==""){
+                    alert("Please make sure you scan the qrcode first");
+                }else if(sds==""){
+                    alert("Please make sure you upload SDS first");
+                }else{
+                    $.ajax({
+                        type:"post",
+                        url:"function/registerChemical.php",
+                        data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
+                        success:function(databack){
+                            if($.trim(databack)==="success"){
+                                console.log(stats);
+                                if(stats=="In Use"){
+                                    $.ajax({
+                                    type:"post",
+                                    url:"function/registerChemicalUsage.php",
+                                    data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
+                                    success:function(data){
+                                        console.log(data);
+                                        if($.trim(data)==="success"){
+                                            alert("Registration succeed");
+                                            location.reload();
+                                        }
+                                    }
+                                });
+                                }else{
+                                    alert("Registration succeed");
+                                    location.reload();
+                                }
+                                
+                            }else{
+                                 alert("Registration failed");
+                            }
+                        }
+                    })
+                }
+                
 
             });    
 			
@@ -440,6 +498,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 });
 			  
 			  });	
+        </script>
+                <script type="text/javascript">
+            $('#qrcodeRegister').on('click',function(){
+                $('#camRegister').toggle();
+                 let scanner = new Instascan.Scanner({ video: document.getElementById('camRegister') });
+                  scanner.addListener('scan', function (content) {
+                    console.log(content);
+                    document.getElementById("qrcode").value=content;
+                    $('#camRegister').hide();
+                  });
+                  Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                      scanner.start(cameras[0]);
+                    } else {
+                      console.error('No cameras found.');
+                    }
+                  }).catch(function (e) {
+                    console.error(e);
+                  });
+            });
+
+            function uploadFile(){
+              var input = document.getElementById("sds");
+              file = input.files[0];           
+                formData= new FormData();
+                  formData.append("PDF", file);
+                  $.ajax({
+                    url: "function/upload.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                    }
+                  });
+                return file.name;
+            }
+                 
         </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
