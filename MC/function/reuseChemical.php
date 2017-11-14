@@ -1,5 +1,6 @@
 <?php 
 include "../../connection/connection.php";
+session_start();
 $qrcode = $_POST['QrCode'];
 
 $query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds  
