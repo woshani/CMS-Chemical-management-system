@@ -29,8 +29,7 @@
 						<td><?php echo $row["name"];?></td>
 						<td><?php echo $row["date"];?></td>
 						<td>
-							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
-							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDetailChemical">View Details</button>
 						</td>
 					</tr>
 				<?php
@@ -51,5 +50,26 @@
 			</table>
 		</center>	
 	</div>
-   
+
+	<!-- Modal -->
+	<div id="modalDetailChemical" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Place Your Content Here</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+	   
 </p>

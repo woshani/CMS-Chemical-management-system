@@ -137,7 +137,6 @@ desired effect
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a role="tab" data-toggle="tab" href="#approve_stud"><i class="fa fa-thumbs-up"></i> <span>Approve Student</span></a></li>
-        <li><a role="tab" data-toggle="tab" href="#empty"><i class="fa fa-user-plus"></i> <span>Empty</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -163,11 +162,6 @@ desired effect
                   <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
                   <hr/>
                     <?php include 'approve_student.php';?>
-                </div>
-                <div role="tabpanel" id="empty" class="tab-pane fade swapping-tab">
-                  <h3 style="margin: 0px; padding: 0px;">Empty</h3>
-                  <hr/>
-                    <?php include 'empty.php';?>
                 </div>
             </div>
           </div>
