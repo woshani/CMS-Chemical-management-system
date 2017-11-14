@@ -535,6 +535,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   });
                 return file.name;
             }
+			
+			$('#viewTable #btnView').on('click',function(e){
+				e.preventDefault();
+				
+				 var row = $(this).closest('tr');
+				 
+				  var id = row.find('#chemical').val();
+				
+				 $('#modalDetailChemical #1').val(id);
+			
+				 });
+
                  
         </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
