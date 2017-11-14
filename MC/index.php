@@ -341,6 +341,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 var chemical_type = $('#type').val();
 
             });    
+			
+	
+			  $('#userTable #btnAccept').on('click',function(e){
+				e.preventDefault();
+				   var row = $(this).closest('tr');
+				 var key = row.find('#keyStud').text();
+				 var keyEmail = row.find('#keyEmali').text();
+				 // alert(key);
+				   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Successfully to login into Chemical Management System, Thank You"};
+				 $.ajax({
+					type:"post",
+					url:"function/manageChemicalApprove.php",
+					data: datas,
+					success:function(databack){
+					  if(databack.trim() === "updateSuccess"){
+						alert("Student successfully approve");
+					  }else{
+						alert("Failed to approve the studet!,try again later.");
+					  }
+					  location.reload();
+					}
+				 });
+				
+			  });
+
+				$('#userTable #btnReject').on('click',function(e){
+				e.preventDefault();
+				 var row = $(this).closest('tr');
+				 var key = row.find('#keyStud').text();
+				 var keyEmail = row.find('#keyEmali').text();
+				 // alert(key);
+				 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Your Request to login into Chemical Management System are Rejected Please context your supervisor / PJ, Thank You"};
+				 $.ajax({
+					type:"post",
+					url:"function/manageChemicalApprove.php",
+					data: datas,
+					success:function(databack){
+					  if(databack.trim() === "updateSuccess"){
+						alert("Student rejected");
+					  }else{
+						alert("Failed to reject the studet!,try again later.");
+					  }
+					  location.reload();
+					}
+				 });
+			  
+			  });	
         </script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the

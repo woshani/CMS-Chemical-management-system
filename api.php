@@ -1,6 +1,5 @@
 <?php
 require 'api/WebApi.php';
-require 'api/product.php';
 require 'api/chemical.php';
 require 'api/student.php';
 require 'api/chemicalin.php';
