@@ -421,7 +421,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
 				 // alert(key);
-				   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Successfully to login into Chemical Management System, Thank You"};
+				   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your Request to used the chemical are Successfully, Thank You"};
 				 $.ajax({
 					type:"post",
 					url:"function/manageChemicalApprove.php",
@@ -444,7 +444,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
 				 // alert(key);
-				 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Your Request to login into Chemical Management System are Rejected Please context your supervisor / PJ, Thank You"};
+				 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your request to used the chemical are Rejected Please context your supervisor / PJ, Thank You"};
 				 $.ajax({
 					type:"post",
 					url:"function/manageChemicalApprove.php",

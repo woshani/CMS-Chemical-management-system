@@ -16,7 +16,9 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT * FROM user WHERE supervisorid=".$user_id;
+				$selectSql = "SELECT * 
+							  FROM user a, chemicalusage b, chemicalin c
+							  WHERE a.userid = b.userid AND c.ciid = b.ciid AND b.status = 'Pending' AND c.userid=".$user_id;
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)
 				{
