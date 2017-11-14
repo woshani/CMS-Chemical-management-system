@@ -30,7 +30,7 @@
 						<td><?php echo $no; ?></td>
 						<td><?php echo $row["fname"];?> <?php echo $row["lname"];?></td>
 						<td id="keyStud"><?php echo $row["identifyid"];?></td>
-						<td><?php echo $row["email"];?></td>
+						<td id="keyEmali"><?php echo $row["email"];?></td>
 						<td><?php echo $row["telno"];?></td>
 						<td>
 							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>

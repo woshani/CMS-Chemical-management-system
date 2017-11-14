@@ -52,6 +52,8 @@
       </div>
 	  <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Email" id="email">
+		<input type="hidden" class="form-control"  id="sub" value="CMS- User Authentication Request">
+        <input type="hidden" class="form-control"  id="message" value="Please Check CMS account to accept / reject user autentication request">
         <span class=" form-control-feedback"></span>
       </div>
 	  <div class="form-group has-feedback">
@@ -92,19 +94,21 @@
 <script src="../plugins/iCheck/icheck.min.js"></script>
 
 
-
 	<script>
             $('#btnRegister').on('click',function(e){
                 e.preventDefault();
                 var fname = $('#fname').val();
                 var lname = $('#lname').val();
-				        var email = $('#email').val();
+				var email = $('#email').val();
                 var telno = $('#telno').val();
                 var role = $('#role').val();
                 var admin = $('#admin').val();
                 var identifyId = $('#identifyId').val();
                 var password = $('#password').val();
                 var supervisorId = $('#supervisor').val();
+				var supervisorEmail = $('#supervisorEmail').val();
+				var sub = $('#sub').val();
+                var message = $('#message').val();
                 
                 if(identifyId==="" || password==="" || fname==="" || lname==="" || email==="" || telno===""){
                   alert("please fill in all fields to proceed with registration");
@@ -112,7 +116,7 @@
                     $.ajax({
                      type:"post",
                      url:"query/registerUser.php",
-                     data:{"fname":fname,"lname":lname,"email":email,"telno":telno,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId},
+                     data:{"fname":fname,"lname":lname,"email":email,"telno":telno,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId,"sub":sub,"message":message,"supervisorEmail":supervisorEmail},
                      success:function(databack){
                          console.log(databack);
                          if(databack.trim()==="success"){
@@ -130,7 +134,7 @@
  $("#supervisorId").on('keyup', function () { 
         var input = $(this).val(); 
         if (input.length >= 2) { 
-            $('#matchSupervisor').html('<img src="../img/LoaderIcon.gif"/>'); 
+            $('#matcEMPoccu').html('<img src="../img/LoaderIcon.gif"/>'); 
             var dataFields = {'input': input};
             $.ajax({
                 type: "POST",

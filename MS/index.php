@@ -207,8 +207,9 @@ desired effect
     e.preventDefault();
 	   var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
+	 var keyEmail = row.find('#keyEmali').text();
      // alert(key);
-	   var datas = {method:"updateRole",identifyid:key};
+	   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Successfully to login into Chemical Management System, Thank You"};
      $.ajax({
         type:"post",
         url:"function/manageStudentApprove.php",
@@ -229,8 +230,9 @@ desired effect
     e.preventDefault();
      var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
+	 var keyEmail = row.find('#keyEmali').text();
      // alert(key);
-     var datas = {method:"rejectApprove",identifyid:key};
+     var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Authentication Request",message:"Your Request to login into Chemical Management System are Rejected Please context your supervisor / PJ, Thank You"};
      $.ajax({
         type:"post",
         url:"function/manageStudentApprove.php",
