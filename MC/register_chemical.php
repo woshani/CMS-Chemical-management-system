@@ -52,7 +52,7 @@ mysqli_close($conn);
 					</div>
                 </div>
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Status Chemical :</label>
+                    <label class="col-md-4 control-label" for="textinput">Type Chemical :</label>
                     <div class="col-md-6">
 					<select class="form-control" id="status">
 					  <option selected="" disabled="">Please Select</option>
@@ -75,6 +75,11 @@ mysqli_close($conn);
                     <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
                         <input id="qrcode" name="qrcode" type="text" class="form-control input-md"></div>
+                </div>
+				<div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput"></label>
+                    <div class="col-md-6">
+                        <input type="checkbox" class="form-check-input"> Used Chemical</div>
                 </div>
             </div>
 		</div>
