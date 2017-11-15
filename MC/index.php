@@ -137,12 +137,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
                         <li class="header">Menus</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
-                        <li class=""><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
+                        <li class="active" id="liListChemical"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
+                        <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Reuse</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
-                        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
-                        <li class=""><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Approve(Private)</span></a></li>
+                        <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Approve(Private)</span></a></li>
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>
@@ -183,11 +182,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <h3 style="margin: 0px; padding: 0px;">Return Chemical</h3>
                                     <hr/>
                                     <?php include 'return_chemical.php';?>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="dispose_chemical">
-                                    <h3 style="margin: 0px; padding: 0px;">Dispose Chemical</h3>
-                                    <hr/>
-                                    <?php include 'dispose_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="approve_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Approve Chemical</h3>
@@ -235,11 +229,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $(document).ready(function(){
                 $('#datetimepickerEXP').datepicker();
                 $('#camRegister').hide();
+                $('#camReuse').hide();
+                $('#camReturn').hide();
 
                 var role = "<?php echo $_SESSION['role'];?>";
                 switch(role) {
                     case "PJ":
                         $('#ownerNamePJ').show();
+                        break;
+                    case "Student":
+                        $('#ownerNamePJ').hide();
+                        $('#liListChemical').hide();
+                        $('#list_chemical').hide();
+
+                        $('#liapprovePrivate').hide();
+                        $('#approve_chemical').hide();
+
+                        $('#regis_chemical').addClass("active");
+                        $('#ownerNamePJ #ownerID').val("<?php echo $_SESSION['supervisorid'];?>");
                         break;
                     default:
                         $('#ownerNamePJ').hide();
@@ -466,9 +473,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   scanner.addListener('scan', function (content) {
                     console.log(content);
                     //document.getElementById("qrcodeReuse").value=content;
-                    $('#qrcodeReuse').val(content);
+                    // $('#qrcodeReuse').val(content);
+                    document.getElementById("qrcodeReuseInput").value=content;
+                    scanner.stop();
                     getReuse();
                     $('#camReuse').hide();
+                    
+                  });
+                  Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                      scanner.start(cameras[0]);
+                    } else {
+                      console.error('No cameras found.');
+                    }
+                  }).catch(function (e) {
+                    console.error(e);
+                  });
+            });
+
+            $('#qrcodeReturn').on('click',function(){
+                $('#camReturn').toggle();
+                 let scanner = new Instascan.Scanner({ video: document.getElementById('camReturn') });
+                  scanner.addListener('scan', function (content) {
+                    console.log(content);
+                    //document.getElementById("qrcodeReuse").value=content;
+                    // $('#qrcodeReuse').val(content);
+                    document.getElementById("qrcodeReturnInput").value=content;
+                    scanner.stop();
+                    getReturn();
+                    $('#camReturn').hide();
+                    
                   });
                   Instascan.Camera.getCameras().then(function (cameras) {
                     if (cameras.length > 0) {
@@ -482,7 +516,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
 
             function getReuse(){
-                var QrCode = $('#qrcodeReuse').val();
+                var QrCode = $('#qrcodeReuseInput').val();
+
 				 // alert(key);
 				 
 				 $.ajax({
@@ -494,6 +529,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         $('#insert_btnReuse').prop('disabled', false);
 					}
 				 });
+            }
+            function getReturn(){
+                var QrCode = $('#qrcodeReturnInput').val();
+                var userid = "<?php echo $_SESSION['userid']?>";
+                 
+                 $.ajax({
+                    type:"post",
+                    url:"function/returnChemical.php",
+                    data: {'QrCode': QrCode,userid:userid},
+                    success:function(databack){
+                        $('#returnData').html(databack);
+                        $('#insert_btnReturn').prop('disabled', false);
+                    }
+                 });
             }
             //   $('#qrcodeReuse').on('keyup',function(e){
 			// 	e.preventDefault();
@@ -524,16 +573,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					}
 				 });
 			  
-			  });	
-        </script>
-                <script type="text/javascript">
+			  });
+
+               $('#insert_btnReturn').on('click',function(e){
+                var chemicalId = $('#chemicalInId').val();
+                var cserId = $('#chemicalUserId').val();
+                var email = $('#email').val();
+                var sub = $('#sub').val();
+                var message = $('#message').val();
+                var status = $('#returnStatus').val();
+                
+                  //alert("test");
+                 
+                 $.ajax({
+                    type:"post",
+                    url:"function/reuseNewChemical.php",
+                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status},
+                    success:function(databack){
+                        if(databack.trim() === "success"){
+                        alert("Request success");
+                      }else{
+                        alert("Request failed! Please request later");
+                      }
+                      location.reload();
+                    }
+                 });
+              
+              });                 	
+
             $('#qrcodeRegister').on('click',function(){
                 $('#camRegister').toggle();
                  let scanner = new Instascan.Scanner({ video: document.getElementById('camRegister') });
                   scanner.addListener('scan', function (content) {
                     console.log(content);
                     document.getElementById("qrcode").value=content;
+                    scanner.stop();
                     $('#camRegister').hide();
+                    
                   });
                   Instascan.Camera.getCameras().then(function (cameras) {
                     if (cameras.length > 0) {

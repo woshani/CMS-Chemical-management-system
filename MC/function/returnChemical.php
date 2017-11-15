@@ -2,10 +2,11 @@
 include "../../connection/connection.php";
 session_start();
 $qrcode = $_POST['QrCode'];
+$userid = $_POST['userid'];
 
-$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email  
-            FROM chemical c, chemicalIn ci, user u 
-            WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."' AND ci.status='Available'";
+$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email,cu.startdate,cu.status  
+            FROM chemical c, chemicalIn ci, user u ,chemicalusage cu
+            WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."' AND cu.userid = '".$userid."'";
 $resultSelect = mysqli_query($conn, $query);
 if($resultSelect->num_rows > 0){
 while ($row = mysqli_fetch_array($resultSelect)){
@@ -37,9 +38,14 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         <?php echo $row['expireddate'];?></div>
                 </div>
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">SDS File :</label>
+                    <label class="col-md-4 control-label" for="textinput">Return Status :</label>
                     <div class="col-md-6">
-                        <?php echo $row['sds'];?></div>
+                        <select id="returnStatus" class="form-control">
+                            <option selected="" disabled="">Please select..</option>
+                            <option value="Available">Available</option>
+                            <option value="Empty">Empty</option>
+                        </select>
+                    </div>
                 </div>
                
 
