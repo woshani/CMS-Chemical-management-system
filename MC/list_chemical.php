@@ -16,7 +16,7 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS date, a.name AS chemicalname 
+				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname 
 							  FROM chemical a 
 							  INNER JOIN chemicalin b 
 							  ON b.chemicalid = a.chemicalid 
@@ -35,19 +35,20 @@
 					<tr>
 						<td><?php echo $no; ?></td>
 						<td id="chemical"><?php echo $row["chemicalname"];?></td>
-						<td><?php echo $row["date"];?></td>
+						<td id="expdate"><?php echo $row["expdate"];?></td>
 						<td><?php echo $row["status"];?></td>
-						<td><?php echo $row["type"];?></td>
+						<td><?php echo $row["physicaltype"];?></td>
 						<td>
 							<input id="id" name="id" type="hidden" value="<?php echo $row["chemicalid"];?>">
 							<input id="chemicalname" name="chemicalname" type="hidden" value="<?php echo $row["chemicalname"];?>">
-							<input id="type" name="type" type="hidden" value="<?php echo $row["type"];?>">
+							<input id="type" name="type" type="hidden" value="<?php echo $row["physicaltype"];?>">
 							<input id="status" name="status" type="hidden" value="<?php echo $row["status"];?>">
 							<input id="datein" name="datein" type="hidden" value="<?php echo $row["datein"];?>">
 							<input id="supliername" name="supliername" type="hidden" value="<?php echo $row["supliername"];?>">
 							<input id="qrcode" name="qrcode" type="hidden" value="<?php echo $row["qrcode"];?>">
 							<input id="name" name="name" type="hidden" value="<?php echo $row["name"];?>">
-							<button type="button" class="btn btn-success" name="btnView" data-toggle="modal" data-target="#modalDetailChemical">View Details</button>
+							<input id="sds" name="sds" type="hidden" value="<?php echo $row["sds"];?>">
+							<button type="button" class="btn btn-success" id="btnView" name="btnView" data-toggle="modal" data-target="#modalDetailChemical">View Details</button>
 						</td>
 					</tr>
 				<?php
@@ -72,33 +73,27 @@
 	<!-- Modal -->
 	<div id="modalDetailChemical" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
-
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Modal Header</h4>
+	        <h4 class="modal-title">Chemical Information</h4>
 	      </div>
 	      <div class="modal-body">
-		<form id="contactForm" method="post" action="">
-	        <label class="control-label">Chemical Name :</label> <input id="1" name="1" type="text">
-			<br>
-		    <label class="control-label">Type Chemical :</label> <input id="2" name="2" type="text">
-			<br>
-			<label class="control-label">Status Chemical :</label> <input id="3" name="3" type="text">
-			<br>
-			<label class="control-label">Date In :</label> <input id="4" name="4" type="text">
-			<br>
-			<label class="control-label">Supplier Name :</label> <input id="5" name="5">
-			<br>
-			<label class="control-label">QR Code :</label> <input id="6" name="6" type="text">
-			<br>
-			<label class="control-label">lab :</label> <input id="7" name="7" type="text">
+			<table id="tbleDetails" class="table table-striped table-responsive">
+				<tr><td>Chemical Name :</td><td id="LIchemicalName"></td></tr>
+				<tr><td>Type Chemical :</td><td id="LItypeChemical"></td></tr>
+				<tr><td>Status Chemical :</td><td id="LIstatusChemical"></td></tr>
+				<tr><td>Date In :</td><td id="LIdate"></td></tr>
+				<tr><td>Expired date :</td><td id="LIexpdate"></td></tr>
+				<tr><td>Supplier Name :</td><td id="LIsupplierName"></td></tr>
+				<tr><td>QR Code ID :</td><td id="LIqrcode"></td></tr>
+				<tr><td>lab :</td><td id="LIlab"></td></tr>
+			</table>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      </div>
-		</form>
 	    </div>
 
 	  </div>

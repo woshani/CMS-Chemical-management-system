@@ -359,17 +359,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 var dateexp = $.trim($('#expired').val());
                 var splitdate = dateexp.split("/");
                 var newDate = splitdate[2]+"-"+splitdate[0]+"-"+splitdate[1];
-                var status = $.trim($('#status').val());
+                var status = $.trim($('#statusChemicalPrivatePublic').val());
                 var supplier = $.trim($('#supplier').val());
                 var qrcode = $.trim($('#qrcode').val());
                 var stats = "";
                 var sds = uploadFile();
-                console.log(sds);
+                console.log("id chemicals "+id_chemical);
                 if($("#REGtypechemical").is(':checked')){
                     stats = "In Use";
                 }else{
                     stats = "Available";
                 }
+                console.log("stats :" + stats);
+                console.log("status :" + status);
 
                 if(id_chemical==""){
                     alert("Please make sure you entered the correct chemical name");
@@ -517,9 +519,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             function getReuse(){
                 var QrCode = $('#qrcodeReuseInput').val();
-
-				 // alert(key);
-				 
 				 $.ajax({
 					type:"post",
 					url:"function/reuseChemical.php",
@@ -544,11 +543,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     }
                  });
             }
-            //   $('#qrcodeReuse').on('keyup',function(e){
-			// 	e.preventDefault();
-                
-			  
-			//   });
 
                $('#insert_btnReuse').on('click',function(e){
                 var chemicalId = $('#chemicalInId').val();
@@ -643,11 +637,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				e.preventDefault();
 				
 				 var row = $(this).closest('tr');
-				 
-				  var id = row.find('#chemical').val();
-				
-				 $('#modalDetailChemical #1').val(id);
-			
+				  var id = row.find('#id').val();
+                  var name = row.find('#chemical').text();
+                  var type = row.find('#type').val();
+                  var status = row.find('#status').val();
+                  var datein = row.find('#datein').val();
+                  var expdate = row.find('#expdate').text();
+                  var supliername = row.find('#supliername').val();
+                  var qrcode = row.find('#qrcode').val();
+                  var nameSv = row.find('#name').val();
+				  // console.log("Value: "+id+" "+name+" "+type+" "+status+" "+datein+" "+supliername+" "+qrcode+" "+nameSv);
+				 $('#modalDetailChemical #tbleDetails td#LIchemicalName').html(name);
+                 $('#modalDetailChemical #tbleDetails td#LItypeChemical').html(type);
+                 $('#modalDetailChemical #tbleDetails td#LIstatusChemical').html(status);
+                 $('#modalDetailChemical #tbleDetails td#LIdate').html(datein);
+                 $('#modalDetailChemical #tbleDetails td#LIsupplierName').html(supliername);
+                 $('#modalDetailChemical #tbleDetails td#LIqrcode').html(qrcode);
+                 $('#modalDetailChemical #tbleDetails td#LIlab').html(nameSv);
+                 $('#modalDetailChemical #tbleDetails td#LIexpdate').html(expdate);
+			 
 				 });
 
                  
