@@ -258,6 +258,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 }
             });
 
+            function uploadFile(){
+              var input = document.getElementById("sdsfile");
+              file = input.files[0];           
+                formData= new FormData();
+                  formData.append("PDF", file);
+                  $.ajax({
+                    url: "function/upload.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                    }
+                  });
+                return file.name;
+            }
+
              $("#owner").on('keyup', function () { 
                     var input = $(this).val(); 
                     if (input.length >= 2) { 
@@ -347,7 +364,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       var physicalType = array_data[3];
                       var engcontrol = array_data[4];
                       var ppe = array_data[5];
-                      $('#chemicalID').val(id.trim());
+                      $('#chemicalIDRegis').val(id.trim());
                       $('#type').val(typeC.trim());
                       $('input[name=eng][value=' + engcontrol.trim() + ']').prop('checked',true);
                       $('input[name=ppe][value=' + ppe.trim() + ']').prop('checked',true);
@@ -357,7 +374,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
 
             $('#btn_register_chemical').on('click',function(e){
-                var id_chemical = $.trim($('#chemicalID').val());
+                var id_chemical = $.trim($('#chemicalIDRegis').val());
                 var id_owner  = $.trim($('#ownerID').val());
                 var id_lab = $.trim($('#lab').val());
                 var dateexp = $.trim($('#expired').val());
@@ -365,7 +382,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 var newDate = splitdate[2]+"-"+splitdate[0]+"-"+splitdate[1];
                 var status = $.trim($('#statusChemicalPrivatePublic').val());
                 var supplier = $.trim($('#supplier').val());
-                var qrcode = $.trim($('#qrcode').val());
+                var qrcode = $.trim($('#qrcodeRegisterID').val());
                 var stats = "";
                 var sds = uploadFile();
                 console.log("id chemicals "+id_chemical);
@@ -511,7 +528,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             // $('#qrcodeReuse').val(content);
                             document.getElementById("qrcodeReturnInput").value=content;
                             scannerReturn.stop();
-                            getReuse();
+                            getReturn();
                             $('#camReturn').hide();
                             
                           });
@@ -575,8 +592,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						alert("Request success");
 					  }else{
 						alert("Request failed! Please request later");
+                        console.log(databack);
 					  }
-					  location.reload();
+					  //location.reload();
 					}
 				 });
 			  
@@ -615,9 +633,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             console.log(content);
                             //document.getElementById("qrcodeReuse").value=content;
                             // $('#qrcodeReuse').val(content);
-                            document.getElementById("qrcode").value=content;
+                            document.getElementById("qrcodeRegisterID").value=content;
                             scannerRegister.stop();
-                            getReuse();
                             $('#camRegister').hide();
                             
                           });
@@ -636,22 +653,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 });
             });
 
-            function uploadFile(){
-              var input = document.getElementById("sds");
-              file = input.files[0];           
-                formData= new FormData();
-                  formData.append("PDF", file);
-                  $.ajax({
-                    url: "function/upload.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data){
-                    }
-                  });
-                return file.name;
-            }
+
 			
 			$('#viewTable #btnView').on('click',function(e){
 				e.preventDefault();

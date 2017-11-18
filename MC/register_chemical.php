@@ -13,7 +13,7 @@ mysqli_close($conn);
                     <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
                     <div class="col-md-6">
                         <input id="Chemicalname" name="Chemicalname" type="text" placeholder="" class="form-control input-md">
-                        <input type="hidden" class="form-control"  id="chemicalID">
+                        <input type="hidden" class="form-control"  id="chemicalIDRegis">
                         <div id="matchChemical"></div>
                     </div>   
                 </div>
@@ -64,7 +64,7 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">SDS :</label>
                     <div class="col-md-6">
-                        <input type="file" class="form-control-file" id="sds" name="sds" aria-describedby="fileHelp"></div>
+                        <input type="file" class="form-control-file" id="sdsfile" name="sdsfile" aria-describedby="fileHelp"></div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Supplier Name :</label>
@@ -75,7 +75,7 @@ mysqli_close($conn);
                     <label class="col-md-4 control-label" for="textinput">QR Code :</label>
                     <div class="col-md-6">
                         <div class='input-group date' id='qrcodeRegister'>
-                            <input type='text' class="form-control" id="qrcode" name="qrcode" readonly="" />
+                            <input type='text' class="form-control" id="qrcodeRegisterID" name="qrcodeRegisterID" readonly="" />
                             <span class="input-group-addon">
                                 <span class="fa fa-qrcode"></span>
                             </span>

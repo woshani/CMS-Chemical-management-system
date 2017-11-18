@@ -37,7 +37,7 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 				if($insert){
 					 echo "success";
 				}else{
-					echo "fail";
+					echo $query;
 				}
 	}
 mysqli_close($conn);
