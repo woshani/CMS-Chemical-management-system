@@ -2,7 +2,7 @@
 include "../../connection/connection.php";
 $chemical = $_POST['input'];
 
-$query = "SELECT chemicalid,name,type,physicaltype,engcontrol,ppe FROM chemical WHERE name LIKE '%".$chemical."%'";
+$query = "SELECT chemicalid,name,physicaltype,engcontrol,ppe FROM chemical WHERE name LIKE '%".$chemical."%'";
 $list="";
 $resultSelect = mysqli_query($conn, $query);
 

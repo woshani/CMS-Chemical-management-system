@@ -29,11 +29,11 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	}
 	else
 	{
-
-		$query = "INSERT INTO 
+		$query = "UPDATE chemicalin set status = 'In Use' WHERE ciid = '".$chemicaInlId."';";
+		$query .= "INSERT INTO 
 				chemicalusage (startdate, status, userid, ciid) 
-				VALUES (now(), 'Pending' , '".$chemicalUserId."', '".$chemicaInlId."')";
-		$insert = mysqli_query($conn,$query);
+				VALUES (now(), 'Pending' , '".$chemicalUserId."', '".$chemicaInlId."');";
+		$insert = mysqli_multi_query($conn,$query);
 				if($insert){
 					 echo "success";
 				}else{
