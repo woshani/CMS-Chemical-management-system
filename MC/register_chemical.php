@@ -54,7 +54,7 @@ mysqli_close($conn);
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Type Chemical :</label>
                     <div class="col-md-6">
-					<select class="form-control" id="status">
+					<select class="form-control" id="statusChemicalPrivatePublic">
 					  <option selected="" disabled="">Please Select</option>
 					  <option value="Public">Public</option>
 					  <option value="Private">Private</option>
