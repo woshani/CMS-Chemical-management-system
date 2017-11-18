@@ -226,11 +226,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="../dist/js/adminlte.min.js"></script>
 
 		<script type="text/javascript">
+            let scannerReuse = new Instascan.Scanner({ video: document.getElementById('camReuse') });
+            let scannerReturn = new Instascan.Scanner({ video: document.getElementById('camReturn') });
+            let scannerRegister = new Instascan.Scanner({ video: document.getElementById('camRegister') });
             $(document).ready(function(){
                 $('#datetimepickerEXP').datepicker();
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();
+                
 
                 var role = "<?php echo $_SESSION['role'];?>";
                 switch(role) {
@@ -470,51 +474,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			  
 			  });	
               $('#qrcodeReuse').on('click',function(){
-                $('#camReuse').toggle();
-                 let scanner = new Instascan.Scanner({ video: document.getElementById('camReuse') });
-                  scanner.addListener('scan', function (content) {
-                    console.log(content);
-                    //document.getElementById("qrcodeReuse").value=content;
-                    // $('#qrcodeReuse').val(content);
-                    document.getElementById("qrcodeReuseInput").value=content;
-                    scanner.stop();
-                    getReuse();
-                    $('#camReuse').hide();
-                    
-                  });
-                  Instascan.Camera.getCameras().then(function (cameras) {
-                    if (cameras.length > 0) {
-                      scanner.start(cameras[0]);
-                    } else {
-                      console.error('No cameras found.');
+                $('#camReuse').toggle(function(){
+                    if($(this).is(':visible')){
+                        scannerReuse.addListener('scan', function (content) {
+                            console.log(content);
+                            //document.getElementById("qrcodeReuse").value=content;
+                            // $('#qrcodeReuse').val(content);
+                            document.getElementById("qrcodeReuseInput").value=content;
+                            scannerReuse.stop();
+                            getReuse();
+                            $('#camReuse').hide();
+                            
+                          });
+                          Instascan.Camera.getCameras().then(function (cameras) {
+                            if (cameras.length > 0) {
+                              scannerReuse.start(cameras[0]);
+                            } else {
+                              console.error('No cameras found.');
+                            }
+                          }).catch(function (e) {
+                            console.error(e);
+                          });
+                    }else if($(this).is(':hidden')){
+                        scannerReuse.stop();
                     }
-                  }).catch(function (e) {
-                    console.error(e);
-                  });
+                });
+                  
             });
 
             $('#qrcodeReturn').on('click',function(){
-                $('#camReturn').toggle();
-                 let scanner = new Instascan.Scanner({ video: document.getElementById('camReturn') });
-                  scanner.addListener('scan', function (content) {
-                    console.log(content);
-                    //document.getElementById("qrcodeReuse").value=content;
-                    // $('#qrcodeReuse').val(content);
-                    document.getElementById("qrcodeReturnInput").value=content;
-                    scanner.stop();
-                    getReturn();
-                    $('#camReturn').hide();
-                    
-                  });
-                  Instascan.Camera.getCameras().then(function (cameras) {
-                    if (cameras.length > 0) {
-                      scanner.start(cameras[0]);
-                    } else {
-                      console.error('No cameras found.');
+                $('#camReturn').toggle(function(){
+                    if($(this).is(':visible')){
+                        scannerReturn.addListener('scan', function (content) {
+                            console.log(content);
+                            //document.getElementById("qrcodeReuse").value=content;
+                            // $('#qrcodeReuse').val(content);
+                            document.getElementById("qrcodeReturnInput").value=content;
+                            scannerReturn.stop();
+                            getReuse();
+                            $('#camReturn').hide();
+                            
+                          });
+                          Instascan.Camera.getCameras().then(function (cameras) {
+                            if (cameras.length > 0) {
+                              scannerReturn.start(cameras[0]);
+                            } else {
+                              console.error('No cameras found.');
+                            }
+                          }).catch(function (e) {
+                            console.error(e);
+                          });
+                    }else if($(this).is(':hidden')){
+                        scannerReturn.stop();
                     }
-                  }).catch(function (e) {
-                    console.error(e);
-                  });
+                });
             });
 
             function getReuse(){
@@ -596,24 +609,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
               });                 	
 
             $('#qrcodeRegister').on('click',function(){
-                $('#camRegister').toggle();
-                 let scanner = new Instascan.Scanner({ video: document.getElementById('camRegister') });
-                  scanner.addListener('scan', function (content) {
-                    console.log(content);
-                    document.getElementById("qrcode").value=content;
-                    scanner.stop();
-                    $('#camRegister').hide();
-                    
-                  });
-                  Instascan.Camera.getCameras().then(function (cameras) {
-                    if (cameras.length > 0) {
-                      scanner.start(cameras[0]);
-                    } else {
-                      console.error('No cameras found.');
+                $('#camRegister').toggle(function(){
+                    if($(this).is(':visible')){
+                        scannerRegister.addListener('scan', function (content) {
+                            console.log(content);
+                            //document.getElementById("qrcodeReuse").value=content;
+                            // $('#qrcodeReuse').val(content);
+                            document.getElementById("qrcode").value=content;
+                            scannerRegister.stop();
+                            getReuse();
+                            $('#camRegister').hide();
+                            
+                          });
+                          Instascan.Camera.getCameras().then(function (cameras) {
+                            if (cameras.length > 0) {
+                              scannerRegister.start(cameras[0]);
+                            } else {
+                              console.error('No cameras found.');
+                            }
+                          }).catch(function (e) {
+                            console.error(e);
+                          });
+                    }else if($(this).is(':hidden')){
+                        scannerRegister.stop();
                     }
-                  }).catch(function (e) {
-                    console.error(e);
-                  });
+                });
             });
 
             function uploadFile(){
