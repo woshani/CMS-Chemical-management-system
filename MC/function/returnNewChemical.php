@@ -10,6 +10,7 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	
 	$chemicaInlId = $_POST['chemicalId'];
 	$chemicalUserId = $_POST['cserId'];
+	$chemicalpeminjam = $_POST['peminjam'];
 	
 	$mailer = new PHPMailer();
 	$mailer->IsSMTP();
@@ -31,7 +32,7 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	else
 	{
 
-		$query = "UPDATE chemicalusage SET status = '".$status."' ,enddate='now()' where ciid = '".$chemicaInlId."' AND cuserid = '".$chemicalUserId."';";
+		$query = "UPDATE chemicalusage SET status = '".$status."' ,enddate='now()' where ciid = '".$chemicaInlId."' AND cuserid = '".$chemicalpeminjam."';";
 		$query .= "UPDATE chemicalIn SET status = '".$status."' AND userid = '".$chemicalUserId."';";
 		$insert = mysqli_multi_query($conn,$query);
 				if($insert){

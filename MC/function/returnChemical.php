@@ -6,26 +6,35 @@ $userid = $_POST['userid'];
 
 $query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email,cu.startdate,cu.status  
             FROM chemical c, chemicalIn ci, user u ,chemicalusage cu
-            WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."' AND cu.userid = '".$userid."'";
-$resultSelect = mysqli_query($conn, $query);
+            WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND ci.qrcode = '".$qrcode."' AND cu.userid = '".$userid."' AND ci.status='In Use'";
+$quaryDua = "SELECT c.chemicalid,c.name as chemicalname,CONCAT(u.fname,' ',u.lname) as owner,ci.ciid as chemicalid,ci.expireddate as chemicalexpiredate,CONCAT(cx.fname,' ',cx.lname) as peminjam,u.email as owneremail,u.userid as ownerid,cx.userid as peminjamid,ci.status as status
+                FROM chemicalin ci 
+                join chemical c on c.chemicalid = ci.chemicalid
+                join user u on u.userid = ci.userid 
+                join chemicalusage cu ON cu.ciid = ci.ciid and cu.status = 'Approve' and cu.userid = '".$userid."'
+                join user cx on cx.userid = cu.userid
+                WHERE ci.qrcode='".$qrcode."';";
+$resultSelect = mysqli_query($conn, $quaryDua);
 if($resultSelect->num_rows > 0){
 while ($row = mysqli_fetch_array($resultSelect)){
 ?>                
                 
                 <div class="form-group">
+                    <br/>
                     <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
                     <div class="col-md-6">
-                        <?php echo $row['name'];?></div>
-                        <input type="hidden" id="chemicalInId" value="<?php echo $row['ciid'];?>">
-                        <input type="hidden" id="chemicalUserId" value="<?php echo $_SESSION["userid"];?>">
-						<input type="hidden" id="email" value="<?php echo $row['email'];?>">
-						<input type="hidden" id="sub" value="ZeroWaste - User Reuse Chemical Request">
-						<input type="hidden" id="message" value="Please Check ZeroWaste account to accept / reject reuse Chemical request">
+                        <?php echo $row['chemicalname'];?></div>
+                        <input type="hidden" id="chemicalInId" value="<?php echo $row['chemicalid'];?>">
+                        <input type="hidden" id="chemicalUserId" value="<?php echo $_SESSION["ownerid"];?>">
+                        <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $_SESSION["peminjamid"];?>">
+						<input type="hidden" id="email" value="<?php echo $row['owneremail'];?>">
+						<input type="hidden" id="sub" value="ZeroWaste - User Return Chemical Notification">
+						<input type="hidden" id="message" value="<?php echo $row['peminjamid'];?> has return your chemical: <?php echo $row['chemicalname'];?>">
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
                     <div class="col-md-6">
-                        <?php echo $row['fname']; echo " "; echo $row['lname'];?></div>
+                        <?php echo $row['owner'];?></div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Status :</label>
@@ -35,7 +44,7 @@ while ($row = mysqli_fetch_array($resultSelect)){
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Expired Date :</label>
                     <div class="col-md-6">
-                        <?php echo $row['expireddate'];?></div>
+                        <?php echo $row['chemicalexpiredate'];?></div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Return Status :</label>

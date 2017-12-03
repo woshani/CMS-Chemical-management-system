@@ -226,16 +226,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="../dist/js/adminlte.min.js"></script>
 
 		<script type="text/javascript">
+            // this for create object for qr scanner
             let scannerReuse = new Instascan.Scanner({ video: document.getElementById('camReuse') });
             let scannerReturn = new Instascan.Scanner({ video: document.getElementById('camReturn') });
             let scannerRegister = new Instascan.Scanner({ video: document.getElementById('camRegister') });
+            /////////////////////////////////////
             $(document).ready(function(){
                 $('#datetimepickerEXP').datepicker();
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();
                 
-
+                //role to show and hide functioanlity
                 var role = "<?php echo $_SESSION['role'];?>";
                 switch(role) {
                     case "PJ":
@@ -257,7 +259,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         $('#ownerNamePJ #ownerID').val("<?php echo $_SESSION['userid'];?>");
                 }
             });
-
+// upload SDS function---------------------------------------------------------------------
             function uploadFile(){
               var input = document.getElementById("sdsfile");
               file = input.files[0];           
@@ -274,6 +276,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   });
                 return file.name;
             }
+            //----------------------------------------------------------------------
+            //----- seach owner name n id ------------------------------------------
 
              $("#owner").on('keyup', function () { 
                     var input = $(this).val(); 
@@ -319,7 +323,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 });
 
             }
-
+            //-------------------------------------------------------------------------------------------------
+            //--------------- search chemical name ---------------------------------
             $("#Chemicalname").on('keyup', function () { 
                     var input = $(this).val(); 
                     if (input.length >= 2) { 
@@ -376,6 +381,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $('#btn_register_chemical').on('click',function(e){
                 var id_chemical = $.trim($('#chemicalIDRegis').val());
                 var id_owner  = $.trim($('#ownerID').val());
+                var id_user = '<?php echo $_SESSION["userid"];?>';
                 var id_lab = $.trim($('#lab').val());
                 var dateexp = $.trim($('#expired').val());
                 var splitdate = dateexp.split("/");
@@ -420,7 +426,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     $.ajax({
                                     type:"post",
                                     url:"function/registerChemicalUsage.php",
-                                    data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
+                                    data:{id_chemical:id_chemical,id_owner:id_user,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
                                     success:function(data){
                                         console.log(data);
                                         if($.trim(data)==="success"){
@@ -603,6 +609,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                $('#insert_btnReturn').on('click',function(e){
                 var chemicalId = $('#chemicalInId').val();
                 var cserId = $('#chemicalUserId').val();
+                var userchemicalid = $('#chemicalUserIdPeminjam').val();
                 var email = $('#email').val();
                 var sub = $('#sub').val();
                 var message = $('#message').val();
@@ -613,8 +620,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  $.ajax({
                     type:"post",
                     url:"function/reuseNewChemical.php",
-                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status},
+                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid },
                     success:function(databack){
+                        console.log(databack);
                         if(databack.trim() === "success"){
                         alert("Request success");
                       }else{

@@ -10,15 +10,16 @@
 						<th class="text-center">Identity No</th>
 						<th class="text-center">Email</th>
 						<th class="text-center">Phone No</th>
+						<th class="text-center">Chemical Name</th>
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT * 
-							  FROM user a, chemicalusage b, chemicalin c
-							  WHERE a.userid = b.userid AND c.ciid = b.ciid AND b.status = 'Pending' AND c.userid=".$user_id;
+				$selectSql = "SELECT CONCAT(a.fname,' ',a.lname) as fullname, a.identifyid,a.email,a.telno,d.name as chemical_name
+							  FROM user a, chemicalusage b, chemicalin c,chemical d
+							  WHERE a.userid = b.userid AND c.ciid = b.ciid AND b.status = 'Pending' AND c.userid=".$user_id." AND c.chemicalid = d.chemicalid AND c.status!='Dispose'";
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)
 				{
@@ -30,10 +31,11 @@
 				<tbody>
 					<tr>
 						<td><?php echo $no; ?></td>
-						<td><?php echo $row["fname"];?> <?php echo $row["lname"];?></td>
+						<td><?php echo $row["fullname"];?></td>
 						<td id="keyStud"><?php echo $row["identifyid"];?></td>
 						<td id="keyEmali"><?php echo $row["email"];?></td>
 						<td><?php echo $row["telno"];?></td>
+						<td><?php echo $row["chemical_name"];?></td>
 						<td>
 							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
 							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>
@@ -47,7 +49,7 @@
 				{
 				?>
 					<tr>
-						<td colspan="6">No Data</td>
+						<td colspan="7">No Data</td>
 					</tr>
 				<?php
 				}
