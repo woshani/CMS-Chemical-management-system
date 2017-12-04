@@ -25,8 +25,8 @@ while ($row = mysqli_fetch_array($resultSelect)){
                     <div class="col-md-6">
                         <?php echo $row['chemicalname'];?></div>
                         <input type="hidden" id="chemicalInId" value="<?php echo $row['chemicalid'];?>">
-                        <input type="hidden" id="chemicalUserId" value="<?php echo $_SESSION["ownerid"];?>">
-                        <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $_SESSION["peminjamid"];?>">
+                        <input type="hidden" id="chemicalUserId" value="<?php echo $row["ownerid"];?>">
+                        <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $row["peminjamid"];?>">
 						<input type="hidden" id="email" value="<?php echo $row['owneremail'];?>">
 						<input type="hidden" id="sub" value="ZeroWaste - User Return Chemical Notification">
 						<input type="hidden" id="message" value="<?php echo $row['peminjamid'];?> has return your chemical: <?php echo $row['chemicalname'];?>">

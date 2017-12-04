@@ -619,7 +619,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  
                  $.ajax({
                     type:"post",
-                    url:"function/reuseNewChemical.php",
+                    url:"function/returnNewChemical.php",
                     data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid },
                     success:function(databack){
                         console.log(databack);
@@ -628,7 +628,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       }else{
                         alert("Request failed! Please request later");
                       }
-                      location.reload();
+                      // location.reload();
                     }
                  });
               
