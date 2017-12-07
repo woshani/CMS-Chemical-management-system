@@ -71,9 +71,9 @@ desired effect
     <!-- Logo -->
     <a href="dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Zero</b>Waste</span>
+      <span class="logo-mini"><b>Z</b>W</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ZeroWaste</b>Dashboard</span>
+      <span class="logo-lg"><b>Zero</b>Waste</span>
     </a>
 
     <!-- Header Navbar -->
@@ -86,7 +86,7 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
+          <li class="dropdown notifications-menu hidden">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -128,7 +128,7 @@ desired effect
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+          <p><?php echo $_SESSION['fname']." <br/>".$_SESSION['lname'];?></p>
           <p><?php echo $_SESSION['identifyid'];?></p>
         </div>
       </div>
@@ -196,7 +196,7 @@ desired effect
       Chemical Management System
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">Company SPM</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">ZeroWaste</a>.</strong> All rights reserved.
   </footer>
 
   <!-- /.control-sidebar -->

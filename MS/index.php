@@ -70,9 +70,9 @@ desired effect
     <!-- Logo -->
     <a href="../dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Zero</b>Waste</span>
+      <span class="logo-mini"><b>Z</b>W</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ZeroWaste</b>Dashboard</span>
+      <span class="logo-lg"><b>Zero</b>Waste</span>
     </a>
 
     <!-- Header Navbar -->
@@ -85,7 +85,7 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
+          <li class="dropdown notifications-menu hidden">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -127,7 +127,7 @@ desired effect
           <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+          <p><?php echo $_SESSION['fname']." <br/>".$_SESSION['lname'];?></p>
           <p><?php echo $_SESSION['identifyid'];?></p>
         </div>
       </div>
@@ -136,7 +136,8 @@ desired effect
       <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a role="tab" data-toggle="tab" href="#approve_stud"><i class="fa fa-thumbs-up"></i> <span>Approve Student</span></a></li>
+        <li class="active"><a role="tab" data-toggle="tab" href="#list_stud"><i class="fa fa-list"></i> <span>List Student</span></a></li>
+        <li class=""><a role="tab" data-toggle="tab" href="#approve_stud"><i class="fa fa-thumbs-up"></i> <span>Approve Student</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -158,7 +159,12 @@ desired effect
       <div class="row col-md-12">
             <div class="thumbnail">  
               <div class="tab-content">   
-                <div role="tabpanel" id="approve_stud" class="tab-pane active">
+                <div role="tabpanel" id="list_stud" class="tab-pane active">
+                  <h3 style="margin: 0px; padding: 0px;">List Students </h3>
+                  <hr/>
+                    <?php include 'List_student.php';?>
+                </div>
+                <div role="tabpanel" id="approve_stud" class="tab-pane">
                   <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
                   <hr/>
                     <?php include 'approve_student.php';?>
@@ -178,7 +184,7 @@ desired effect
       Chemical Management System
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">Company SPM</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">ZeroWaste</a>.</strong> All rights reserved.
   </footer>
 
   <!-- /.control-sidebar -->
@@ -196,53 +202,8 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<script type="text/javascript">
-  $('#userTable #btnAccept').on('click',function(e){
-    e.preventDefault();
-	   var row = $(this).closest('tr');
-     var key = row.find('#keyStud').text();
-	 var keyEmail = row.find('#keyEmali').text();
-     // alert(key);
-	   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"ZeroWaste- User Authentication Request",message:"Successfully to login into Chemical Management System, Thank You"};
-     $.ajax({
-        type:"post",
-        url:"function/manageStudentApprove.php",
-        data: datas,
-        success:function(databack){
-          if(databack.trim() === "updateSuccess"){
-            alert("Student successfully approve");
-          }else{
-            alert("Failed to approve the studet!,try again later.");
-          }
-          location.reload();
-        }
-     });
-	
-  });
+<script src="../dist/js/manageStudent.js"></script>
 
-    $('#userTable #btnReject').on('click',function(e){
-    e.preventDefault();
-     var row = $(this).closest('tr');
-     var key = row.find('#keyStud').text();
-	 var keyEmail = row.find('#keyEmali').text();
-     // alert(key);
-     var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"ZeroWaste- User Authentication Request",message:"Your Request to login into Chemical Management System are Rejected Please context your supervisor / PJ, Thank You"};
-     $.ajax({
-        type:"post",
-        url:"function/manageStudentApprove.php",
-        data: datas,
-        success:function(databack){
-          if(databack.trim() === "updateSuccess"){
-            alert("Student rejected");
-          }else{
-            alert("Failed to reject the studet!,try again later.");
-          }
-          location.reload();
-        }
-     });
-  
-  });
-</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

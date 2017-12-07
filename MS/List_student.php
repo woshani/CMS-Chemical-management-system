@@ -10,13 +10,13 @@
 						<th class="text-center">Identity No</th>
 						<th class="text-center">Email</th>
 						<th class="text-center">Phone No</th>
-						<th class="text-center">Action</th>
+						<!-- <th class="text-center">Action</th> -->
 					</tr>
 				</thead>
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT * FROM user WHERE status = 'Pending' AND supervisorid=".$user_id;
+				$selectSql = "SELECT * FROM user WHERE status = 'Approve' AND role='Student' AND supervisorid=".$user_id;
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)
 				{
@@ -32,10 +32,9 @@
 						<td id="keyStud"><?php echo $row["identifyid"];?></td>
 						<td id="keyEmali"><?php echo $row["email"];?></td>
 						<td><?php echo $row["telno"];?></td>
-						<td>
-							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
-							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>
-						</td>
+						<!-- <td>
+							<button type="button" name="btnViewStudent" id="btnViewStudent" class="btn btn-success" data-toggle="modal" data-target="#modalDetailStudent">Details</button>
+						</td> -->
 					</tr>
 				<?php
 				$no++;
@@ -45,7 +44,7 @@
 				{
 				?>
 					<tr>
-						<td colspan="6">No Student Request need to be approved!</td>
+						<td colspan="4">No Data</td>
 					</tr>
 				<?php
 				}

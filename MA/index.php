@@ -70,9 +70,9 @@ desired effect
     <!-- Logo -->
     <a href="../dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Zero</b>Waste</span>
+      <span class="logo-mini"><b>Z</b>W</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ZeroWaste</b>Dashboard</span>
+      <span class="logo-lg"><b>Zero</b>Waste</span>
     </a>
 
     <!-- Header Navbar -->
@@ -85,7 +85,7 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
+          <li class="dropdown notifications-menu hidden">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -127,7 +127,7 @@ desired effect
           <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></p>
+          <p><?php echo $_SESSION['fname']." <br/>".$_SESSION['lname'];?></p>
           <p><?php echo $_SESSION['identifyid'];?></p>
         </div>
       </div>
@@ -184,7 +184,7 @@ desired effect
       Chemical Management System
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">Company SPM</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">ZeroWaste</a>.</strong> All rights reserved.
   </footer>
 
   <!-- /.control-sidebar -->
@@ -204,70 +204,13 @@ desired effect
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
-  $('#btnUpdateUser').on('click',function(e){
-    e.preventDefault();
-    var fname = $('#fname').val();
-    var lname = $('#lname').val();
-    var email = $('#email').val();
-    var notel = $('#notel').val();
-    var userid = $('#userid').val();
-    var userkey = "<?php echo $_SESSION['userid'];?>";
-    var datas = {fname:fname,lname:lname,email:email,notel:notel,userid:userid,method:"updateUser",key:userkey};
-    console.log(datas);
-    $.ajax({
-      type:"post",
-      url:"function/manageAccountFunction.php",
-      data:datas,
-      success:function(databack){
-        console.log(databack);
-        if(databack.trim()==="updateSuccess"){
-          alert("your profile is saved!");
-        }else{
-          alert("you cannot do that now,something is wrong,try again later");
-        }
-      }
-    });
-  });
-
-  $('#btnUpdatePass').on('click',function(e){
-    e.preventDefault();
-    var old = $.md5($('#old').val());
-    var newPass = $.md5($('#new').val());
-    var retypePass = $.md5($('#retype').val());
-    var ori = "<?php echo $_SESSION['password'];?>";
-
-    if(old != ori){
-      alert("your old password is incorrect!");
-      $('#old').focus();
-    }else if(newPass != retypePass){
-      alert("please make sure you re-type the new password correctly.");
-      $('#retype').focus();
-    }else if(old ==="" || newPass === "" || retypePass ===""){
-      alert("do not leave the fields empty!");
-    }else{
-      var userkey = "<?php echo $_SESSION['userid'];?>";
-      var userid = "<?php echo $_SESSION['identifyid']?>";
-      var datas = {new:newPass,method:"updatePass",key:userkey,userid:userid};
-      $.ajax({
-        type:"post",
-        url:"function/manageAccountFunction.php",
-        data:datas,
-        success:function(databack){
-          console.log(databack);
-          if(databack.trim()==="updateSuccess"){
-            alert("your password is changed!");
-            $('#old').val('');
-            $('#new').val('');
-            $('#retype').val('');
-            location.reload();
-          }else{
-            alert("you cannot do that now,something is wrong,try again later");
-          }
-        }
-      });
-    }
-  });
+  var ori = "<?php echo $_SESSION['password'];?>";
+  var userkey = "<?php echo $_SESSION['userid'];?>";
+  var userid = "<?php echo $_SESSION['identifyid']?>";
 </script>
+<script src="../dist/js/manageAccount.js"></script>
+
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

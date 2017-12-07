@@ -6,7 +6,9 @@
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">First Name:</label>
                     <div class="col-md-6">
-                        <input id="fname" name="fname" type="text" placeholder="" class="form-control input-md" value="<?php echo $_SESSION['fname'];?>"></div>
+                        <input id="fname" name="fname" type="text" placeholder="" class="form-control input-md" value="<?php echo $_SESSION['fname'];?>">
+                        <input type="hidden" class="hidden" name="userkey" id="userkey" value="<?php echo $_SESSION['userid'];?>">
+                    </div>
                 </div>
 
                 <!-- Text input-->
