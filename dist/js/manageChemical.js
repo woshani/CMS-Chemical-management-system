@@ -4,7 +4,8 @@
             let scannerRegister = new Instascan.Scanner({ video: document.getElementById('camRegister') });
             /////////////////////////////////////
             $(document).ready(function(){
-                $('#datetimepickerEXP').datepicker();
+                var tarikhHarini = new Date();
+                $('#datetimepickerEXP').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();

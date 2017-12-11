@@ -125,16 +125,17 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo $_SESSION['picture'];?>" class="img-circle" alt="User Image">
+          <img src="<?php echo $_SESSION['picture'];?>" class="img-circle" height="45" width="45" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['fname']." <br/>".$_SESSION['lname'];?></p>
-          <p><?php echo $_SESSION['identifyid'];?></p>
+          <p><?php echo $_SESSION['fname'];?></p>
+          <?php echo $_SESSION['identifyid'];?>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Menus</li>
         <li><a href="../MA/index.php"><i class="fa fa-user-circle"></i> <span>Manage Account</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
