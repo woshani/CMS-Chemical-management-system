@@ -3,11 +3,12 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+
 <?php
   session_start();
   if(!isset($_SESSION['userid']))
 {
-    header("Location: ../index.html");
+    header("Location: index.html");
     exit;
 } 
 ?>
@@ -40,8 +41,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -70,7 +69,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../dashboard/dashboard.php" class="logo">
+    <a href="dashboard.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Z</b>W</span>
       <!-- logo for regular state and mobile devices -->
@@ -135,11 +134,8 @@ desired effect
       </div>
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
-        <li class="header">Menus</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register Lab</span></a></li>
-        <li><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Assign Lab</span></a></li>
+      <ul class="sidebar-menu" data-widget="tree">
+        <li><a href="../MA/index.php"><i class="fa fa-user-circle"></i> <span>Manage Account</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -151,29 +147,43 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Manage Lab
+        Dashboard
         <small>Chemical Management System</small>
       </h1>
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
-      <div class="row col-md-12">
-            <div class="thumbnail">
-              <div class="tab-content">     
-                <div role="tabpanel" class="tab-pane active" id="regis_lab">
-                  <h3 style="margin: 0px; padding: 0px;">Register Lab </h3>
-                  <hr/>
-                    <?php include 'new_lab.php';?>
+
+      <div class="row">
+        <div class="col-md-12">
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MSM">
+              <a href="../MS/index.php" class="thumbnail">
+                <div class="text-center">
+                  <i class="fa fa-users" aria-hidden="true" style="color: gray;font-size: 4em;"></i>
+                  <h3>Manage Students</h3>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="assign_lab">
-                  <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
-                  <hr/>
-                    <?php include 'assign_lab.php';?>
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MCM">
+              <a href="../MC/index.php" class="thumbnail">
+                <div class="text-center">
+                  <i class="fa fa-flask" aria-hidden="true" style="color: green;font-size: 4em;"></i>
+                  <h3>Manage Chemicals</h3>
                 </div>
-              </div>
-          </div>
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3" id="MLM">
+              <a href="../ML/index.php" class="thumbnail">
+                <div class="text-center">
+                  <i class="fa fa-building-o" aria-hidden="true" style="color: #337ab7;font-size: 4em;"></i>
+                  <h3>Manage Labs</h3>
+                </div>
+              </a>
+            </div>
+        </div>
       </div>
+
     </section>
     <!-- /.content -->
   </div>
@@ -198,13 +208,53 @@ desired effect
 
 <!-- REQUIRED JS SCRIPTS -->
 
-
+<!-- jQuery 3 -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<script src="../dist/js/manageLab.js"></script>
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    var role = "<?php echo $_SESSION['role'];?>";
+    var admin = "<?php echo $_SESSION['admin'];?>";
+    console.log(role);
+        switch(role) {
+        case "Student":
+            $('#MSM').hide();
+            $('#MLM').hide();
+            $('#MCM').show();
+            break;
+        case "Lecturer":
+            if(admin==="No"){
+              $('#MLM').hide();
+              $('#MSM').show();
+              $('#MCM').show();
+            }else{
+              $('#MLM').show();
+              $('#MSM').show();
+              $('#MCM').show();
+            }
+            
+            break;
+        case "PJ":
+            if(admin==="No"){
+              $('#MLM').hide();
+              $('#MSM').hide();
+              $('#MCM').show();
+            }else{
+              $('#MLM').show();
+              $('#MSM').hide();
+              $('#MCM').show();
+            }
+            break;
+        default:
+            $('#MSM').show();
+            $('#MLM').show();
+            $('#MCM').show();
+        }
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

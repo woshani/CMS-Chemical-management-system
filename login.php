@@ -20,7 +20,13 @@ if($result->num_rows > 0){
     	$_SESSION["supervisorid"]=$row['supervisorid'];
         $_SESSION["password"]=$row['password'];
         $_SESSION["status"]=$row['status'];
-        $_SESSION["picture"]=$row['picture'];
+
+        if($row['picture']==""){
+          $_SESSION["picture"] = "../img/profiledefault.png";
+        }else{
+          $_SESSION["picture"]=$row['picture'];  
+        }
+        
     }
     
     if($_SESSION['status']=="Pending"){
