@@ -3,7 +3,7 @@ include 'connection/connection.php';
 $userid = $_POST['userid'];
 $pass = $_POST['password'];
 
-$sql = "SELECT userid,fname,lname,email,telno,role,admin,identifyid,supervisorid,password,status FROM user WHERE identifyid = '".$userid."' AND password='".$pass."';";
+$sql = "SELECT userid,fname,lname,email,telno,role,admin,identifyid,supervisorid,password,status,picture FROM user WHERE identifyid = '".$userid."' AND password='".$pass."';";
 
 $result = mysqli_query($conn,$sql);
 if($result->num_rows > 0){
@@ -20,6 +20,7 @@ if($result->num_rows > 0){
     	$_SESSION["supervisorid"]=$row['supervisorid'];
         $_SESSION["password"]=$row['password'];
         $_SESSION["status"]=$row['status'];
+        $_SESSION["picture"]=$row['picture'];
     }
     
     if($_SESSION['status']=="Pending"){

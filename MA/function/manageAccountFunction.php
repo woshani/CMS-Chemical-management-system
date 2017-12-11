@@ -10,8 +10,9 @@ if($method=="updateUser"){
 	$lname = $_POST['lname'];
 	$email = $_POST['email'];
 	$notel = $_POST['notel'];
+	$img = $_POST['img'];
 
-	$sqlupdate = "UPDATE user SET fname='".$fname."',lname='".$lname."',email='".$email."',telno='".$notel."' WHERE userid='".$key."' AND identifyid='".$userid."';";
+	$sqlupdate = "UPDATE user SET fname='".$fname."',lname='".$lname."',email='".$email."',telno='".$notel."',picture='".$img."' WHERE userid='".$key."' AND identifyid='".$userid."';";
 	$resultUpdate = mysqli_query($conn,$sqlupdate);
 	if($resultUpdate){
     	echo "updateSuccess";
@@ -20,8 +21,9 @@ if($method=="updateUser"){
     	$_SESSION['lname'] = $lname;
     	$_SESSION['email'] = $email;
     	$_SESSION['telno'] = $notel;
+    	$_SESSION['picture'] = $img;
 	}else{
-	    echo "updateFailed";
+	    echo $sqlupdate;
 	}
 mysqli_close($conn);
 

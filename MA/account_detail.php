@@ -1,6 +1,25 @@
 <form class="form-horizontal">
 <fieldset>
-<!-- Text input--> 
+<!-- Text input-->
+        <div class="row">
+            <div class="col-md-12">
+                <center>
+                    <div class="form-group">
+                        <div style="width: 50%; margin: 0 auto">
+                            <div id="dym2">
+                                <img id="myImage2" class="img-responsive" width="300" height="300" src="<?php echo $_SESSION['picture'];?>"/>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Picture:</label>
+                    <div class="col-md-6">
+                        <input class="form-control" id="inputPicture" type="file" accept=".jpg, .png, .jpeg">
+                    </div>
+                </div>
+            </div>
+        </div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
@@ -45,11 +64,14 @@
                 </div>
 			</div>
 		</div>
-		
-				<div class="form-group control-label">
-					<div class="col-md-12" align="center">
-                        <button type="button" class="btn btn-success btn-block btn-flat input-md" id="btnUpdateUser">Update</button>
+        <div class="row" align="center">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="col-md-12">
+                       <button type="button" class="btn btn-success btn-block btn-flat input-md form-control" align="center" id="btnUpdateUser">Update</button>
                     </div>
-	        	</div>
+                </div>
+            </div>
+        </div> 
 </fieldset>
 </form>

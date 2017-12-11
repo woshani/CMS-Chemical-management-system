@@ -1,3 +1,5 @@
+var gambarURI2 = "";
+var ext = "";
 $('#btnUpdateUser').on('click',function(e){
     e.preventDefault();
     var fname = $('#fname').val();
@@ -6,8 +8,9 @@ $('#btnUpdateUser').on('click',function(e){
     var notel = $('#notel').val();
     var userid = $('#userid').val();
     var userkey = $('#userkey').val();
-    var datas = {fname:fname,lname:lname,email:email,notel:notel,userid:userid,method:"updateUser",key:userkey};
-    console.log(datas);
+    var img = $('#myImage2').attr('src');
+    var datas = {fname:fname,lname:lname,email:email,notel:notel,userid:userid,method:"updateUser",key:userkey,img:img};
+    console.log(img);
     $.ajax({
       type:"post",
       url:"function/manageAccountFunction.php",
@@ -61,3 +64,48 @@ $('#btnUpdateUser').on('click',function(e){
       });
     }
   });
+
+
+$('#inputPicture').on('change',function(e){
+  loadImageFileAsURL2();
+});
+
+function loadImageFileAsURL2()
+{
+    var iSize = 0;
+    iSize = ($("#inputPicture")[0].files[0].size);
+    var file = $("#inputPicture").val();
+    ext = file.split('.').pop();
+    var sizeSmall = false;
+    if (iSize > 1048576) {
+        sizeSmall = false;
+    } else {
+        sizeSmall = true;
+    }
+
+
+    if (sizeSmall) {
+        var filesSelected = document.getElementById("inputPicture").files;
+        if (filesSelected.length > 0)
+        {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent)
+            {
+
+                gambarURI2 = fileLoadedEvent.target.result;
+                document.getElementById("myImage2").src = gambarURI2;
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    } else {
+
+        alert("File size must not exceed 1MB");
+        $('#inputPicture').val("");
+        gambarURI2 = "";
+    }
+
+}
