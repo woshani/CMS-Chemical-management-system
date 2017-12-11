@@ -138,7 +138,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
                         <li class="header">Menus</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active" id="liListChemical"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
+                        <li class="active" id="liListChemical"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical (Registered)</span></a></li>
+                        <li class="" id="liListChemicalUsing"><a href="#list_chemical_using" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical (Using)</span></a></li>
                         <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Reuse</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
@@ -168,6 +169,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <h3 style="margin: 0px; padding: 0px;">List Chemical</h3>
                                     <hr/>
                                     <?php include 'list_chemical.php';?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="list_chemical_using">
+                                    <h3 style="margin: 0px; padding: 0px;">List Chemical Using</h3>
+                                    <hr/>
+                                    <?php include 'list_chemical_using.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="regis_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Register Chemical </h3>

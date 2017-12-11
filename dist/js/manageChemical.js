@@ -213,6 +213,8 @@
                                     location.reload();
                                 }
                                 
+                            }else if($.trim(databack)==="qrcode"){
+                                alert("The QrCode has already being used!,please use another QrCode!");
                             }else{
                                  alert("Registration failed");
                             }
@@ -229,17 +231,22 @@
 				   var row = $(this).closest('tr');
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
+                 var ciid = row.find('#ciidapprove').val();
+                 var ciud = row.find('#ciudapprove').val();
 				 // alert(key);
-				   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your Request to used the chemical are Successfully, Thank You"};
+				   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your Request to used the chemical are Successfully, Thank You",ciid : ciid,ciud : ciud};
 				 $.ajax({
 					type:"post",
 					url:"function/manageChemicalApprove.php",
 					data: datas,
 					success:function(databack){
+                        //console.log(databack);
 					  if(databack.trim() === "updateSuccess"){
-						alert("Student successfully approve");
-					  }else{
-						alert("Failed to approve the studet!,try again later.");
+						alert("Request successfully approve");
+					  }else if(databack.trim()==="chemicalused"){
+                        alert("Chemical already being used by someone else");
+                      }else{
+						alert("Failed to approve the student!,try again later.");
 					  }
 					  location.reload();
 					}
@@ -252,16 +259,21 @@
 				 var row = $(this).closest('tr');
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
+                 var ciid = row.find('#ciidapprove').val();
+                 var ciud = row.find('#ciudapprove').val();
 				 // alert(key);
-				 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your request to used the chemical are Rejected Please context your supervisor / PJ, Thank You"};
+				 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your request to used the chemical are Rejected Please context your supervisor / PJ, Thank You",ciid : ciid,ciud : ciud};
 				 $.ajax({
 					type:"post",
 					url:"function/manageChemicalApprove.php",
 					data: datas,
 					success:function(databack){
+                        //console.log(databack);
 					  if(databack.trim() === "updateSuccess"){
-						alert("Student rejected");
-					  }else{
+						alert("request rejected");
+					  }else if(databack.trim()==="chemicalused"){
+                        alert("Chemical already being used by someone else");
+                      }else{
 						alert("Failed to reject the studet!,try again later.");
 					  }
 					  location.reload();
@@ -359,13 +371,14 @@
 				var email = $('#email').val();
 				var sub = $('#sub').val();
 				var message = $('#message').val();
+                var type = $('#chemicalTypePrivate').val();
 				
 				  //alert("test");
 				 
 				 $.ajax({
 					type:"post",
 					url:"function/reuseNewChemical.php",
-					data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message},
+					data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,'type':type},
 					success:function(databack){
                         if(databack.trim() === "success"){
 						alert("Request success");
@@ -373,7 +386,7 @@
 						alert("Request failed! Please request later");
                         console.log(databack);
 					  }
-					  //location.reload();
+					   location.reload();
 					}
 				 });
 			  
@@ -387,13 +400,12 @@
                 var sub = $('#sub').val();
                 var message = $('#message').val();
                 var status = $('#returnStatus').val();
-                
-                  //alert("test");
-                 
+                var cuid = $('#chemicalusagepunyeid').val();
+                                 
                  $.ajax({
                     type:"post",
                     url:"function/returnNewChemical.php",
-                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid },
+                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid,cuid : cuid },
                     success:function(databack){
                         console.log(databack);
                         if(databack.trim() === "success"){
@@ -401,7 +413,7 @@
                       }else{
                         alert("Request failed! Please request later");
                       }
-                      // location.reload();
+                       location.reload();
                     }
                  });
               
@@ -460,5 +472,29 @@
                  $('#modalDetailChemical #tbleDetails td#LIexpdate').html(expdate);
 			 
 				 });
+            $('#viewTableDua #btnViewdua').on('click',function(e){
+                e.preventDefault();
+                
+                 var row = $(this).closest('tr');
+                  var id = row.find('#iddua').val();
+                  var name = row.find('#chemicaldua').text();
+                  var type = row.find('#typedua').val();
+                  var status = row.find('#statusdua').val();
+                  var datein = row.find('#dateindua').val();
+                  var expdate = row.find('#expdatedua').text();
+                  var supliername = row.find('#supliernamedua').val();
+                  var qrcode = row.find('#qrcodedua').val();
+                  var nameSv = row.find('#namedua').val();
+                  // console.log("Value: "+id+" "+name+" "+type+" "+status+" "+datein+" "+supliername+" "+qrcode+" "+nameSv);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIchemicalNamedua').html(name);
+                 $('#modalDetailChemicaldua #tbleDetails td#LItypeChemicaldua').html(type);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIstatusChemicaldua').html(status);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIdatedua').html(datein);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIsupplierNamedua').html(supliername);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIqrcodedua').html(qrcode);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIlabdua').html(nameSv);
+                 $('#modalDetailChemicaldua #tbleDetails td#LIexpdatedua').html(expdate);
+             
+                 });
 
                  

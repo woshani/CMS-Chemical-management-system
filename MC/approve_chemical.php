@@ -17,7 +17,7 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT CONCAT(a.fname,' ',a.lname) as fullname, a.identifyid,a.email,a.telno,d.name as chemical_name
+				$selectSql = "SELECT CONCAT(a.fname,' ',a.lname) as fullname, a.identifyid,a.email,a.telno,d.name as chemical_name,c.ciid as cid,b.cuid as cuid
 							  FROM user a, chemicalusage b, chemicalin c,chemical d
 							  WHERE a.userid = b.userid AND c.ciid = b.ciid AND b.status = 'Pending' AND c.userid=".$user_id." AND c.chemicalid = d.chemicalid AND c.status!='Dispose'";
 				$selectResult = mysqli_query($conn,$selectSql);
@@ -34,8 +34,8 @@
 						<td><?php echo $row["fullname"];?></td>
 						<td id="keyStud"><?php echo $row["identifyid"];?></td>
 						<td id="keyEmali"><?php echo $row["email"];?></td>
-						<td><?php echo $row["telno"];?></td>
-						<td><?php echo $row["chemical_name"];?></td>
+						<td><?php echo $row["telno"];?><input type="hidden" name="ciudapprove" id="ciudapprove" value="<?php echo $row['cuid'];?>"></td>
+						<td><?php echo $row["chemical_name"];?><input type="hidden" name="ciidapprove" id="ciidapprove" value="<?php echo $row['cid'];?>"></td>
 						<td>
 							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
 							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>

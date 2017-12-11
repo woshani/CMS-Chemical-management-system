@@ -6,9 +6,13 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	$email=$_POST['email'];
 	$message=$_POST['message'];
 	$subject = $_POST['sub'];
+	$ctype = $_POST['type'];
+	
 	
 	$chemicaInlId = $_POST['chemicalId'];
 	$chemicalUserId = $_POST['cserId'];
+	$statusUsage="";
+	$statusUserRequesttouse = "";
 	
 	$mailer = new PHPMailer();
 	$mailer->IsSMTP();
@@ -29,11 +33,17 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	}
 	else
 	{
-	
-		$query = "UPDATE chemicalin set status = 'In Use' WHERE ciid = '".$chemicaInlId."';";
+		if($ctype=="Public"){
+			$statusUsage = "In Use";
+			$statusUserRequesttouse = "Approve";
+		}else if($ctype=="Private"){
+			$statusUsage = "Available";
+			$statusUserRequesttouse = "Pending";
+		}
+		$query = "UPDATE chemicalin set status = '".$statusUsage."' WHERE ciid = '".$chemicaInlId."';";
 		$query .= "INSERT INTO 
 				chemicalusage (startdate, status, userid, ciid) 
-				VALUES (now(), 'Pending' , '".$chemicalUserId."', '".$chemicaInlId."');";
+				VALUES (now(), '".$statusUserRequesttouse."' , '".$chemicalUserId."', '".$chemicaInlId."');";
 		$insert = mysqli_multi_query($conn,$query);
 				if($insert){
 					 echo "success";
