@@ -138,8 +138,9 @@ desired effect
       <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register Lab</span></a></li>
-        <li><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Assign Lab</span></a></li>
+        <li class="active" id="regislabli"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register Lab</span></a></li>
+        <li id="assignlabli"><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Assign Lab</span></a></li>
+        <li id="listchemicalli"><a href="#list_Chemical_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical In Lab</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -170,6 +171,11 @@ desired effect
                   <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
                   <hr/>
                     <?php include 'assign_lab.php';?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="list_Chemical_lab">
+                  <h3 style="margin: 0px; padding: 0px;">List Chemicals</h3>
+                  <hr/>
+                    <?php include 'list_chemical.php';?>
                 </div>
               </div>
           </div>
@@ -203,10 +209,16 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+  var labid = "<?php echo $_SESSION['labid'];?>";
+  var role = "<?php echo $_SESSION['role'];?>";
+  var admin ="<?php echo $_SESSION['admin'];?>";
+</script>
 <script src="../dist/js/manageLab.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
 </body>
 </html>

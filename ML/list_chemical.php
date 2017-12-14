@@ -7,6 +7,7 @@
 					<tr>
 						<th class="text-center">#</th>
 						<th class="text-center">Chemical Name</th>
+						<th class="text-center">Owner</th>
 						<th class="text-center">Expired Date</th>
 						<th class="text-center">Status Chemical</th>
 						<th class="text-center">Type Chemical</th>
@@ -16,13 +17,14 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname 
+				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname ,concat(u.fname,' ',u.lname) as owner
 							  FROM chemical a 
 							  INNER JOIN chemicalin b 
 							  ON b.chemicalid = a.chemicalid 
 							  INNER JOIN lab c
 							  ON b.labid = c.labid
-							  WHERE b.userid =".$user_id;
+							  INNER JOIN user u ON u.userid = b.userid 
+							  WHERE b.labid ='".$_SESSION['labid']."'";
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)
 				{
@@ -35,6 +37,7 @@
 					<tr>
 						<td><?php echo $no; ?></td>
 						<td id="chemical"><?php echo $row["chemicalname"];?></td>
+						<td id="chemicaldua"><?php echo $row["owner"];?></td>
 						<td id="expdate"><?php echo $row["expdate"];?></td>
 						<td><?php echo $row["status"];?></td>
 						<td><?php echo $row["physicaltype"];?></td>

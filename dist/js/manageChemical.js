@@ -32,12 +32,19 @@
                         $('#ownerNamePJ #ownerID').val(useridxx); 
                 }
             });
+
+        function newName(qrcode,id_chemical){
+            var name = "SDS"+id_chemical + "_"+qrcode;
+            return name;
+        }
 // upload SDS function---------------------------------------------------------------------
-            function uploadFile(){
+            function uploadFile(newname){
               var input = document.getElementById("sdsfile");
               file = input.files[0];           
                 formData= new FormData();
                   formData.append("PDF", file);
+
+                  formData.append("newname",newname);
                   $.ajax({
                     url: "function/upload.php",
                     type: "POST",
@@ -45,9 +52,11 @@
                     processData: false,
                     contentType: false,
                     success: function(data){
+                        console.log("nama baru file"+data);
                     }
                   });
-                return file.name;
+                var ext =  file.name.slice((Math.max(0, file.name.lastIndexOf(".")) || Infinity) + 1);
+                return newname+"."+ext;
             }
             //----------------------------------------------------------------------
             //----- seach owner name n id ------------------------------------------
@@ -163,15 +172,15 @@
                 var supplier = $.trim($('#supplier').val());
                 var qrcode = $.trim($('#qrcodeRegisterID').val());
                 var stats = "";
-                var sds = uploadFile();
+                var newname = newName(qrcode,id_chemical);
+                var sds = uploadFile(newname);
                 console.log("id chemicals "+id_chemical);
                 if($("#REGtypechemical").is(':checked')){
                     stats = "In Use";
                 }else{
                     stats = "Available";
                 }
-                console.log("stats :" + stats);
-                console.log("status :" + status);
+                
 
                 if(id_chemical==""){
                     alert("Please make sure you entered the correct chemical name");
@@ -186,7 +195,7 @@
                 }else if(qrcode==""){
                     alert("Please make sure you scan the qrcode first");
                 }else if(sds==""){
-                    alert("Please make sure you upload SDS first");
+                    alert("Please make sure you choose SDS file to upload");
                 }else{
                     $.ajax({
                         type:"post",
@@ -461,6 +470,8 @@
                   var supliername = row.find('#supliername').val();
                   var qrcode = row.find('#qrcode').val();
                   var nameSv = row.find('#name').val();
+                  var sds = row.find('#sds').val();
+                  console.log(sds);
 				  // console.log("Value: "+id+" "+name+" "+type+" "+status+" "+datein+" "+supliername+" "+qrcode+" "+nameSv);
 				 $('#modalDetailChemical #tbleDetails td#LIchemicalName').html(name);
                  $('#modalDetailChemical #tbleDetails td#LItypeChemical').html(type);
@@ -470,6 +481,8 @@
                  $('#modalDetailChemical #tbleDetails td#LIqrcode').html(qrcode);
                  $('#modalDetailChemical #tbleDetails td#LIlab').html(nameSv);
                  $('#modalDetailChemical #tbleDetails td#LIexpdate').html(expdate);
+                 $('#modalDetailChemical #tbleDetails a#LISDS').attr("href", "../SDS/"+sds);
+                 $('#modalDetailChemical #tbleDetails a#LISDS').text(sds);
 			 
 				 });
             $('#viewTableDua #btnViewdua').on('click',function(e){
@@ -485,6 +498,7 @@
                   var supliername = row.find('#supliernamedua').val();
                   var qrcode = row.find('#qrcodedua').val();
                   var nameSv = row.find('#namedua').val();
+                  var sds = row.find('#sdsdua').val();
                   // console.log("Value: "+id+" "+name+" "+type+" "+status+" "+datein+" "+supliername+" "+qrcode+" "+nameSv);
                  $('#modalDetailChemicaldua #tbleDetails td#LIchemicalNamedua').html(name);
                  $('#modalDetailChemicaldua #tbleDetails td#LItypeChemicaldua').html(type);
@@ -494,7 +508,8 @@
                  $('#modalDetailChemicaldua #tbleDetails td#LIqrcodedua').html(qrcode);
                  $('#modalDetailChemicaldua #tbleDetails td#LIlabdua').html(nameSv);
                  $('#modalDetailChemicaldua #tbleDetails td#LIexpdatedua').html(expdate);
-             
+                 $('#modalDetailChemicaldua #tbleDetails a#LISDSdua').attr("href", "../SDS/"+sds);
+                 $('#modalDetailChemicaldua #tbleDetails a#LISDSdua').text(sds);
                  });
 
                  

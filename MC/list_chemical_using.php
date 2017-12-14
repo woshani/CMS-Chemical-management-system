@@ -93,6 +93,7 @@
 				<tr><td>Supplier Name :</td><td id="LIsupplierNamedua"></td></tr>
 				<tr><td>QR Code ID :</td><td id="LIqrcodedua"></td></tr>
 				<tr><td>lab :</td><td id="LIlabdua"></td></tr>
+				<tr><td>SDS :</td><td><a href="" target="_blank" id="LISDSdua" download></a></td></tr>
 			</table>
 	      </div>
 	      <div class="modal-footer">

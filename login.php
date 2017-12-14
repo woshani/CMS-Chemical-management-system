@@ -1,5 +1,6 @@
 <?php 
 include 'connection/connection.php';
+session_start();
 $userid = $_POST['userid'];
 $pass = $_POST['password'];
 
@@ -7,7 +8,7 @@ $sql = "SELECT userid,fname,lname,email,telno,role,admin,identifyid,supervisorid
 
 $result = mysqli_query($conn,$sql);
 if($result->num_rows > 0){
-	session_start();
+	
     while($row = mysqli_fetch_assoc($result)){
     	$_SESSION["userid"]=$row['userid'];
     	$_SESSION["fname"]=$row['fname'];
@@ -26,6 +27,16 @@ if($result->num_rows > 0){
         }else{
           $_SESSION["picture"]=$row['picture'];  
         }
+        $sqlLab = "SELECT labid FROM labowner WHERE staffid =".$_SESSION['userid'];
+        $resultdua = mysqli_query($conn,$sqlLab);
+        if($resultdua->num_rows > 0){
+             while($rowdua = mysqli_fetch_assoc($resultdua)){
+                $_SESSION['labid'] = $rowdua['labid'];
+             }            
+        }else{
+             $_SESSION['labid'] = "NOT AVAILABLE";
+        }
+        
         
     }
     

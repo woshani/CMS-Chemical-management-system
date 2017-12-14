@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         <input type="hidden" id="chemicalUserId" value="<?php echo $_SESSION["userid"];?>">
 						<input type="hidden" id="email" value="<?php echo $row['email'];?>">
 						<input type="hidden" id="sub" value="ZeroWaste - User Reuse Chemical Request">
-						<input type="hidden" id="message" value="Please Check ZeroWaste account to accept / reject reuse Chemical request">
+						<input type="hidden" id="message" value="Please Check ZeroWaste account to accept / reject reuse of <?php echo $row['name'];?> Chemical request">
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_array($resultSelect)){
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">SDS File :</label>
                     <div class="col-md-6">
-                        <?php echo $row['sds'];?></div>
+                        <a href="../SDS/<?php echo $row['sds'];?>" target="_blank" download><?php echo $row['sds'];?></a></div>
                 </div>
                
 

@@ -29,7 +29,7 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $row["peminjamid"];?>">
 						<input type="hidden" id="email" value="<?php echo $row['owneremail'];?>">
 						<input type="hidden" id="sub" value="ZeroWaste - User Return Chemical Notification">
-						<input type="hidden" id="message" value="<?php echo $row['peminjamid'];?> has return your chemical: <?php echo $row['chemicalname'];?>">
+						<input type="hidden" id="message" value="<?php echo $row['peminjamid'];?> has return your chemical: <?php echo $row['chemicalname'];?>.">
                         <input type="hidden" id="chemicalusagepunyeid" value="<?php echo $row['cuidd'];?>">
                 </div>
 				<div class="form-group">
