@@ -59,6 +59,7 @@ mysqli_close($conn);
 					  <option value="Public">Public</option>
 					  <option value="Private">Private</option>
 					</select>
+                    <i class="fa fa-question-circle infohover" aria-hidden="true"><span class="hint"><b>Public</b> - anyone can use chemical <b>without approval</b> owner.<br/><b>Private</b> - anyone can use,but <b>need approval</b> from owner.</span></i>
                     </div>
                 </div>
 				<div class="form-group">
@@ -80,13 +81,14 @@ mysqli_close($conn);
                                 <span class="fa fa-qrcode"></span>
                             </span>
                         </div>
+                        <i class="fa fa-question-circle infohover" aria-hidden="true"><span class="hint">you can get the QRcode Sticker from PJ.</span></i>
                         <video id="camRegister"></video>
                     </div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput"></label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="REGtypechemical" class="form-check-input"> Used Chemical?</div>
+                        <input type="checkbox" id="REGtypechemical" class="form-check-input"><i class="infohover" aria-hidden="true">Used Chemical?<span class="hint">Tick this to use the chemical immediately.</span></i></div>
                 </div>
             </div>
 		</div>

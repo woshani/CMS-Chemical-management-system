@@ -10,6 +10,8 @@ if($resultSelect->num_rows > 0){
 		$list .= "<li>".$row['fname']." ".$row['lname']."</li>";
 	}
 	echo"<ul id='matchListSupervisor' style='width: auto; height: 200px; overflow: auto'>".$list."</ul>"; 
+}else{
+	echo"<ul id='' style='width: auto; height: 200px; overflow: auto'>No supervisor is found!</ul>"; 
 }
 mysqli_close($conn);
 ?>

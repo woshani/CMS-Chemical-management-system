@@ -24,7 +24,7 @@
                         $('#liapprovePrivate').hide();
                         $('#approve_chemical').hide();
 
-                        $('#regis_chemical').addClass("active");
+                        $('#list_chemical_using').addClass("active");
                         $('#ownerNamePJ #ownerID').val(supervisorid);
                         break;
                     default:
@@ -196,6 +196,8 @@
                     alert("Please make sure you scan the qrcode first");
                 }else if(sds==""){
                     alert("Please make sure you choose SDS file to upload");
+                }else if(supplier==""){
+                    alert("Please make sure you fill the supplier name");
                 }else{
                     $.ajax({
                         type:"post",

@@ -42,6 +42,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
               <script type="text/javascript" src="../bower_components/scannerQR/instascan.min.js"></script>
+              <style type="text/css">
+                .infohover .hint {
+                    display:none;
+                }
+                .infohover:hover .hint {
+                        display:block;
+                }
+                .hint {background:yellow;padding:.5em;opacity:.9;float:right;}
+              </style>
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -141,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="active" id="liListChemical"><a href="#list_chemical" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical (Registered)</span></a></li>
                         <li class="" id="liListChemicalUsing"><a href="#list_chemical_using" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical (Using)</span></a></li>
                         <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
-                        <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Reuse</span></a></li>
+                        <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Use</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
                         <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Approve(Private)</span></a></li>
                     </ul>
@@ -181,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <?php include 'register_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reuse_chemical">
-                                    <h3 style="margin: 0px; padding: 0px;">Reuse Chemical</h3>
+                                    <h3 style="margin: 0px; padding: 0px;">Use Chemical</h3>
                                     <hr/>
                                     <?php include 'reuse_chemical.php';?>
                                 </div>

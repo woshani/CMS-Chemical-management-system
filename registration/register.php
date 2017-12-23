@@ -110,8 +110,8 @@
 				var sub = $('#sub').val();
                 var message = $('#message').val();
                 
-                if(identifyId==="" || password==="" || fname==="" || lname==="" || email==="" || telno===""){
-                  alert("please fill in all fields to proceed with registration");
+                if(identifyId==="" || password==="" || fname==="" || lname==="" || email==="" || telno==="" || supervisorId==""){
+                  alert("Please fill in all fields to proceed with registration");
                 }else{
                     $.ajax({
                      type:"post",
