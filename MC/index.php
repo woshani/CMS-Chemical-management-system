@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
               <script type="text/javascript" src="../bower_components/scannerQR/instascan.min.js"></script>
-              <style type="text/css">
+<!--               <style type="text/css">
                 .infohover .hint {
                     display:none;
                 }
@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         display:block;
                 }
                 .hint {background:yellow;padding:.5em;opacity:.9;float:right;}
-              </style>
+              </style> -->
     </head>
     <!--
     BODY TAG OPTIONS:
