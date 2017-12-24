@@ -9,7 +9,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {
     header("Location: ../index.html");
     exit;
-} 
+}else{
+  if($_SESSION['admin']=="No"){
+    header("Location: ../dashboard/dashboard.php");
+    exit;
+  }
+}  
 ?>
 <html>
 <head>

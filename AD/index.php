@@ -10,11 +10,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     header("Location: ../index.html");
     exit;
 }else{
-  if(!$_SESSION['role']=="Lecturer"){
+  if($_SESSION['admin']=="No"){
     header("Location: ../dashboard/dashboard.php");
     exit;
   }
 } 
+
+
 ?>
 <html>
 <head>
@@ -45,6 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <!-- jQuery 3 -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -141,8 +145,11 @@ desired effect
       <ul class="sidebar-menu nav nav-sidebar" data-widget="tree">
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a role="tab" data-toggle="tab" href="#list_stud"><i class="fa fa-list"></i> <span>List Student</span></a></li>
-        <li class=""><a role="tab" data-toggle="tab" href="#approve_stud"><i class="fa fa-thumbs-up"></i> <span>Approve Student</span></a></li>
+        <li class="active" id="liststaffli"><a href="#list_staff" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Staff</span></a></li>
+        <li id="listchemicalli"><a href="#list_chemlist_chemlist_chemlist_chem" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
+        <li id="regisstaffli"><a href="#regis_staff" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Register Staff</span></a></li>
+        <li id="newchemli"><a href="#new_chem" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>New Chemical List</span></a></li>
+       
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -154,27 +161,37 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Manage Student
+        Manage Lab
         <small>Chemical Management System</small>
       </h1>
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid ">
+    <section class="content container-fluid">
       <div class="row col-md-12">
-            <div class="thumbnail">  
-              <div class="tab-content">   
-                <div role="tabpanel" id="list_stud" class="tab-pane active">
-                  <h3 style="margin: 0px; padding: 0px;">List Students </h3>
+            <div class="thumbnail">
+              <div class="tab-content">     
+                <div role="tabpanel" class="tab-pane" id="regis_staff">
+                  <h3 style="margin: 0px; padding: 0px;">Register Staff </h3>
                   <hr/>
-                    <?php include 'List_student.php';?>
+                    <?php include 'regis_staff.php';?>
                 </div>
-                <div role="tabpanel" id="approve_stud" class="tab-pane">
-                  <h3 style="margin: 0px; padding: 0px;">Approve Students </h3>
+                <div role="tabpanel" class="tab-pane" id="new_chem">
+                  <h3 style="margin: 0px; padding: 0px;">New Chemical List</h3>
                   <hr/>
-                    <?php include 'approve_student.php';?>
+                    <?php include 'new_chem.php';?>
                 </div>
-            </div>
+                <div role="tabpanel" class="tab-pane active" id="list_staff">
+                  <h3 style="margin: 0px; padding: 0px;">List Staff</h3>
+                  <hr/>
+                    <?php include 'list_staff.php';?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="list_chem">
+                  <h3 style="margin: 0px; padding: 0px;">Chemical List</h3>
+                  <hr/>
+                    <?php include 'list_chem.php';?>
+                </div>
+              </div>
           </div>
       </div>
     </section>
@@ -201,16 +218,21 @@ desired effect
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<script src="../dist/js/manageStudent.js"></script>
+<script type="text/javascript">
+  var labid = "<?php echo $_SESSION['labid'];?>";
+  var role = "<?php echo $_SESSION['role'];?>";
+  var admin ="<?php echo $_SESSION['admin'];?>";
+</script>
+<script src="../dist/js/manageLab.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
 </body>
 </html>

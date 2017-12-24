@@ -8,11 +8,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   session_start();
   if(!isset($_SESSION['userid']))
 {
-    header("Location: index.html");
+    header("Location: ../index.html");
     exit;
 } 
 ?>
-<html>
+<!-- <?php echo $_SESSION['role'];?>
+ --><html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -182,6 +183,14 @@ desired effect
                 </div>
               </a>
             </div>
+            <div class="col-xs-6 col-sm-6 col-md-3" id="ADM">
+              <a href="../AD/index.php" class="thumbnail">
+                <div class="text-center">
+                  <i class="fa fa-unlock-alt" aria-hidden="true" style="color: #337ab7;font-size: 4em;"></i>
+                  <h3>Admin Menu</h3>
+                </div>
+              </a>
+            </div>
         </div>
       </div>
 
@@ -224,36 +233,42 @@ desired effect
         case "Student":
             $('#MSM').hide();
             $('#MLM').hide();
+            $('#ADM').hide();
             $('#MCM').show();
             break;
         case "Lecturer":
             if(admin==="No"){
               $('#MLM').hide();
+              $('#ADM').hide();
               $('#MSM').show();
               $('#MCM').show();
             }else{
               $('#MLM').show();
               $('#MSM').show();
               $('#MCM').show();
+              $('#ADM').show();
             }
             
             break;
         case "PJ":
             if(admin==="No"){
-              $('#MLM').show();
+              $('#MLM').hide();
               $('#MSM').hide();
+              $('#ADM').hide();
               $('#MCM').show();
             }else{
               $('#MLM').show();
               $('#MSM').hide();
               $('#MCM').show();
+              $('#ADM').show();
             }
             break;
         default:
             $('#MSM').show();
             $('#MLM').show();
             $('#MCM').show();
-        }
+            $('#ADM').show();
+          }
   });
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

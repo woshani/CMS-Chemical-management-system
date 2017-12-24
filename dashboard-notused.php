@@ -3,12 +3,11 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-
 <?php
   session_start();
   if(!isset($_SESSION['userid']))
 {
-    header("Location: index.html");
+    header("Location: ../index.html");
     exit;
 } 
 ?>
@@ -181,6 +180,14 @@ desired effect
                 </div>
               </a>
             </div>
+            <div class="col-xs-6 col-sm-6 col-md-3" id="ADM">
+              <a href="AD/index.php" class="thumbnail">
+                <div class="text-center">
+                  <i class="fa fa-unlock-alt" aria-hidden="true" style="color: #337ab7;font-size: 4em;"></i>
+                  <h3>Admin Menu</h3>
+                </div>
+              </a>
+            </div>
         </div>
       </div>
 
@@ -234,6 +241,7 @@ desired effect
               $('#MLM').show();
               $('#MSM').show();
               $('#MCM').show();
+              $('#ADM').show();
             }
             
             break;
@@ -246,6 +254,7 @@ desired effect
               $('#MLM').show();
               $('#MSM').hide();
               $('#MCM').show();
+              $('#ADM').show();
             }
             break;
         default:
