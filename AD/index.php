@@ -30,6 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -221,14 +222,17 @@ desired effect
 
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
   var labid = "<?php echo $_SESSION['labid'];?>";
   var role = "<?php echo $_SESSION['role'];?>";
   var admin ="<?php echo $_SESSION['admin'];?>";
 </script>
-<script src="../dist/js/manageLab.js"></script>
+<script src="../dist/js/manageAdmin.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -29,7 +29,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect. -->
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-        <link rel="stylesheet" href="../bower_components/jquery-ui/themes/dark-hive/jquery-ui.css">
+        <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -236,8 +237,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="../bower_components/jquery/dist/jquery.min.js"></script>
         <!-- JQUERY UI -->
         <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="../bower_components/jquery-ui/ui/datepicker.js"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
         <script type="text/javascript">

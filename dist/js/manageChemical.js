@@ -1,3 +1,4 @@
+
     // this for create object for qr scanner
             let scannerReuse = new Instascan.Scanner({ video: document.getElementById('camReuse') });
             let scannerReturn = new Instascan.Scanner({ video: document.getElementById('camReturn') });
@@ -5,11 +6,21 @@
             /////////////////////////////////////
             $(document).ready(function(){
                 var tarikhHarini = new Date();
-                $('#datetimepickerEXP').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
+                $('#expired').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
+                $('#spanImgDate').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();
-                
+                $('#viewTable').dataTable({
+                    "language": {
+                        "emptyTable":     "No chemical that you registered"
+                    }
+                } );
+                $('#viewTableDua').dataTable({
+                    "language": {
+                        "emptyTable":     "No Chemical in your use's list"
+                    }
+                } );
                 //role to show and hide functioanlity
                 
                 switch(role) {

@@ -46,7 +46,7 @@ mysqli_close($conn);
 						<div class='input-group date' id='datetimepickerEXP'>
 							<input type='text' class="form-control" id="expired" name="expired"/>
 							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar ui-datepicker-trigger"></span>
+								<span class="glyphicon glyphicon-calendar ui-datepicker-trigger" id="spanImgDate"></span>
 							</span>
 						</div>
 					</div>

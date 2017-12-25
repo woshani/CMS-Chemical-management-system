@@ -59,14 +59,6 @@
 				$no++;
 					}
 				}
-				else
-				{
-				?>
-					<tr>
-						<td colspan="7">No Data</td>
-					</tr>
-				<?php
-				}
 				mysqli_close($conn);
 				?>
 				</tbody>

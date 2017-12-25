@@ -1,3 +1,16 @@
+ $(document).ready(function() {
+    $('#TableStudent').dataTable({
+    "language": {
+        "emptyTable":     "No Student in your list"
+    }
+} );
+    $('#tableStudentApprove').dataTable({
+    "language": {
+        "emptyTable":     "No Student Request need to be approved!"
+    }
+} );
+});
+
  $('#userTable #btnAccept').on('click',function(e){
     e.preventDefault();
 	   var row = $(this).closest('tr');

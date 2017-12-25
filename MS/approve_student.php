@@ -2,7 +2,7 @@
 
 	<div class="table-responsive">
 		<center>
-			<table id="userTable" class="table table-striped table-bordered table-hover text-center">
+			<table id="tableStudentApprove" class="table table-striped table-bordered table-hover text-center">
 				<thead>
 					<tr>
 						<th class="text-center">#</th>
@@ -40,14 +40,6 @@
 				<?php
 				$no++;
 					}
-				}
-				else
-				{
-				?>
-					<tr>
-						<td colspan="6">No Student Request need to be approved!</td>
-					</tr>
-				<?php
 				}
 				mysqli_close($conn);
 				?>

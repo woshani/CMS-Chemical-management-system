@@ -2,7 +2,7 @@
 
 	<div class="table-responsive">
 		<center>
-			<table id="userTable" class="table table-striped table-bordered table-hover text-center">
+			<table id="TableStudent" class="table table-striped table-bordered table-hover text-center">
 				<thead>
 					<tr>
 						<th class="text-center">#</th>
@@ -39,14 +39,6 @@
 				<?php
 				$no++;
 					}
-				}
-				else
-				{
-				?>
-					<tr>
-						<td colspan="4">No Data</td>
-					</tr>
-				<?php
 				}
 				mysqli_close($conn);
 				?>
