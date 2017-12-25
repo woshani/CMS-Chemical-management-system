@@ -27,34 +27,61 @@
             </div>
             <div class="col-md-6">
             	<div class="col-md-6">
+					<div class="form-group">
+	                    <label class="col-md-4 control-label" for="textinput">Tel No :</label>
+	                    <div class="col-md-6">
+	                        <input id="telno" name="telno" type="text" placeholder="Tel No.." class="form-control input-md"></div>
+	                </div>
+
+	                <!-- Text input-->
+	                <div class="form-group">
+	                    <label class="col-md-4 control-label" for="textinput">Email :</label>
+	                    <div class="col-md-6">
+	                        <input id="email" name="email" type="email" placeholder="Email.." class="form-control input-md">
+	                    </div>
+	                </div>
+
+	                <!-- Text input-->
+	                <div class="form-group">
+	                    <label class="col-md-4 control-label" for="textinput">Role :</label>
+	                    <div class="col-md-6">
+	                        <select id="lname" name="lname" class="form-control input-md">
+	                        	<option selected="" disabled="">select role..</option>
+	                        	<option value="Lecturer">Lecturer</option>
+								<option value="PJ">PJ</option>
+	                        	<option value="OSHA">OSHA</option>
+	                        	<option value="HOD">HOD</option>
+	                        </select>
+	                    </div>
+	                </div>
+            	</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Tel No :</label>
-                    <div class="col-md-6">
-                        <input id="telno" name="telno" type="text" placeholder="Tel No.." class="form-control input-md"></div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Email :</label>
-                    <div class="col-md-6">
-                        <input id="email" name="email" type="email" placeholder="Email.." class="form-control input-md">
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Role :</label>
-                    <div class="col-md-6">
-                        <select id="lname" name="lname" class="form-control input-md">
-                        	<option selected="" disabled="">select role..</option>
-                        	<option value="Lecturer">Lecturer</option>
-							<option value="PJ">PJ</option>
-                        	<option value="OSHA">OSHA</option>
-                        	<option value="HOD">HOD</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+					<label class="col-md-4 control-label" for="textinput"> </label>
+					<div class="col-md-6">
+						<input type="checkbox" name="" value="Yes" data-toggle="tooltip" title="register staff as another admin"> Admin?
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<div class="col-md-6">*username will be staff ID & default password is 'abc123'
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="textinput"> </label>
+					<div class="col-md-4">
+						<button class="btn btn-primary form-control">REGISTER</button>
+					</div>
+				</div>
+			</div>
 		</div>
 </fieldset>
 </form>

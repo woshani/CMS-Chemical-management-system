@@ -146,7 +146,7 @@ desired effect
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active" id="liststaffli"><a href="#list_staff" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Staff</span></a></li>
-        <li id="listchemicalli"><a href="#list_chemlist_chemlist_chemlist_chem" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
+        <li id="listchemicalli"><a href="#list_chem" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical</span></a></li>
         <li id="regisstaffli"><a href="#regis_staff" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Register Staff</span></a></li>
         <li id="newchemli"><a href="#new_chem" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>New Chemical List</span></a></li>
        
@@ -161,7 +161,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Manage Lab
+        ADMIN
         <small>Chemical Management System</small>
       </h1>
     </section>
