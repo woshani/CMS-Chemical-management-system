@@ -45,7 +45,7 @@
 	                <div class="form-group">
 	                    <label class="col-md-4 control-label" for="textinput">Role :</label>
 	                    <div class="col-md-6">
-	                        <select id="lname" name="lname" class="form-control input-md">
+	                        <select id="role" name="role" class="form-control input-md">
 	                        	<option selected="" disabled="">select role..</option>
 	                        	<option value="Lecturer">Lecturer</option>
 								<option value="PJ">PJ</option>
@@ -62,7 +62,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="textinput"> </label>
 					<div class="col-md-6">
-						<input type="checkbox" name="" value="Yes" data-toggle="tooltip" title="register staff as another admin"> Admin?
+						<input type="checkbox" name="admin" id="admin" value="Yes" data-toggle="tooltip" title="register staff as another admin"> Admin?
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" for="textinput"> </label>
 					<div class="col-md-4">
-						<button class="btn btn-primary form-control">REGISTER</button>
+						<button class="btn btn-primary form-control" id="btnregisstaff">REGISTER</button>
 					</div>
 				</div>
 			</div>
