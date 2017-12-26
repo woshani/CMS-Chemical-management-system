@@ -2,15 +2,15 @@
 class ChemicalInController extends ApiController
 {
 /** :GET :{method} */
-    public function chemicalsIn($userid)
+    public function myChemicals($userid, $status)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT ciid, type, datein, expireddate, status, qrcode, sds, supliername, chemicalid, userid, labid FROM chemicalin WHERE userid = ?";
+        $query = "SELECT * FROM chemicalin WHERE userid = ? AND status = ?";
         if($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("s", $userid);
+            $stmt->bind_param("ss", $userid, $status);
             $stmt->execute();
             $result = $stmt->get_result();
             if (mysqli_num_rows($result) >= 1) {
