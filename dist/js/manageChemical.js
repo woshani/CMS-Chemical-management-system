@@ -7,7 +7,7 @@
             $(document).ready(function(){
                 var tarikhHarini = new Date();
                 $('#expired').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
-                $('#spanImgDate').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
+                // $('#spanImgDate').datepicker({changeYear: true,changeMonth: true, minDate: tarikhHarini});
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();

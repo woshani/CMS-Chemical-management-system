@@ -4,7 +4,6 @@
 		<center>
 			<table id="tableChemical" class="table table-striped table-bordered table-hover text-center">
 				<thead>
-					<tr>
 						<th class="text-center">#</th>
 						<th class="text-center">Chemical name</th>
 						<th class="text-center">Physical Type</th>
@@ -12,7 +11,6 @@
 						<th class="text-center">PPE</th>
 						<th class="text-center">Class</th>
 						<th class="text-center">GHS</th>
-					</tr>
 				</thead>
 				<?php 
 				include "../connection/connection.php";

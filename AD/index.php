@@ -50,6 +50,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -220,13 +227,6 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 
-<!-- Bootstrap 3.3.7 -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
   var labid = "<?php echo $_SESSION['labid'];?>";
   var role = "<?php echo $_SESSION['role'];?>";
