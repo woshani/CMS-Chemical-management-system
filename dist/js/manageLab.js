@@ -69,3 +69,94 @@
                  $('#modalDetailChemical #tbleDetails a#LISDS').text(sds);
              
                  });
+
+$('#tbleAssignCh #btnAssign').on('click',function(e){
+  var row = $(this).closest('tr');
+  var id = row.find('#hiddenvaluess').val();
+  $('#modalassignlab #labidHidden').val(id);
+  console.log(id);
+});
+
+    $('#modalassignlab').on('hidden.bs.modal', function (e) {
+       $(this)
+               .find("input,textarea,select")
+               .val('')
+               .end()
+               .find("input[type=checkbox], input[type=radio]")
+               .prop("checked", "")
+               .end();
+    });
+
+  $("#pjName").on('keyup', function () { 
+        var input = $(this).val(); 
+        if (input.length >= 2) { 
+            $('#matchPJ').html('<img src="../img/LoaderIcon.gif"/>'); 
+            var dataFields = {'input': input};
+            $.ajax({
+                type: "POST",
+                url: "query/searchPJ.php",
+                data: dataFields, 
+                timeout: 3000,
+                success: function (dataBack) { 
+                    $('#matchPJ').html(dataBack); 
+                    $('#matchListPJ li').on('click', function () { 
+                        $('#pjName').val($(this).text());
+                        $('#matchPJ').text('');
+                        searchSVid(); 
+                    });
+                },
+                error: function () { 
+                    $('#matchPJ').text('Problem!');
+                }
+            });
+        } else {
+            $('#matchPJ').text('');
+        }
+});
+
+ function searchSVid() {
+
+    var id = $.trim($('#pjName').val());
+    console.log(id);
+    $.ajax({
+        type: 'post',
+        url: 'query/searchPJID.php',
+        data: {'input': id},
+        success: function (reply_data) {
+          console.log(reply_data);
+          var array_data = reply_data.split("|");
+          var email = array_data[1];
+          var userid = array_data[0];
+          $('#pjID').val(userid.trim());
+        }
+    });
+
+}
+
+$('#modalassignlab #assignthepj').on('click',function(e){
+  var idstaff = $('#modalassignlab #pjID').val();
+  var idlab = $('#modalassignlab #labidHidden').val();
+  var datas = {staff:idstaff,lab:idlab};
+  if(idlab===""){
+    alert("Please Choose the Lab Correctly");
+  }else if(idstaff===""){
+    alert("Please Choose the PJ First!");
+  }else{
+    $.ajax({
+      type:"post",
+      url:"query/assignTheLab.php",
+      data:datas,
+      success:function(databack){
+        var x  = databack.trim();
+        if(x === "already"){
+          alert("this PJ already assign");
+        }else if(x === "success"){
+          alert("success Assigning the PJ");
+          location.reload();
+        }else if(x === "fail"){
+          alert("fail to assign the PJ");
+        }
+      }
+    });
+  }
+});

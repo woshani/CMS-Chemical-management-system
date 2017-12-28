@@ -144,8 +144,9 @@ desired effect
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active" id="regislabli"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register Lab</span></a></li>
-        <li id="assignlabli"><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> <span>Assign Lab</span></a></li>
+        <li id="assignlabli"><a href="#list_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Labs</span></a></li>
         <li id="listchemicalli"><a href="#list_Chemical_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical In Lab</span></a></li>
+        <li id=""><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Assign Labs</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -172,15 +173,20 @@ desired effect
                   <hr/>
                     <?php include 'new_lab.php';?>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="assign_lab">
-                  <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
+                <div role="tabpanel" class="tab-pane" id="list_lab">
+                  <h3 style="margin: 0px; padding: 0px;">List Labs</h3>
                   <hr/>
-                    <?php include 'assign_lab.php';?>
+                    <?php include 'list_lab.php';?>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="list_Chemical_lab">
                   <h3 style="margin: 0px; padding: 0px;">List Chemicals</h3>
                   <hr/>
                     <?php include 'list_chemical.php';?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="assign_lab">
+                  <h3 style="margin: 0px; padding: 0px;">Assign Lab</h3>
+                  <hr/>
+                    <?php include 'assign_lab.php';?>
                 </div>
               </div>
           </div>
