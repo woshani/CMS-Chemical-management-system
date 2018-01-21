@@ -61,7 +61,7 @@
 		else
 		{
 			
-			$sqlupdate = "UPDATE user SET status='Rejected' WHERE identifyid='".$identifyid."';";
+			$sqlupdate = "UPDATE user SET status='Reject' WHERE identifyid='".$identifyid."';";
 			$resultUpdate = mysqli_query($conn,$sqlupdate);
 			if($resultUpdate){
 				echo "updateSuccess";

@@ -13,6 +13,7 @@ class LabOwnersController extends ApiController
             $stmt->execute();
             $result = $stmt->get_result();
             $response = $result->fetch_all( MYSQLI_ASSOC );
+            $stmt->close();
         } else {
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -22,7 +23,6 @@ class LabOwnersController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;
@@ -54,6 +54,8 @@ class LabOwnersController extends ApiController
                     ]
                 ]);
             }
+
+            $stmt->close();
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -63,7 +65,6 @@ class LabOwnersController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;
@@ -95,6 +96,8 @@ class LabOwnersController extends ApiController
                     ]
                 ]);
             }
+
+            $stmt->close();
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -104,7 +107,6 @@ class LabOwnersController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;

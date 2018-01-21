@@ -24,6 +24,8 @@ class ChemicalInController extends ApiController
                     ]
                 ]);
             }
+            
+            $stmt->close();
         } else {
                 $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -33,7 +35,6 @@ class ChemicalInController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;
@@ -65,6 +66,8 @@ class ChemicalInController extends ApiController
                     ]
                 ]);
             }
+
+            $stmt->close();
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -74,7 +77,6 @@ class ChemicalInController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;
@@ -105,6 +107,8 @@ class ChemicalInController extends ApiController
                     ]
                 ]); 
             }
+            
+            $stmt->close();
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -114,7 +118,6 @@ class ChemicalInController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;

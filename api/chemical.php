@@ -13,6 +13,7 @@ class ChemicalsController extends ApiController
             $stmt->execute();
             $result = $stmt->get_result();
             $response = $result->fetch_all( MYSQLI_ASSOC );
+            $stmt->close();
         } else {
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -22,7 +23,6 @@ class ChemicalsController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;
@@ -43,7 +43,7 @@ class ChemicalsController extends ApiController
             $stmt->bind_param("s", $chemicalid);
             $stmt->execute();
             $result = $stmt->get_result();
-            if (mysqli_num_rows($result) >= 1) {
+            if (mysqli_num_rows($result) != 0) {
                 $response = $result->fetch_all( MYSQLI_ASSOC );
             } else {
                 $error = new HttpResponse(404, 'Not Found', (object)[
@@ -54,6 +54,8 @@ class ChemicalsController extends ApiController
                     ]
                 ]);
             }
+
+            $stmt->close();
         } else {
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
@@ -63,7 +65,6 @@ class ChemicalsController extends ApiController
                 ]
             ]);
         }
-        $stmt->close();
         mysqli_close($conn);
         if ($error) {
             return $error;

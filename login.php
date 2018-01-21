@@ -42,7 +42,7 @@ if($result->num_rows > 0){
     
     if($_SESSION['status']=="Pending"){
         echo "pending";
-    }else if($_SESSION['status']=="Rejected"){
+    }else if($_SESSION['status']=="Reject"){
        echo "reject"; 
     }else if($_SESSION['status']=="Approve"){
        echo "valid"; 
