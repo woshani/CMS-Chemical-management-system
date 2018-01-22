@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     header("Location: ../index.html");
     exit;
 }else{
-  if($_SESSION['admin']=="No"){
+  if($_SESSION['role']=="Student" || ($_SESSION['role']=="Lecturer" && $_SESSION['admin']=="No") || ($_SESSION['role']=="PJ" && $_SESSION['admin']=="No")){
     header("Location: ../dashboard/dashboard.php");
     exit;
   }

@@ -4,13 +4,19 @@
                 
                 switch(admin) {
                     case "No":
-                        $('#regislabli').hide();
-                        $('#assignlabli').hide();
-                        $('#listlabli').hide();
-                        $('#regis_lab').hide();
-                        $('#assign_lab').hide();
-                        $('#listchemicalli').show();
-                        $('#list_Chemical_lab').show();
+                        if(role=="HOD" || role=="OSHA"){
+                          $('#regislabli').show();
+                          $('#assignlabli').show();
+                          $('#listchemicalli').show();
+                        }else{
+                          $('#regislabli').hide();
+                          $('#assignlabli').hide();
+                          $('#listlabli').hide();
+                          $('#regis_lab').hide();
+                          $('#assign_lab').hide();
+                          $('#listchemicalli').show();
+                          $('#list_Chemical_lab').show();
+                        }
                         break;
                     case "Yes":
                         $('#regislabli').show();
