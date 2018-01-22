@@ -8,7 +8,7 @@ class StudentsController extends ApiController
 
         $response = array();
         $error = false;
-        $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, supervisorid FROM user WHERE supervisorid = ?";
+        $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, status, supervisorid FROM user WHERE supervisorid = ?";
         if($stmt = $conn->prepare($query)) {
             $stmt->bind_param("s", $userid);
             $stmt->execute();
@@ -44,15 +44,15 @@ class StudentsController extends ApiController
     }
 
     /** :POST :{method}*/
-    public function updateStudentStatus($userid, $role)
+    public function updateStudentStatus($userid, $status)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "UPDATE user SET role = ? WHERE userid = ?";
+        $query = "UPDATE user SET status = ? WHERE userid = ?";
         if($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("ss", $role, $userid);
+            $stmt->bind_param("ss", $status, $userid);
             $stmt->execute();
             if ($stmt->affected_rows >= 1) {
                 $response = 'Successful';

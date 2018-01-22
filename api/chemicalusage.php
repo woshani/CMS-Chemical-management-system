@@ -2,15 +2,15 @@
 class ChemicalUsageController extends ApiController
 {
     /** :GET :{method} */
-    public function myUsageByStatus($userid, $status)
+    public function chemicalUsageApprovalFromUser($userid)
     {
         require 'connection/connection.php';
 
         $response = array();
         $error = false;
-        $query = "SELECT * FROM chemicalusage WHERE userid = ? AND status = ?";
+        $query = "SELECT cu.cuid, ci.ciid, c.name chemicalname, CONCAT(r.fname, ' ', r.lname) AS requestor, cu.startdate, cu.status FROM chemicalusage cu INNER JOIN chemicalin ci ON ci.ciid = cu.ciid INNER JOIN chemical c ON c.chemicalid = ci.chemicalid INNER JOIN user r ON r.userid = cu.userid WHERE ci.type = 'Private' AND ci.userid = ? ORDER BY cu.startdate DESC";
         if($stmt = $conn->prepare($query)) {
-            $stmt->bind_param("ss", $userid, $status);
+            $stmt->bind_param("s", $userid);
             $stmt->execute();
             $result = $stmt->get_result();
             if (mysqli_num_rows($result) >= 1) {
@@ -19,7 +19,7 @@ class ChemicalUsageController extends ApiController
                 $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[
                         'type' => 'NotFoundApiException',
-                        'message' => 'No Usage made by User',
+                        'message' => 'No request made by User',
                         'code' => 404
                     ]
                 ]);
@@ -115,6 +115,47 @@ class ChemicalUsageController extends ApiController
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
                     'message' => 'Error In myUsage Method ChemicalUsage API',
+                    'code' => 500
+                ]
+            ]);
+        }
+        mysqli_close($conn);
+        if ($error) {
+            return $error;
+        } else {
+            return $response;
+        }
+    }
+
+    /** :POST :{method}*/
+    public function updateChemicalUsageApprovalStatus($cuid, $status)
+    {
+        require 'connection/connection.php';
+
+        $response = array();
+        $error = false;
+        $query = "UPDATE chemicalusage SET status = ? WHERE cuid = ?";
+        if($stmt = $conn->prepare($query)) {
+            $stmt->bind_param("ss", $status, $cuid);
+            $stmt->execute();
+            if ($stmt->affected_rows >= 1) {
+                $response = 'Successful';
+            } else {
+               $error = new HttpResponse(404, 'Not Found', (object)[
+                    'exception' => (object)[
+                        'type' => 'NotFoundApiException',
+                        'message' => 'No Chemicalin Record is Updated',
+                        'code' => 404
+                    ]
+                ]); 
+            }
+            
+            $stmt->close();
+        } else {
+             $error = new HttpResponse(500, 'Internal Server Error', (object)[
+                'exception' => (object)[
+                    'type' => 'InternalServerErrorException',
+                    'message' => 'Error In updateStudentStatus Method Student API',
                     'code' => 500
                 ]
             ]);

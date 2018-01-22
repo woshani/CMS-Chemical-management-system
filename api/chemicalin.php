@@ -19,7 +19,7 @@ class ChemicalInController extends ApiController
                 $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[
                         'type' => 'NotFoundApiException',
-                        'message' => 'No chemicals with this status fuonded: ' . $status,
+                        'message' => 'No Chemicals With for this Status was Founded: ' . $status,
                         'code' => 404
                     ]
                 ]);
