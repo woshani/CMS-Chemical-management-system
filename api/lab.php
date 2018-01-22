@@ -42,9 +42,12 @@ class LabsController extends ApiController
         if($stmt = $conn->prepare($query)) {
             $stmt->bind_param("s", $labid);
             $stmt->execute();
-            $result = $stmt->get_result();
-            if (mysqli_num_rows($result) >= 1) {
-                $response = $result->fetch_all( MYSQLI_ASSOC );
+            $stmt->store_result();
+            if ($stmt->num_rows == 1) {
+                $stmt->bind_result($labid, $name);
+                $stmt->fetch();
+                $response['labid'] = $labid;
+                $response['name'] = $name;
             } else {
                 $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[

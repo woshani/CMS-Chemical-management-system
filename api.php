@@ -2,6 +2,7 @@
 require 'api/WebApi.php';
 require 'api/chemical.php';
 require 'api/student.php';
+require 'api/chemicalusage.php';
 require 'api/chemicalin.php';
 require 'api/lab.php';
 require 'api/labowner.php';

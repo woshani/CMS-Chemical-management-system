@@ -25,7 +25,7 @@ class UsersController extends ApiController
                     $error = new HttpResponse(401, 'Unauthorized', (object)[
                         'exception' => (object)[
                             'type' => 'UnauthorizedException',
-                            'message' => 'Account Access: ' . $status,
+                            'message' => 'Account Status: ' . $status,
                             'code' => 401
                         ]
                     ]);

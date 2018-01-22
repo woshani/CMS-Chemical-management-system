@@ -42,9 +42,17 @@ class ChemicalsController extends ApiController
         if($stmt = $conn->prepare($query)) {
             $stmt->bind_param("s", $chemicalid);
             $stmt->execute();
-            $result = $stmt->get_result();
-            if (mysqli_num_rows($result) != 0) {
-                $response = $result->fetch_all( MYSQLI_ASSOC );
+            $stmt->store_result();
+            if ($stmt->num_rows == 1) {
+                $stmt->bind_result($chemicalid, $name, $physicaltype, $engcontrol, $ppe, $class, $ghs);
+                $stmt->fetch();
+                $response['chemicalid'] = $chemicalid;
+                $response['name'] = $name;
+                $response['physicaltype'] = $physicaltype;
+                $response['engcontrol'] = $engcontrol;
+                $response['ppe'] = $ppe;
+                $response['class'] = $class;
+                $response['ghs'] = $ghs;
             } else {
                 $error = new HttpResponse(404, 'Not Found', (object)[
                     'exception' => (object)[
