@@ -264,7 +264,7 @@ desired effect
             }
             break;
         default:
-            $('#MSM').show();
+            $('#MSM').hide();
             $('#MLM').show();
             $('#MCM').show();
             $('#ADM').show();
