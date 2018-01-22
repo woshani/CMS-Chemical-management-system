@@ -30,13 +30,13 @@ include "../../connection/connection.php";
 	$mailer->Body = $message;
 	$mailer->AddAddress($supervisorEmail); 
 
-	if(!$mailer->Send())
-	{
-	echo "fail";
+	// if(!$mailer->Send())
+	// {
+	// echo "fail";
 
-	}
-	else
-	{
+	// }
+	// else
+	// {
 
 		$query = "INSERT INTO 
 				user (Fname, Lname, email, telno, Role, Admin, IdentifyId, password, supervisorId,status) 
@@ -48,7 +48,7 @@ include "../../connection/connection.php";
 					echo "fail";
 				}
 			
-	}
+	// }
 
 mysqli_close($conn);
 ?>

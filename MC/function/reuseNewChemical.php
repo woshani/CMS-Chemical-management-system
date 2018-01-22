@@ -26,13 +26,13 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	$mailer->Body = $message;
 	$mailer->AddAddress($email); 
 
-	if(!$mailer->Send())
-	{
-	echo "fail";
+	// if(!$mailer->Send())
+	// {
+	// echo "fail";
 
-	}
-	else
-	{
+	// }
+	// else
+	// {
 		if($ctype=="Public"){
 			$statusUsage = "In Use";
 			$statusUserRequesttouse = "Approve";
@@ -50,6 +50,6 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 				}else{
 					echo $query;
 				}
-	}
+	// }
 mysqli_close($conn);
 ?>

@@ -24,12 +24,12 @@
 		$mailer->Body = $message;
 		$mailer->AddAddress($email); 
 
-		if(!$mailer->Send())
-		{
-		echo "updateFailed";
-		}
-		else
-		{
+		// if(!$mailer->Send())
+		// {
+		// echo "updateFailed";
+		// }
+		// else
+		// {
 			$sqlupdate = "UPDATE user SET status='Approve' WHERE identifyid='".$identifyid."';";
 			$resultUpdate = mysqli_query($conn,$sqlupdate);
 			if($resultUpdate){
@@ -37,7 +37,7 @@
 			}else{
 				echo "updateFailed";
 			}
-		}
+		// }
 	mysqli_close($conn);
 
 	}else if($method=="rejectApprove"){
@@ -54,12 +54,12 @@
 		$mailer->Body = $message;
 		$mailer->AddAddress($email); 
 
-		if(!$mailer->Send())
-		{
-		echo "updateFailed";
-		}
-		else
-		{
+		// if(!$mailer->Send())
+		// {
+		// echo "updateFailed";
+		// }
+		// else
+		// {
 			
 			$sqlupdate = "UPDATE user SET status='Reject' WHERE identifyid='".$identifyid."';";
 			$resultUpdate = mysqli_query($conn,$sqlupdate);
@@ -68,7 +68,7 @@
 			}else{
 				echo "updateFailed";
 			}
-		}
+		// }
 	mysqli_close($conn);
 	}
 ?>

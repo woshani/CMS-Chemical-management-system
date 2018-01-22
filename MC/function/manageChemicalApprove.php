@@ -34,12 +34,12 @@
 				$mailer->Body = $message;
 				$mailer->AddAddress($email); 
 
-				if(!$mailer->Send())
-				{
-				echo "updateFailed";
-				}
-				else
-				{
+				// if(!$mailer->Send())
+				// {
+				// echo "updateFailed";
+				// }
+				// else
+				// {
 					$sqlupdate = "UPDATE chemicalusage a, user b SET a.status='Approve' WHERE a.userid = b.userid AND b.identifyid='".$identifyid."' and a.cuid = ".$cuid.";";
 					$sqlupdate .= "UPDATE chemicalin set status = 'In Use' WHERE ciid = '".$ciid."';";
 					$resultUpdate = mysqli_multi_query($conn,$sqlupdate);
@@ -48,7 +48,7 @@
 					}else{
 						echo "updateFailed";
 					}
-				}
+				// }
 				mysqli_close($conn);
 			}else if($method=="rejectApprove"){
 				
@@ -64,12 +64,12 @@
 				$mailer->Body = $message;
 				$mailer->AddAddress($email); 
 
-				if(!$mailer->Send())
-				{
-				echo "updateFailed";
-				}
-				else
-				{
+				// if(!$mailer->Send())
+				// {
+				// echo "updateFailed";
+				// }
+				// else
+				// {
 					
 					$sqlupdate = "UPDATE chemicalusage a, user b SET a.status='Reject' WHERE a.userid = b.userid AND b.identifyid='".$identifyid."' and a.cuid = ".$cuid.";";
 					$sqlupdate .= "UPDATE chemicalin set status = 'Available' WHERE ciid = '".$ciid."';";
@@ -80,7 +80,7 @@
 						echo "updateFailed";
 					}
 
-				}
+				// }
 				mysqli_close($conn);
 			}
 		}else if($cidstatus=="In Use"){

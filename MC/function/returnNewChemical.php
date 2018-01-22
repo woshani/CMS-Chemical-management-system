@@ -24,13 +24,13 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	$mailer->Body = $message;
 	$mailer->AddAddress($email); 
 
-	if(!$mailer->Send())
-	{
-	echo "fail";
+	// if(!$mailer->Send())
+	// {
+	// echo "fail";
 
-	}
-	else
-	{
+	// }
+	// else
+	// {
 
 		$query = "UPDATE chemicalusage SET status = '".$status."' ,enddate=now() where ciid = ".$chemicaInlId." AND userid = ".$chemicalpeminjam." and cuid = ".$cuid.";";
 		$query .= "UPDATE chemicalIn SET status = '".$status."' where userid = ".$chemicalUserId." AND ciid = ".$chemicaInlId.";";
@@ -40,6 +40,6 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 				}else{
 					echo "fail";
 				}
-	}
+	// }
 mysqli_close($conn);
 ?>
