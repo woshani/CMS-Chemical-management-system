@@ -6,6 +6,7 @@
                     case "No":
                         $('#regislabli').hide();
                         $('#assignlabli').hide();
+                        $('#listlabli').hide();
                         $('#regis_lab').hide();
                         $('#assign_lab').hide();
                         $('#listchemicalli').show();
@@ -41,7 +42,7 @@
                     });
                 }
             });
- $('#viewTable #btnView').on('click',function(e){
+ $('#divLabList #viewTable #btnView').on('click',function(e){
                 e.preventDefault();
                 
                  var row = $(this).closest('tr');
@@ -159,4 +160,16 @@ $('#modalassignlab #assignthepj').on('click',function(e){
       }
     });
   }
+});
+
+$('#selectLab').on('change',function(){
+  var labid = $(this).val();
+  $.ajax({
+      type:"post",
+      url:"query/listChemLab.php",
+      data:{labid:labid},
+      success:function(databack){
+        $('#divLabList').html(databack);
+      }
+  });
 });

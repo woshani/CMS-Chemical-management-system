@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     header("Location: ../index.html");
     exit;
 }else{
-  if($_SESSION['admin']=="No"){
+  if($_SESSION['role']!="PJ" && $_SESSION['admin']!="Yes"){
     header("Location: ../dashboard/dashboard.php");
     exit;
   }
@@ -144,9 +144,9 @@ desired effect
         <li class="header">Menus</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active" id="regislabli"><a href="#regis_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register Lab</span></a></li>
-        <li id="assignlabli"><a href="#list_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Labs</span></a></li>
-        <li id="listchemicalli"><a href="#list_Chemical_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical In Lab</span></a></li>
-        <li id=""><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Assign Labs</span></a></li>
+        <li id="listlabli"><a href="#list_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List All Labs</span></a></li>
+        <li id="listchemicalli"><a href="#list_Chemical_lab" role="tab" data-toggle="tab"><i class="fa fa-list"></i> <span>List Chemical Registered In Lab</span></a></li>
+        <li id="assignlabli"><a href="#assign_lab" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Assign Labs</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

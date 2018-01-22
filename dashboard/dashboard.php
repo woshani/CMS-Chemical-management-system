@@ -252,7 +252,7 @@ desired effect
             break;
         case "PJ":
             if(admin==="No"){
-              $('#MLM').hide();
+              $('#MLM').show();
               $('#MSM').hide();
               $('#ADM').hide();
               $('#MCM').show();

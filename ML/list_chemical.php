@@ -1,8 +1,39 @@
-<p>
+<?php
+	include "../connection/connection.php";
+	$user_id = $_SESSION['userid'];
 
+	$selectLab = "SELECT l.labid,l.staffid,n.name FROM labowner l JOIN lab n on n.labid = l.labid WHERE staffid = '".$user_id."'"; 
+?>
+<p>
+	<div class="row">
+		<center>
+					<div class="form-group">
+	                    <label class="col-md-4 control-label" for="textinput">Lab :</label>
+	                    <div class="col-md-6">
+	                        <select id="selectLab" class="form-control input-md">
+								<option selected="" disabled="" > Please select Lab</option>
+								<?php
+									$resultdua = mysqli_query($conn,$selectLab);
+							        if($resultdua->num_rows > 0){
+							             while($rowdua = mysqli_fetch_assoc($resultdua)){
+							                echo "<option value='".$rowdua['labid']."'>".$rowdua['name']."</option>";
+							             }            
+							        }else{
+							             echo "<option value='NA'>No Data Available</option>";
+							        } 
+								?>
+							</select>
+	                    </div>
+	                </div>
+				
+		</center>
+		<br/>	
+	</div>
+	
 	<div class="table-responsive">
 		<center>
-			<table id="viewTable" class="table table-striped table-bordered table-hover text-center">
+			<div id="divLabList">
+				<table id="viewTable" class="table table-striped table-bordered table-hover text-center">
 				<thead>
 					<tr>
 						<th class="text-center">#</th>
@@ -14,62 +45,14 @@
 						<th class="text-center">Action</th>
 					</tr>
 				</thead>
-				<?php 
-				include "../connection/connection.php";
-				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname ,concat(u.fname,' ',u.lname) as owner
-							  FROM chemical a 
-							  INNER JOIN chemicalin b 
-							  ON b.chemicalid = a.chemicalid 
-							  INNER JOIN lab c
-							  ON b.labid = c.labid
-							  INNER JOIN user u ON u.userid = b.userid 
-							  WHERE b.labid ='".$_SESSION['labid']."'";
-				$selectResult = mysqli_query($conn,$selectSql);
-				if(mysqli_num_rows($selectResult) > 0)
-				{
-				$no = 1;
-					while($row = mysqli_fetch_array($selectResult))
-					{
-					?>
-					
 				<tbody>
 					<tr>
-						<td><?php echo $no; ?></td>
-						<td id="chemical"><?php echo $row["chemicalname"];?></td>
-						<td id="chemicaldua"><?php echo $row["owner"];?></td>
-						<td id="expdate"><?php echo $row["expdate"];?></td>
-						<td><?php echo $row["status"];?></td>
-						<td><?php echo $row["physicaltype"];?></td>
-						<td>
-							<input id="id" name="id" type="hidden" value="<?php echo $row["chemicalid"];?>">
-							<input id="chemicalname" name="chemicalname" type="hidden" value="<?php echo $row["chemicalname"];?>">
-							<input id="type" name="type" type="hidden" value="<?php echo $row["physicaltype"];?>">
-							<input id="status" name="status" type="hidden" value="<?php echo $row["status"];?>">
-							<input id="datein" name="datein" type="hidden" value="<?php echo $row["datein"];?>">
-							<input id="supliername" name="supliername" type="hidden" value="<?php echo $row["supliername"];?>">
-							<input id="qrcode" name="qrcode" type="hidden" value="<?php echo $row["qrcode"];?>">
-							<input id="name" name="name" type="hidden" value="<?php echo $row["name"];?>">
-							<input id="sds" name="sds" type="hidden" value="<?php echo $row["sds"];?>">
-							<button type="button" class="btn btn-success" id="btnView" name="btnView" data-toggle="modal" data-target="#modalDetailChemical">View Details</button>
-						</td>
+						<td colspan="7">No Data</td>
 					</tr>
-				<?php
-				$no++;
-					}
-				}
-				else
-				{
-				?>
-					<tr>
-						<td colspan="6">No Data</td>
-					</tr>
-				<?php
-				}
-				mysqli_close($conn);
-				?>
 				</tbody>
 			</table>
+			</div>
+			
 		</center>	
 	</div>
 
