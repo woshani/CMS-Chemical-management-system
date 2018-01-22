@@ -11,7 +11,7 @@
 } );
 });
 
- $('#userTable #btnAccept').on('click',function(e){
+ $('#tableStudentApprove #btnAccept').on('click',function(e){
     e.preventDefault();
 	   var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
@@ -35,7 +35,7 @@
 	
   });
 
-    $('#userTable #btnReject').on('click',function(e){
+    $('#tableStudentApprove #btnReject').on('click',function(e){
     e.preventDefault();
      var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
