@@ -10,21 +10,6 @@
 							  INNER JOIN user u ON u.userid = b.userid 
 							  WHERE b.labid ='".$labid."'";
 				$selectResult = mysqli_query($conn,$selectSql); 
-?>	
-			<table id="viewTable" class="table table-striped table-bordered table-hover text-center">
-				<thead>
-					<tr>
-						<th class="text-center">#</th>
-						<th class="text-center">Chemical Name</th>
-						<th class="text-center">Owner</th>
-						<th class="text-center">Expired Date</th>
-						<th class="text-center">Status Chemical</th>
-						<th class="text-center">Type Chemical</th>
-						<th class="text-center">Action</th>
-					</tr>
-				</thead>
-				<?php 
-
 				if(mysqli_num_rows($selectResult) > 0)
 				{
 				$no = 1;
@@ -32,7 +17,6 @@
 					{
 					?>
 					
-				<tbody>
 					<tr>
 						<td><?php echo $no; ?></td>
 						<td id="chemical"><?php echo $row["chemicalname"];?></td>
@@ -67,5 +51,3 @@
 				}
 				mysqli_close($conn);
 				?>
-				</tbody>
-			</table>
