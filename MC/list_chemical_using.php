@@ -24,7 +24,7 @@
 							  INNER JOIN lab c
 							  ON b.labid = c.labid
 							  INNER JOIN chemicalusage cu 
-							  ON cu.ciid = b.ciid AND (cu.status = 'Approve' OR cu.status ='Pending') AND cu.userid =".$user_id."
+							  ON cu.ciid = b.ciid AND (cu.status = 'Approve' OR cu.status ='Pending' OR cu.status='Reject') AND cu.userid =".$user_id."
 							  INNER JOIN user u ON u.userid = b.userid;";
 				$selectResult = mysqli_query($conn,$selectSql);
 				if(mysqli_num_rows($selectResult) > 0)

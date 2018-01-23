@@ -2,7 +2,7 @@
 include "../../connection/connection.php";
 $chemical = $_POST['input'];
 
-$query = "SELECT chemicalid,name,physicaltype,engcontrol,ppe FROM chemical WHERE name ='".$chemical."';";
+$query = "SELECT chemicalid,name,physicaltype,engcontrol,ppe,class,ghs FROM chemical WHERE name ='".$chemical."';";
 
 $result = mysqli_query($conn, $query);
 if($result->num_rows > 0){
@@ -13,8 +13,10 @@ if($result->num_rows > 0){
 		$physicaltype = $row['physicaltype'];
 		$engcontrol = $row['engcontrol'];
 		$ppe = $row['ppe'];
+		$class = $row['class'];
+		$ghs = $row['ghs'];
 	}
-	echo $id."|".$name."|".$type."|".$physicaltype."|".$engcontrol."|".$ppe;
+	echo $id."|".$name."|".$type."|".$physicaltype."|".$engcontrol."|".$ppe."|".$class."|".$ghs;
 }
 mysqli_close($conn);
 ?>

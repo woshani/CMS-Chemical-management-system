@@ -10,13 +10,46 @@ mysqli_close($conn);
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
+                    <label class="col-md-4 control-label" for="textinput">Search Name of Chemical :</label>
                     <div class="col-md-6">
                         <input id="Chemicalname" name="Chemicalname" type="text" placeholder="" class="form-control input-md">
                         <input type="hidden" class="form-control"  id="chemicalIDRegis">
                         <div id="matchChemical"></div>
                     </div>   
                 </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput"></label>
+                    <div class="col-md-6">
+                        <table border="0" id="tableResultSearchChemical">
+                            <tr>
+                                <td style="text-align: right">Name Chemical:</td>
+                                <td id="resName" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right">Physical Type:</td>
+                                <td id="resType" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right">Eng Control:</td>
+                                <td id="resCon" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right">PPE:</td>
+                                <td id="resPP" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right">Class:</td>
+                                <td id="resClass" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right">GHS:</td>
+                                <td id="resGHS" style="text-align: center;font-weight: bold;"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 				<div class="form-group" id="ownerNamePJ">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
                     <div class="col-md-6">
@@ -50,6 +83,11 @@ mysqli_close($conn);
 							</span>
 						</div>
 					</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Qualtity ml/L/Kg :</label>
+                    <div class="col-md-6">
+                        <input id="quantity" name="quantity" type="text" class="form-control input-md" placeholder="ml/L/Kg/g"></div>
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Type Chemical :</label>
@@ -85,7 +123,7 @@ mysqli_close($conn);
                         <video id="camRegister"></video>
                     </div>
                 </div>
-				<div class="form-group">
+				<div class="form-group hidden">
                     <label class="col-md-4 control-label" for="textinput"></label>
                     <div class="col-md-6">
                         <input type="checkbox" id="REGtypechemical" class="form-check-input" data-toggle="tooltip" title="Tick this to use the chemical immediately."> <span data-toggle="tooltip" title="Tick this to use the chemical immediately.">Used Chemical?</span></div>

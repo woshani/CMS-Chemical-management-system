@@ -17,7 +17,7 @@
 				<?php 
 				include "../connection/connection.php";
 				$user_id = $_SESSION['userid'];
-				$selectSql = "SELECT CONCAT(a.fname,' ',a.lname) as fullname, a.identifyid,a.email,a.telno,d.name as chemical_name,c.ciid as cid,b.cuid as cuid
+				$selectSql = "SELECT CONCAT(a.fname,' ',a.lname) as fullname, a.identifyid,a.email,a.telno,d.name as chemical_name,c.ciid as cid,b.cuid as cuid,b.status as requestStat
 							  FROM user a, chemicalusage b, chemicalin c,chemical d
 							  WHERE a.userid = b.userid AND c.ciid = b.ciid AND b.status = 'Pending' AND c.userid=".$user_id." AND c.chemicalid = d.chemicalid AND c.status!='Dispose'";
 				$selectResult = mysqli_query($conn,$selectSql);
@@ -37,8 +37,16 @@
 						<td><?php echo $row["telno"];?><input type="hidden" name="ciudapprove" id="ciudapprove" value="<?php echo $row['cuid'];?>"></td>
 						<td><?php echo $row["chemical_name"];?><input type="hidden" name="ciidapprove" id="ciidapprove" value="<?php echo $row['cid'];?>"></td>
 						<td>
-							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
-							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>
+							<?php
+								if($row["requestStat"]=="Reject"){
+									echo "<button type='submit' disabled class='btn btn-danger'>Rejected</button>";
+								}else if($row["requestStat"]=="Approve"){
+									echo "<button type='submit' disabled class='btn btn-success'>Approved</button>";
+								}else{
+									echo "<button type='submit' name='btnAccept' id='btnAccept' class='btn btn-success'>Accept</button>
+										<button type='submit' name='btnReject' id='btnReject' class='btn btn-success'>Reject</button>";
+								} 
+							?>
 						</td>
 					</tr>
 				<?php

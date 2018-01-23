@@ -35,6 +35,9 @@
                         $('#liapprovePrivate').hide();
                         $('#approve_chemical').hide();
 
+                        $('#liapproveRegisChem').hide();
+                        $('#approve_chemical_regis').hide();
+
                         $('#list_chemical_using').addClass("active");
                         $('#ownerNamePJ #ownerID').val(supervisorid);
                         break;
@@ -162,10 +165,20 @@
                       var physicalType = array_data[3];
                       var engcontrol = array_data[4];
                       var ppe = array_data[5];
+                      var tclass = array_data[6];
+                      var ghs = array_data[7];
                       $('#chemicalIDRegis').val(id.trim());
                       $('#type').val(typeC.trim());
                       $('input[name=eng][value=' + engcontrol.trim() + ']').prop('checked',true);
                       $('input[name=ppe][value=' + ppe.trim() + ']').prop('checked',true);
+
+                      $('#tableResultSearchChemical #resName').text(name);
+                      $('#tableResultSearchChemical #resType').text(physicalType);
+                      $('#tableResultSearchChemical #resCon').text(engcontrol);
+                      $('#tableResultSearchChemical #resPP').text(ppe);
+                      $('#tableResultSearchChemical #resClass').text(tclass);
+                      $('#tableResultSearchChemical #resGHS').text(ghs);
+
                     }
                 });
 
@@ -185,6 +198,8 @@
                 var stats = "";
                 var newname = newName(qrcode,id_chemical);
                 var sds = uploadFile(newname);
+                var identifyid = identifyidxx;
+                var quantity = $.trim($('#quantity').val());
                 console.log("id chemicals "+id_chemical);
                 if($("#REGtypechemical").is(':checked')){
                     stats = "In Use";
@@ -209,11 +224,13 @@
                     alert("Please make sure you choose SDS file to upload");
                 }else if(supplier==""){
                     alert("Please make sure you fill the supplier name");
+                }else if(quantity==" "){
+                    alert("Please make sure you fill the amount of quantity");
                 }else{
                     $.ajax({
                         type:"post",
                         url:"function/registerChemical.php",
-                        data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
+                        data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds,identifyid:identifyid,id_user:id_user,quantity:quantity},
                         success:function(databack){
                             if($.trim(databack)==="success"){
                                 console.log(stats);
@@ -225,13 +242,13 @@
                                     success:function(data){
                                         console.log(data);
                                         if($.trim(data)==="success"){
-                                            alert("Registration succeed");
+                                            alert("Registration succeed,please wait for approval");
                                             location.reload();
                                         }
                                     }
                                 });
                                 }else{
-                                    alert("Registration succeed");
+                                    alert("Registration succeed,please wait for approval");
                                     location.reload();
                                 }
                                 
@@ -268,7 +285,7 @@
 					  }else if(databack.trim()==="chemicalused"){
                         alert("Chemical already being used by someone else");
                       }else{
-						alert("Failed to approve the student!,try again later.");
+						alert("Failed to approve the student request!,try again later.");
 					  }
 					  location.reload();
 					}
@@ -296,7 +313,7 @@
 					  }else if(databack.trim()==="chemicalused"){
                         alert("Chemical already being used by someone else");
                       }else{
-						alert("Failed to reject the studet!,try again later.");
+						alert("Failed to reject the student request!,try again later.");
 					  }
 					  location.reload();
 					}
@@ -431,9 +448,9 @@
                     success:function(databack){
                         console.log(databack);
                         if(databack.trim() === "success"){
-                        alert("Request success");
+                        alert("Return success");
                       }else{
-                        alert("Request failed! Please request later");
+                        alert("Return failed! Please request later");
                       }
                        location.reload();
                     }
@@ -525,4 +542,54 @@
                  $('#modalDetailChemicaldua #tbleDetails a#LISDSdua').text(sds);
                  });
 
+
+              $('#registrationStatTable #btnAccept2').on('click',function(e){
+                e.preventDefault();
+                   var row = $(this).closest('tr');
+                 var key = row.find('#keyStud2').text();
+                 var keyEmail = row.find('#keyEmali2').text();
+                 var ciid = row.find('#ciidapprove2').val();
+                 // alert(key);
+                   var datas = {method:"updateRole",identifyid:key,email:keyEmail,subject:"CMS- User Request To Register a Chemical",message:"Your Request to register the chemical are Successfully, Thank You",ciid : ciid};
+                 $.ajax({
+                    type:"post",
+                    url:"function/manageChemicalApproveRegistration.php",
+                    data: datas,
+                    success:function(databack){
+                        //console.log(databack);
+                      if(databack.trim() === "updateSuccess"){
+                        alert("Request successfully approve");
+                      }else{
+                        alert("Failed to approve the registration!,try again later.");
+                      }
+                      location.reload();
+                    }
+                 });
+                
+              });
+
+                $('#registrationStatTable #btnReject2').on('click',function(e){
+                e.preventDefault();
+                 var row = $(this).closest('tr');
+                 var key = row.find('#keyStud2').text();
+                 var keyEmail = row.find('#keyEmali2').text();
+                 var ciid = row.find('#ciidapprove2').val();
+                 // alert(key);
+                 var datas = {method:"rejectApprove",identifyid:key,email:keyEmail,subject:"CMS- User Reuse Chemical Request",message:"Your request to register the chemical are Rejected Please contact your supervisor / PJ, Thank You",ciid : ciid};
+                 $.ajax({
+                    type:"post",
+                    url:"function/manageChemicalApproveRegistration.php",
+                    data: datas,
+                    success:function(databack){
+                        //console.log(databack);
+                      if(databack.trim() === "updateSuccess"){
+                        alert("request rejected");
+                      }else{
+                        alert("Failed to reject the registration!,try again later.");
+                      }
+                      location.reload();
+                    }
+                 });
+              
+              });
                  

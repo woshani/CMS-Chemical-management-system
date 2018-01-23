@@ -153,7 +153,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Use</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
-                        <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Approve(Private)</span></a></li>
+                        <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>List Request To Use(Private)</span></a></li>
+                        <li class="" id="liapproveRegisChem"><a href="#approve_chemical_regis" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Registration Request List</span></a></li>
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>
@@ -201,9 +202,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <?php include 'return_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="approve_chemical">
-                                    <h3 style="margin: 0px; padding: 0px;">Approve Chemical</h3>
+                                    <h3 style="margin: 0px; padding: 0px;">Approve Chemical To Use (Private)</h3>
                                     <hr/>
                                     <?php include 'approve_chemical.php';?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="approve_chemical_regis">
+                                    <h3 style="margin: 0px; padding: 0px;">Approve Chemical Registration</h3>
+                                    <hr/>
+                                    <?php include 'approve_chemical_registration.php';?>
                                 </div>
                             </div>
                         </div>
@@ -247,7 +253,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script type="text/javascript">
             var role = "<?php echo $_SESSION['role'];?>";
             var supervisorid = "<?php echo $_SESSION['supervisorid'];?>";
-            var useridxx = "<?php echo $_SESSION['userid'];?>"; 
+            var useridxx = "<?php echo $_SESSION['userid'];?>";
+            var identifyidxx = "<?php echo $_SESSION['identifyid'];?>"; 
         </script>
         <script src="../dist/js/manageChemical.js"></script>
         <!-- Optionally, you can add Slimscroll and FastClick plugins.

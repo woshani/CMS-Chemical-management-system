@@ -32,7 +32,7 @@ require_once("../../plugins/phpmailer/class.phpmailer.php");
 	// else
 	// {
 
-		$query = "UPDATE chemicalusage SET, enddate=now() where ciid = ".$chemicaInlId." AND userid = ".$chemicalpeminjam." and cuid = ".$cuid.";";
+		$query = "UPDATE chemicalusage SET enddate=now() where ciid = ".$chemicaInlId." AND userid = ".$chemicalpeminjam." and cuid = ".$cuid." and status ='Return';";
 		$query .= "UPDATE chemicalIn SET status = '".$status."' where userid = ".$chemicalUserId." AND ciid = ".$chemicaInlId.";";
 		$insert = mysqli_multi_query($conn,$query);
 				if($insert){

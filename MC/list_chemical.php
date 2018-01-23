@@ -19,7 +19,7 @@
 				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname 
 							  FROM chemical a 
 							  INNER JOIN chemicalin b 
-							  ON b.chemicalid = a.chemicalid 
+							  ON b.chemicalid = a.chemicalid and b.registration_status='Approve'
 							  INNER JOIN lab c
 							  ON b.labid = c.labid
 							  WHERE b.userid =".$user_id;
