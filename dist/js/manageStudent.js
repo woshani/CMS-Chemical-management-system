@@ -13,6 +13,7 @@
 
  $('#tableStudentApprove #btnAccept').on('click',function(e){
     e.preventDefault();
+    $body.addClass("loading");
 	   var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
 	   var keyEmail = row.find('#keyEmali').text();
@@ -23,6 +24,7 @@
         url:"function/manageStudentApprove.php",
         data: datas,
         success:function(databack){
+          $body.removeClass("loading");
           console.log(databack);
           if(databack.trim() === "updateSuccess"){
             alert("Student successfully approve");
@@ -37,6 +39,7 @@
 
     $('#tableStudentApprove #btnReject').on('click',function(e){
     e.preventDefault();
+    $body.addClass("loading");
      var row = $(this).closest('tr');
      var key = row.find('#keyStud').text();
 	   var keyEmail = row.find('#keyEmali').text();
@@ -46,6 +49,7 @@
         url:"function/manageStudentApprove.php",
         data: datas,
         success:function(databack){
+          $body.removeClass("loading");
           if(databack.trim() === "updateSuccess"){
             alert("Student rejected");
           }else{

@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
         <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../dist/css/loading.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,7 +76,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <body class="hold-transition skin-purple sidebar-mini">
         <div class="wrapper">
-
             <!-- Main Header -->
             <header class="main-header">
 
@@ -235,6 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             immediately after the control sidebar -->
             <div class="control-sidebar-bg"></div>
         </div>
+        <div class="modalloader"><!-- Place at bottom of page --></div>
         <!-- ./wrapper -->
 
         <!-- REQUIRED JS SCRIPTS -->
@@ -251,6 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
         <script type="text/javascript">
+            var $body = $("body");
             var role = "<?php echo $_SESSION['role'];?>";
             var supervisorid = "<?php echo $_SESSION['supervisorid'];?>";
             var useridxx = "<?php echo $_SESSION['userid'];?>";

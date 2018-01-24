@@ -30,6 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" type="text/css" href="../dist/css/loading.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -199,7 +200,7 @@ desired effect
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
+<div class="modalloader"><!-- Place at bottom of page --></div>
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
@@ -211,7 +212,9 @@ desired effect
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <script src="../dist/js/manageStudent.js"></script>
-
+<script type="text/javascript">
+  var $body = $("body");
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

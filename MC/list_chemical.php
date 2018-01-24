@@ -73,6 +73,7 @@
 	      </div>
 	      <div class="modal-body">
 			<table id="tbleDetails" class="table table-striped table-responsive">
+				<tr><td colspan="2" style="text-align: center;font-weight: bold;">Chemical Information</td></tr>
 				<tr><td>Chemical Name :</td><td id="LIchemicalName"></td></tr>
 				<tr><td>Type Chemical :</td><td id="LItypeChemical"></td></tr>
 				<tr><td>Status Chemical :</td><td id="LIstatusChemical"></td></tr>
@@ -82,6 +83,12 @@
 				<tr><td>QR Code ID :</td><td id="LIqrcode"></td></tr>
 				<tr><td>lab :</td><td id="LIlab"></td></tr>
 				<tr><td>SDS :</td><td><a href="" target="_blank" id="LISDS" download></a></td></tr>
+				<tr><td colspan="2" style="text-align: center;font-weight: bold;">Borrower Information</td></tr>
+				<tr><td>Used By :</td><td id="LIusedby"></td></tr>
+				<tr><td>Matric/Staff ID :</td><td id="LImatric"></td></tr>
+				<tr><td>TelNo :</td><td id="LItelno"></td></tr>
+				<tr><td>Email :</td><td id="LIemail"></td></tr>
+				<tr><td>Borrow Date :</td><td id="LIbdate"></td></tr>
 			</table>
 	      </div>
 	      <div class="modal-footer">

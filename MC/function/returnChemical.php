@@ -29,7 +29,7 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $row["peminjamid"];?>">
 						<input type="hidden" id="email" value="<?php echo $row['owneremail'];?>">
 						<input type="hidden" id="sub" value="ZeroWaste - User Return Chemical Notification">
-						<input type="hidden" id="message" value="<?php echo $row['peminjamid'];?> has return your chemical: <?php echo $row['chemicalname'];?>.">
+						<input type="hidden" id="message" value="<?php echo $_SESSION["fname"].' '.$_SESSION["lname"];?> has return your chemical <?php echo $row['chemicalname'];?>.">
                         <input type="hidden" id="chemicalusagepunyeid" value="<?php echo $row['cuidd'];?>">
                 </div>
 				<div class="form-group">
@@ -57,6 +57,12 @@ while ($row = mysqli_fetch_array($resultSelect)){
                         </select>
                     </div>
                 </div>
+                <div class="form-group" id="remquan">
+                    <label class="col-md-4 control-label" for="textinput">Remaining Quantity :</label>
+                    <div class="col-md-6">
+                        <input type="text" name="remaining_quantity" id="remaining_quantity" placeholder="ml/l/g/kg">
+                    </div>
+                </div>
                
 
                 <?php
@@ -69,3 +75,15 @@ while ($row = mysqli_fetch_array($resultSelect)){
   <?php
 }
                 ?>
+<script type="text/javascript">
+                    $('#remquan').hide();
+                   $('#returnStatus').on('change',function(){
+                        var valuu = this.value;
+                        //alert(valuu);
+                        if(valuu==="Available"){
+                            $('#remquan').show();
+                        }else if(valuu==="Empty"){
+                            $('#remquan').hide();
+                        }
+               });
+</script>

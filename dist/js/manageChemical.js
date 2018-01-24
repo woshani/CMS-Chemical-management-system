@@ -115,6 +115,7 @@
                       var email = array_data[1];
                       var userid = array_data[0];
                       $('#ownerID').val(userid.trim());
+                      $('#ownerEmail').val(email.trim());
                     }
                 });
 
@@ -185,8 +186,10 @@
             }
 
             $('#btn_register_chemical').on('click',function(e){
+                $body.addClass("loading");
                 var id_chemical = $.trim($('#chemicalIDRegis').val());
                 var id_owner  = $.trim($('#ownerID').val());
+                var email_owner  = $.trim($('#ownerEmail').val());
                 var id_user = useridxx;
                 var id_lab = $.trim($('#lab').val());
                 var dateexp = $.trim($('#expired').val());
@@ -230,7 +233,7 @@
                     $.ajax({
                         type:"post",
                         url:"function/registerChemical.php",
-                        data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds,identifyid:identifyid,id_user:id_user,quantity:quantity},
+                        data:{id_chemical:id_chemical,id_owner:id_owner,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds,identifyid:identifyid,id_user:id_user,quantity:quantity,email:email_owner},
                         success:function(databack){
                             if($.trim(databack)==="success"){
                                 console.log(stats);
@@ -241,6 +244,7 @@
                                     data:{id_chemical:id_chemical,id_owner:id_user,id_lab:id_lab,dateexp:newDate,status:status,supplier:supplier,qrcode:qrcode,stats:stats,sds:sds},
                                     success:function(data){
                                         console.log(data);
+                                        $body.removeClass("loading");
                                         if($.trim(data)==="success"){
                                             alert("Registration succeed,please wait for approval");
                                             location.reload();
@@ -248,14 +252,18 @@
                                     }
                                 });
                                 }else{
+                                    $body.removeClass("loading");
                                     alert("Registration succeed,please wait for approval");
                                     location.reload();
                                 }
                                 
                             }else if($.trim(databack)==="qrcode"){
+                                $body.removeClass("loading");
                                 alert("The QrCode has already being used!,please use another QrCode!");
                             }else{
+                                $body.removeClass("loading");
                                  alert("Registration failed");
+                                 console.log(databack);
                             }
                         }
                     })
@@ -267,6 +275,7 @@
 	
 			  $('#userTable #btnAccept').on('click',function(e){
 				e.preventDefault();
+                $body.addClass("loading");
 				   var row = $(this).closest('tr');
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
@@ -280,13 +289,16 @@
 					data: datas,
 					success:function(databack){
                         //console.log(databack);
+                        $body.removeClass("loading");
 					  if(databack.trim() === "updateSuccess"){
 						alert("Request successfully approve");
 					  }else if(databack.trim()==="chemicalused"){
                         alert("Chemical already being used by someone else");
+                      }else if(databack.trim()==="updateFailed"){
+                        alert("Failed to approve the student request!,try again later.");
                       }else{
-						alert("Failed to approve the student request!,try again later.");
-					  }
+                        alert("request has been approved,but email notification has some issues.");
+                      }
 					  location.reload();
 					}
 				 });
@@ -295,6 +307,7 @@
 
 				$('#userTable #btnReject').on('click',function(e){
 				e.preventDefault();
+                $body.addClass("loading");
 				 var row = $(this).closest('tr');
 				 var key = row.find('#keyStud').text();
 				 var keyEmail = row.find('#keyEmali').text();
@@ -307,13 +320,16 @@
 					url:"function/manageChemicalApprove.php",
 					data: datas,
 					success:function(databack){
+                        $body.removeClass("loading");
                         //console.log(databack);
 					  if(databack.trim() === "updateSuccess"){
 						alert("request rejected");
 					  }else if(databack.trim()==="chemicalused"){
                         alert("Chemical already being used by someone else");
+                      }else if(databack.trim()==="updateFailed"){
+                        alert("Failed to reject the student request!,try again later.");
                       }else{
-						alert("Failed to reject the student request!,try again later.");
+						alert("request has been rejected,but email notification has some issues.");
 					  }
 					  location.reload();
 					}
@@ -405,33 +421,45 @@
             }
 
                $('#insert_btnReuse').on('click',function(e){
+                
                 var chemicalId = $('#chemicalInId').val();
                 var cserId = $('#chemicalUserId').val();
 				var email = $('#email').val();
 				var sub = $('#sub').val();
 				var message = $('#message').val();
                 var type = $('#chemicalTypePrivate').val();
-				
-				  //alert("test");
+                var ownerid = $('#ownerid').val();
+                var messagepublic = $('#messagepublic').val();
+                var quantity = $('#initial_quantity').val();
+				if(quantity===""){
+                    alert("Please make sure quantity is inserted");
+                }else{
+                    $body.addClass("loading");
+                    $.ajax({
+                        type:"post",
+                        url:"function/reuseNewChemical.php",
+                        data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,'type':type,ownerid:ownerid,messagepublic:messagepublic,quantity:quantity},
+                        success:function(databack){
+                            $body.removeClass("loading");
+                            if(databack.trim() === "success"){
+                            alert("Request success");
+                          }else if(databack.trim() === "fail"){
+                            alert("Request failed! Please request later");
+                          }else{
+                            alert("Request Success,but email notification seem has an issues");
+                            console.log(databack);
+                          }
+                           location.reload();
+                        }
+                     });
+                }				 
 				 
-				 $.ajax({
-					type:"post",
-					url:"function/reuseNewChemical.php",
-					data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,'type':type},
-					success:function(databack){
-                        if(databack.trim() === "success"){
-						alert("Request success");
-					  }else{
-						alert("Request failed! Please request later");
-                        console.log(databack);
-					  }
-					   location.reload();
-					}
-				 });
 			  
 			  });
 
+
                $('#insert_btnReturn').on('click',function(e){
+                $body.addClass("loading");
                 var chemicalId = $('#chemicalInId').val();
                 var cserId = $('#chemicalUserId').val();
                 var userchemicalid = $('#chemicalUserIdPeminjam').val();
@@ -440,21 +468,30 @@
                 var message = $('#message').val();
                 var status = $('#returnStatus').val();
                 var cuid = $('#chemicalusagepunyeid').val();
-                                 
-                 $.ajax({
+                var remaining = $('#remaining_quantity').val();
+                
+                if(status==="Available" && remaining===""){
+                    alert("Please make sure remaining quantity of the chemical is inserted");
+                }else{
+                   $.ajax({
                     type:"post",
                     url:"function/returnNewChemical.php",
-                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid,cuid : cuid },
+                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,peminjam :userchemicalid,cuid : cuid,remaining:remaining },
                     success:function(databack){
                         console.log(databack);
+                        $body.removeClass("loading");
                         if(databack.trim() === "success"){
                         alert("Return success");
-                      }else{
+                      }else if(databack.trim() === "fail"){
                         alert("Return failed! Please request later");
+                      }else{
+                        alert("Chemical has been return,but email notification has some issues");
                       }
                        location.reload();
                     }
-                 });
+                 }); 
+                }                 
+                 
               
               });                 	
 
@@ -501,7 +538,7 @@
                   var qrcode = row.find('#qrcode').val();
                   var nameSv = row.find('#name').val();
                   var sds = row.find('#sds').val();
-                  console.log(sds);
+                  console.log(id);
 				  // console.log("Value: "+id+" "+name+" "+type+" "+status+" "+datein+" "+supliername+" "+qrcode+" "+nameSv);
 				 $('#modalDetailChemical #tbleDetails td#LIchemicalName').html(name);
                  $('#modalDetailChemical #tbleDetails td#LItypeChemical').html(type);
@@ -513,7 +550,35 @@
                  $('#modalDetailChemical #tbleDetails td#LIexpdate').html(expdate);
                  $('#modalDetailChemical #tbleDetails a#LISDS').attr("href", "../SDS/"+sds);
                  $('#modalDetailChemical #tbleDetails a#LISDS').text(sds);
-			 
+			     
+                 if (status==="In Use"){
+                    $.ajax({
+                        type:"post",
+                        url:"function/findWhoUseIt.php",
+                        data:{id:id},
+                        success:function(databack){
+                            console.log(databack);
+                            var array_datass = databack.split('|');
+                            var fname = array_datass[0];
+                            var fmatric = array_datass[1];
+                            var ftelno = array_datass[2];
+                            var femail = array_datass[3];
+                            var fdate = array_datass[4];
+                            $('#modalDetailChemical #tbleDetails td#LIusedby').html(fname);
+                            $('#modalDetailChemical #tbleDetails td#LImatric').html(fmatric);
+                            $('#modalDetailChemical #tbleDetails td#LItelno').html(ftelno);
+                            $('#modalDetailChemical #tbleDetails td#LIemail').html(femail);
+                            $('#modalDetailChemical #tbleDetails td#LIbdate').html(fdate);
+                        }
+                    });
+                 }else{
+                    $('#modalDetailChemical #tbleDetails td#LIusedby').html("N/A");
+                            $('#modalDetailChemical #tbleDetails td#LImatric').html("N/A");
+                            $('#modalDetailChemical #tbleDetails td#LItelno').html("N/A");
+                            $('#modalDetailChemical #tbleDetails td#LIemail').html("N/A");
+                            $('#modalDetailChemical #tbleDetails td#LIbdate').html("N/A");
+                 }
+
 				 });
             $('#viewTableDua #btnViewdua').on('click',function(e){
                 e.preventDefault();
@@ -545,6 +610,7 @@
 
               $('#registrationStatTable #btnAccept2').on('click',function(e){
                 e.preventDefault();
+                $body.addClass("loading");
                    var row = $(this).closest('tr');
                  var key = row.find('#keyStud2').text();
                  var keyEmail = row.find('#keyEmali2').text();
@@ -557,10 +623,13 @@
                     data: datas,
                     success:function(databack){
                         //console.log(databack);
+                        $body.removeClass("loading");
                       if(databack.trim() === "updateSuccess"){
                         alert("Request successfully approve");
-                      }else{
+                      }else if(databack.trim() === "updateFailed"){
                         alert("Failed to approve the registration!,try again later.");
+                      }else{
+                        alert("Request successfully approve,but email notification seems has some issues.");
                       }
                       location.reload();
                     }
@@ -570,6 +639,7 @@
 
                 $('#registrationStatTable #btnReject2').on('click',function(e){
                 e.preventDefault();
+                $body.addClass("loading");
                  var row = $(this).closest('tr');
                  var key = row.find('#keyStud2').text();
                  var keyEmail = row.find('#keyEmali2').text();
@@ -582,10 +652,13 @@
                     data: datas,
                     success:function(databack){
                         //console.log(databack);
+                        $body.removeClass("loading");
                       if(databack.trim() === "updateSuccess"){
-                        alert("request rejected");
-                      }else{
+                        alert("request for registration has been rejected");
+                      }else if(databack.trim() === "updateFailed"){
                         alert("Failed to reject the registration!,try again later.");
+                      }else{
+                        alert("request for registration has been rejected,but email notification seems has some issues.");
                       }
                       location.reload();
                     }

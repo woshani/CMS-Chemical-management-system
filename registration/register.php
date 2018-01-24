@@ -17,6 +17,7 @@
   <!-- iCheck -->
 <!--   <link rel="stylesheet" href="plugins/iCheck/square/purple.css"> -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" type="text/css" href="../dist/css/loading.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,7 +86,7 @@
   </div>
   <!-- /.login-box-body -->
 </div>
-
+<div class="modalloader"><!-- Place at bottom of page --></div>
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -95,7 +96,9 @@
 
 
 	<script>
+    var $body = $("body");
             $('#btnRegister').on('click',function(e){
+                $body.addClass("loading");
                 e.preventDefault();
                 var fname = $('#fname').val();
                 var lname = $('#lname').val();
@@ -118,6 +121,7 @@
                      url:"query/registerUser.php",
                      data:{"fname":fname,"lname":lname,"email":email,"telno":telno,"role":role,"admin":admin,"identifyId":identifyId,"password":password,"supervisorId":supervisorId,"sub":sub,"message":message,"supervisorEmail":supervisorEmail},
                      success:function(databack){
+                      $body.removeClass("loading");
                          console.log(databack);
                          if(databack.trim()==="success"){
                              alert("Registration succeed!,Please wait for supervisor approval to Log in.");

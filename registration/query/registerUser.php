@@ -1,7 +1,13 @@
 <?php 
 include "../../connection/connection.php";
 
-	require_once("../../plugins/phpmailer/class.phpmailer.php");
+	// require_once("../../plugins/phpmailer/class.phpmailer.php");
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
+	require '../../plugins/phpmailerv2/Exception.php';
+	require '../../plugins/phpmailerv2/PHPMailer.php';
+	require '../../plugins/phpmailerv2/SMTP.php';
 	
 	$supervisorEmail=$_POST['supervisorEmail'];
 	$email=$_POST['email'];
@@ -17,28 +23,36 @@ include "../../connection/connection.php";
 	$password = $_POST['password'];
 	$supervisorId = $_POST['supervisorId'];
 
-  
-	$mailer = new PHPMailer();
-	$mailer->IsSMTP();
-	$mailer->Host = 'ssl://smtp.gmail.com:465';
-	$mailer->SMTPAuth = TRUE;
-	$mailer->Username = 'cmsutem@gmail.com';  // Change this to your gmail adress
-	$mailer->Password = 'cmsUTeM1234';  // Change this to your gmail password
-	$mailer->From = 'cmsutem@gmail.com';  // This HAVE TO be your gmail adress
-	$mailer->FromName = 'CMSUTeM'; // This is the from name in the email, you can put anything you like here
-	$mailer->Subject = $subject;
-	$mailer->Body = $message;
-	$mailer->AddAddress($supervisorEmail); 
 
-	// if(!$mailer->Send())
-	// {
-	// echo "fail";
+	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+try {
+    //Server settings
+    //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'cmsutem@gmail.com';                 // SMTP username
+    $mail->Password = 'cmsUTeM1234';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;                                    // TCP port to connect to
 
-	// }
-	// else
-	// {
+    //Recipients
+    $mail->setFrom('cmsutem@gmail.com', 'ZeroWaste Chemical Management System');
+    $mail->addAddress($supervisorEmail);     // Add a recipient
+    $mail->addReplyTo('cmsutem@gmail.com', 'Information');
 
-		$query = "INSERT INTO 
+    //Attachments
+    // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = $subject;
+    $mail->Body    = 'Student '.$Fname." ".$Lname.' with Matric Number '.$IdentifyId.' has request to register,'.$message;
+    $mail->AltBody = 'This is automated E-mail,do not reply';
+
+    $mail->send();
+    		$query = "INSERT INTO 
 				user (Fname, Lname, email, telno, Role, Admin, IdentifyId, password, supervisorId,status) 
 				VALUES ('".$Fname."','".$Lname."','".$email."','".$telno."','".$Role."','".$Admin."','".$IdentifyId."',md5('".$password."'),'".$supervisorId."','Pending')";
 		$insert = mysqli_query($conn,$query);
@@ -47,8 +61,9 @@ include "../../connection/connection.php";
 				}else{
 					echo "fail";
 				}
-			
-	// }
+	} catch (Exception $e) {
+    	echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+	}
 
 mysqli_close($conn);
 ?>

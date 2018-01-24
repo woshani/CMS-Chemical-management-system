@@ -55,6 +55,7 @@ mysqli_close($conn);
                     <div class="col-md-6">
                         <input id="owner" name="owner" type="text" placeholder="Owner Name" class="form-control input-md">
                         <input type="hidden" class="form-control"  id="ownerID">
+                        <input type="hidden" class="form-control"  id="ownerEmail">
                         <div id="matchOwner"></div>
                     </div>
                 </div>
