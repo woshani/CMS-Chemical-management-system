@@ -11,9 +11,9 @@ $quaryDua = "SELECT c.chemicalid,c.name as chemicalname,CONCAT(u.fname,' ',u.lna
                 FROM chemicalin ci 
                 join chemical c on c.chemicalid = ci.chemicalid
                 join user u on u.userid = ci.userid 
-                join chemicalusage cu ON cu.ciid = ci.ciid and cu.status = 'Approve' and cu.userid = '".$userid."'
+                join chemicalusage cu ON cu.ciid = ci.ciid and cu.status = 'Return' and cu.remaining_quantity = 'Empty'
                 join user cx on cx.userid = cu.userid
-                WHERE ci.qrcode='".$qrcode."';";
+                WHERE ci.qrcode='".$qrcode."' and ci.status='Empty';";
 $resultSelect = mysqli_query($conn, $quaryDua);
 if($resultSelect->num_rows > 0){
 while ($row = mysqli_fetch_array($resultSelect)){
@@ -24,13 +24,13 @@ while ($row = mysqli_fetch_array($resultSelect)){
                     <label class="col-md-4 control-label" for="textinput">Name of Chemical :</label>
                     <div class="col-md-6">
                         <?php echo $row['chemicalname'];?></div>
-                        <input type="hidden" id="chemicalInId" value="<?php echo $row['chemicalid'];?>">
-                        <input type="hidden" id="chemicalUserId" value="<?php echo $row["ownerid"];?>">
-                        <input type="hidden" id="chemicalUserIdPeminjam" value="<?php echo $row["peminjamid"];?>">
-						<input type="hidden" id="email" value="<?php echo $row['owneremail'];?>">
-						<input type="hidden" id="sub" value="ZeroWaste - User Return Chemical Notification">
-						<input type="hidden" id="message" value="<?php echo $_SESSION["fname"].' '.$_SESSION["lname"];?> has return your chemical <?php echo $row['chemicalname'];?>.">
-                        <input type="hidden" id="chemicalusagepunyeid" value="<?php echo $row['cuidd'];?>">
+                        <input type="hidden" id="chemicalInIdD" value="<?php echo $row['chemicalid'];?>">
+                        <input type="hidden" id="chemicalUserIdD" value="<?php echo $row["ownerid"];?>">
+                        <input type="hidden" id="chemicalUserIdPeminjamD" value="<?php echo $row["peminjamid"];?>">
+						<input type="hidden" id="emailD" value="<?php echo $row['owneremail'];?>">
+						<input type="hidden" id="subD" value="ZeroWaste - Chemical Disposal Notification">
+						<input type="hidden" id="messageD" value="your chemical <?php echo $row['chemicalname'];?> has been disposed.">
+                        <input type="hidden" id="chemicalusagepunyeidD" value="<?php echo $row['cuidd'];?>">
                 </div>
 				<div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Owner Name :</label>
@@ -58,15 +58,3 @@ while ($row = mysqli_fetch_array($resultSelect)){
   <?php
 }
                 ?>
-<script type="text/javascript">
-                    $('#remquan').hide();
-                   $('#returnStatus').on('change',function(){
-                        var valuu = this.value;
-                        //alert(valuu);
-                        if(valuu==="Available"){
-                            $('#remquan').show();
-                        }else if(valuu==="Empty"){
-                            $('#remquan').hide();
-                        }
-               });
-</script>

@@ -268,50 +268,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
              user experience. -->
-             <script>
-             let scannerDispose = new Instascan.Scanner({ video: document.getElementById('camDispose') });
-                         $('#qrcodeDispose').on('click',function(){
-                $('#camDispose').toggle(function(){
-                    if($(this).is(':visible')){
-                        scannerDispose.addListener('scan', function (content) {
-                            console.log(content);
-                            //document.getElementById("qrcodeReuse").value=content;
-                            // $('#qrcodeReuse').val(content);
-                            document.getElementById("qrcodeDisposeInput").value=content;
-                            scannerDispose.stop();
-                            getDispose();
-                            $('#camDispose').hide();
-                            
-                          });
-                          Instascan.Camera.getCameras().then(function (cameras) {
-                            if (cameras.length > 0) {
-                              scannerDispose.start(cameras[0]);
-                            } else {
-                              console.error('No cameras found.');
-                            }
-                          }).catch(function (e) {
-                            console.error(e);
-                          });
-                    }else if($(this).is(':hidden')){
-                        scannerDispose.stop();
-                    }
-                });
-            });
-
-            function getDispose(){
-                var QrCode = $('#qrcodeDisposeInput').val();
-                var useridreturn = useridxx;
-                 
-                 $.ajax({
-                    type:"post",
-                    url:"function/disposeChemical.php",
-                    data: {'QrCode': QrCode,'userid':useridreturn},
-                    success:function(databack){
-                        $('#returnData').html(databack);
-                        $('#insert_btnDispose').prop('disabled', false);
-                    }
-                 });
-            }
-             </script>
     </body>
 </html>

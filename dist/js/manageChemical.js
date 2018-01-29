@@ -2,7 +2,7 @@
     // this for create object for qr scanner
             let scannerReuse = new Instascan.Scanner({ video: document.getElementById('camReuse') });
             let scannerReturn = new Instascan.Scanner({ video: document.getElementById('camReturn') });
-            
+            let scannerDispose = new Instascan.Scanner({ video: document.getElementById('camDispose') });
             let scannerRegister = new Instascan.Scanner({ video: document.getElementById('camRegister') });
             /////////////////////////////////////
             $(document).ready(function(){
@@ -669,4 +669,76 @@
                  });
               
               });
+        $('#qrcodeDispose').on('click',function(){
+                $('#camDispose').toggle(function(){
+                    if($(this).is(':visible')){
+                        scannerDispose.addListener('scan', function (content) {
+                            console.log(content);
+                            //document.getElementById("qrcodeReuse").value=content;
+                            // $('#qrcodeReuse').val(content);
+                            document.getElementById("qrcodeDisposeInput").value=content;
+                            scannerDispose.stop();
+                            getDispose();
+                            $('#camDispose').hide();
+                            
+                          });
+                          Instascan.Camera.getCameras().then(function (cameras) {
+                            if (cameras.length > 0) {
+                              scannerDispose.start(cameras[0]);
+                            } else {
+                              console.error('No cameras found.');
+                            }
+                          }).catch(function (e) {
+                            console.error(e);
+                          });
+                    }else if($(this).is(':hidden')){
+                        scannerDispose.stop();
+                    }
+                });
+            });
+
+            function getDispose(){
+                var QrCode = $('#qrcodeDisposeInput').val();
+                var useridreturn = useridxx;
                  
+                 $.ajax({
+                    type:"post",
+                    url:"function/disposeChemical.php",
+                    data: {'QrCode': QrCode,'userid':useridreturn},
+                    success:function(databack){
+                        $('#disposeData').html(databack);
+                        $('#insert_btnDispose').prop('disabled', false);
+                    }
+                 });
+            }
+
+             $('#insert_btnDispose').on('click',function(e){
+                $body.addClass("loading");
+                var chemicalId = $('#chemicalInIdD').val();
+                var cserId = $('#chemicalUserIdD').val();
+                var userchemicalid = $('#chemicalUserIdPeminjamD').val();
+                var email = $('#emailD').val();
+                var sub = $('#subD').val();
+                var message = $('#messageD').val();
+                var status = $('#returnStatusD').val();
+                var cuid = $('#chemicalusagepunyeidD').val();
+                var remaining = $('#remaining_quantityD').val();
+                
+                   $.ajax({
+                    type:"post",
+                    url:"function/disposeNewChemical.php",
+                    data: {'chemicalId': chemicalId, 'cserId':cserId, 'email':email, 'sub':sub, 'message':message,status:status,cuid : cuid},
+                    success:function(databack){
+                        console.log(databack);
+                        $body.removeClass("loading");
+                        if(databack.trim() === "success"){
+                        alert("Disposing success");
+                      }else if(databack.trim() === "fail"){
+                        alert("Disposing failed! Please request later");
+                      }else{
+                        alert("Chemical has been Disposed,but email notification has some issues");
+                      }
+                       location.reload();
+                    }
+                 });              
+              });
