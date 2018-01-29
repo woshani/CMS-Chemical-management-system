@@ -51,7 +51,7 @@
 									echo "<button type='submit' disabled class='btn btn-success'>Approved</button>";
 								}else{
 									echo "<button type='submit' name='btnAccept2' id='btnAccept2' class='btn btn-success'>Accept</button>
-										<button type='submit' name='btnReject2' id='btnReject2' class='btn btn-success'>Reject</button>";
+										<button type='submit' name='btnReject2' id='btnReject2' class='btn btn-danger'>Reject</button>";
 								} 
 							?>
 							

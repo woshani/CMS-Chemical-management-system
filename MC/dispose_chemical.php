@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group control-label">
                     <div class="col-md-12" align="center">
-                        <button type="button" disabled name="insert_btnDispose" id="insert_btnDispose" class="btn btn-success">Dispose</button>
+                        <button type="button" disabled name="insert_btnDispose" id="insert_btnDispose" class="btn btn-danger">Dispose</button>
                         <button type="reset" name="reset_btn" class="btn btn-success">Reset</button>
                     </div>
                 </div>

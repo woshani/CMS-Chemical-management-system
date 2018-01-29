@@ -34,7 +34,7 @@
 						<td><?php echo $row["telno"];?></td>
 						<td>
 							<button type="submit" name="btnAccept" id="btnAccept" class="btn btn-success">Accept</button>
-							<button type="submit" name="btnReject" id="btnReject" class="btn btn-success">Reject</button>
+							<button type="submit" name="btnReject" id="btnReject" class="btn btn-danger">Reject</button>
 						</td>
 					</tr>
 				<?php
