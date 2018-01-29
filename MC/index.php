@@ -153,6 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Use</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
+                        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
                         <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>List Request To Use(Private)</span></a></li>
                         <li class="" id="liapproveRegisChem"><a href="#approve_chemical_regis" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Registration Request List</span></a></li>
                     </ul>
@@ -200,6 +201,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <h3 style="margin: 0px; padding: 0px;">Return Chemical</h3>
                                     <hr/>
                                     <?php include 'return_chemical.php';?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="dispose_chemical">
+                                    <h3 style="margin: 0px; padding: 0px;">Dispose Chemical</h3>
+                                    <hr/>
+                                    <?php include 'dispose_chemical.php';?>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="approve_chemical">
                                     <h3 style="margin: 0px; padding: 0px;">Approve Chemical To Use (Private)</h3>
@@ -262,5 +268,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
              user experience. -->
+             <script>
+             let scannerDispose = new Instascan.Scanner({ video: document.getElementById('camDispose') });
+                         $('#qrcodeDispose').on('click',function(){
+                $('#camDispose').toggle(function(){
+                    if($(this).is(':visible')){
+                        scannerDispose.addListener('scan', function (content) {
+                            console.log(content);
+                            //document.getElementById("qrcodeReuse").value=content;
+                            // $('#qrcodeReuse').val(content);
+                            document.getElementById("qrcodeDisposeInput").value=content;
+                            scannerDispose.stop();
+                            getDispose();
+                            $('#camDispose').hide();
+                            
+                          });
+                          Instascan.Camera.getCameras().then(function (cameras) {
+                            if (cameras.length > 0) {
+                              scannerDispose.start(cameras[0]);
+                            } else {
+                              console.error('No cameras found.');
+                            }
+                          }).catch(function (e) {
+                            console.error(e);
+                          });
+                    }else if($(this).is(':hidden')){
+                        scannerDispose.stop();
+                    }
+                });
+            });
+
+            function getDispose(){
+                var QrCode = $('#qrcodeDisposeInput').val();
+                var useridreturn = useridxx;
+                 
+                 $.ajax({
+                    type:"post",
+                    url:"function/disposeChemical.php",
+                    data: {'QrCode': QrCode,'userid':useridreturn},
+                    success:function(databack){
+                        $('#returnData').html(databack);
+                        $('#insert_btnDispose').prop('disabled', false);
+                    }
+                 });
+            }
+             </script>
     </body>
 </html>

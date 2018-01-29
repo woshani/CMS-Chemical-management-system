@@ -2,6 +2,7 @@
     // this for create object for qr scanner
             let scannerReuse = new Instascan.Scanner({ video: document.getElementById('camReuse') });
             let scannerReturn = new Instascan.Scanner({ video: document.getElementById('camReturn') });
+            
             let scannerRegister = new Instascan.Scanner({ video: document.getElementById('camRegister') });
             /////////////////////////////////////
             $(document).ready(function(){
@@ -11,6 +12,7 @@
                 $('#camRegister').hide();
                 $('#camReuse').hide();
                 $('#camReturn').hide();
+                $('#camDispose').hide();
                 $('#viewTable').dataTable({
                     "language": {
                         "emptyTable":     "No chemical that you registered"
@@ -392,6 +394,8 @@
                     }
                 });
             });
+
+
 
             function getReuse(){
                 var QrCode = $('#qrcodeReuseInput').val();
