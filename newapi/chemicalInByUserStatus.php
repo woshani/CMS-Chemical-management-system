@@ -32,4 +32,3 @@ if ($error) {
 } else {
     echo json_encode($response);
 }
-        
