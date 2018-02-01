@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CMS | Log in</title>
+  <title>ZeroWaste | Registration</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,11 +32,11 @@
 <body class="hold-transition login-page skin-purple">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index.html"><b>CMS-</b>Chemical Management System</a>
+      <a href="index.html"><b>ZeroWaste Application</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Registration</p>
+    <p class="login-box-msg">New Student Registration</p>
 
     <form>
       <div class="form-group has-feedback">
@@ -77,11 +77,11 @@
       <div class="row">
         <div class="col-xs-12">
           <button id="btnRegister" name="btnRegister" class="btn btn-success btn-block btn-flat">Register</button>
+          <a href="../index.html" class="btn btn-default btn-block btn-flat btn-sm">Back to Sign In</a>
         </div>
         <!-- /.col -->
       </div>
     </form>
-    <a href="../index.html" class="text-center">Back to Sign In</a>
 
   </div>
   <!-- /.login-box-body -->
