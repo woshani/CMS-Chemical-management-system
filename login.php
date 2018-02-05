@@ -1,5 +1,5 @@
 <?php 
-include 'connection/connection.php';
+include '../connection/connection.php';
 session_start();
 $userid = $_POST['userid'];
 $pass = $_POST['password'];

@@ -2,9 +2,9 @@
 class ChemicalInController extends ApiController
 {
 /** :GET :{method} */
-    public function chemicalInByUserStatus($userid, $status)
+    public function ChemicalInByUserStatus($userid, $status)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -44,9 +44,9 @@ class ChemicalInController extends ApiController
     }
 
     /** :GET :{method}*/
-    public function chemicalIn($ciid)
+    public function ChemicalIn($ciid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -98,9 +98,9 @@ class ChemicalInController extends ApiController
     }
     
     /** :GET :{method}*/
-    public function chemicalInByQrCode($qrcode)
+    public function ChemicalInByQrCode($qrcode)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -152,9 +152,9 @@ class ChemicalInController extends ApiController
     }
 
     /** :POST :{method}*/
-    public function updateChemicalinStatus($ciid, $status)
+    public function UpdateChemicalInStatus($ciid, $status)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

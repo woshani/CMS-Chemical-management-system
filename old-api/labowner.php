@@ -2,9 +2,9 @@
 class LabOwnersController extends ApiController
 {
 /** :GET :{method} */
-    public function labowners()
+    public function LabOwners()
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -32,9 +32,9 @@ class LabOwnersController extends ApiController
     }
 
 /** :GET :{method}*/
-    public function labownerbylab($labid)
+    public function LabOwnerByLab($labid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -74,9 +74,9 @@ class LabOwnersController extends ApiController
     }
 
     /** :GET :{method}*/
-    public function labownerbystaff($staffid)
+    public function LabOwnerByStaff($staffid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

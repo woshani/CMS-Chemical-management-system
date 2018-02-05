@@ -2,9 +2,9 @@
 class ChemicalsController extends ApiController
 {
 /** :GET :{method} */
-    public function chemicals()
+    public function Chemicals()
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -32,9 +32,9 @@ class ChemicalsController extends ApiController
     }
 
 /** :GET :{method}*/
-    public function chemical($chemicalid)
+    public function Chemical($chemicalid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

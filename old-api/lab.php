@@ -2,9 +2,9 @@
 class LabsController extends ApiController
 {
 /** :GET :{method} */
-    public function labs()
+    public function Labs()
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -32,9 +32,9 @@ class LabsController extends ApiController
     }
 
 /** :GET :{method}*/
-    public function lab($labid)
+    public function Lab($labid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

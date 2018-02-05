@@ -2,9 +2,9 @@
 class StudentsController extends ApiController
 {
 /** :GET :{method}*/
-    public function studentsUnderSupervision($userid)
+    public function StudentsUnderSupervision($userid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -44,9 +44,9 @@ class StudentsController extends ApiController
     }
 
     /** :POST :{method}*/
-    public function updateStudentStatus($userid, $status)
+    public function UpdateStudentStatus($userid, $status)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

@@ -2,9 +2,9 @@
 class UsersController extends ApiController
 {
     /** :POST :{method} */
-    public function login($identifyid, $password)
+    public function Login($identifyid, $password)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
         require 'api/jwt_helper.php';
 
         $response = array();
@@ -71,9 +71,9 @@ class UsersController extends ApiController
     }
 
 /** :GET :{method}*/
-public function user($userid)
+public function User($userid)
 {
-    require 'connection/connection.php';
+    require '../connection/connection.php';
 
     $response = array();
     $error = false;

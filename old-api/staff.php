@@ -2,9 +2,9 @@
 class StaffsController extends ApiController
 {
 /** :GET :{method} */
-    public function staffs()
+    public function Staffs()
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;

@@ -2,9 +2,9 @@
 class ChemicalUsageController extends ApiController
 {
     /** :GET :{method} */
-    public function chemicalUsageApprovalFromUser($userid)
+    public function ChemicalUsageApprovalFromUser($userid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -44,9 +44,9 @@ class ChemicalUsageController extends ApiController
     }
 
     /** :GET :{method} */
-    public function chemicalUsageByUser($userid)
+    public function ChemicalUsageByUser($userid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -86,9 +86,9 @@ class ChemicalUsageController extends ApiController
     }
 
     /** :GET :{method} */
-    public function chemicalRequestByUser($userid)
+    public function ChemicalRequestByUser($userid)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
@@ -128,9 +128,9 @@ class ChemicalUsageController extends ApiController
     }
 
     /** :POST :{method}*/
-    public function updateChemicalUsageApprovalStatus($cuid, $status)
+    public function UpdateChemicalUsageApprovalStatus($cuid, $status)
     {
-        require 'connection/connection.php';
+        require '../connection/connection.php';
 
         $response = array();
         $error = false;
