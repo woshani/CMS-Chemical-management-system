@@ -42,6 +42,11 @@
 
                         $('#list_chemical_using').addClass("active");
                         $('#ownerNamePJ #ownerID').val(supervisorid);
+
+                        $('#lidispose').hide();
+                        $('#dispose_chemical').hide();
+
+                        $('#lireport').hide();
                         break;
                     default:
                         $('#ownerNamePJ').hide();

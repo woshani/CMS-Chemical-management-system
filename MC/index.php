@@ -153,8 +153,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="" id="liregisChemical"><a href="#regis_chemical" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> <span>Register</span></a></li>
                         <li class=""><a href="#reuse_chemical" role="tab" data-toggle="tab"><i class="fa fa-recycle"></i> <span>Use</span></a></li>
                         <li class=""><a href="#return_chemical" role="tab" data-toggle="tab"><i class="fa fa-undo"></i> <span>Return</span></a></li>
-                        <li class=""><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
-                        <li class=""><a href="#" role="tab" data-toggle="tab" onclick="window.open('chemicalPdfReport.php')"><i class="fa fa-file"></i> <span>Report</span></a></li>
+                        <li class="" id="lidispose"><a href="#dispose_chemical" role="tab" data-toggle="tab"><i class="fa fa-trash"></i> <span>Dispose</span></a></li>
+                        <li class="" id="lireport"><a href="#" role="tab" data-toggle="tab" onclick="window.open('chemicalPdfReport.php')"><i class="fa fa-file"></i> <span>Report</span></a></li>
                         <li class="" id="liapprovePrivate"><a href="#approve_chemical" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>List Request To Use(Private)</span></a></li>
                         <li class="" id="liapproveRegisChem"><a href="#approve_chemical_regis" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i> <span>Registration Request List</span></a></li>
                     </ul>
