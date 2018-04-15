@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();
@@ -11,18 +11,18 @@ if (empty($_POST['status']) || empty($_POST['cuid'])) {
     $status = $_POST['status'];
     $cuid = $_POST['cuid'];
     $query = "UPDATE chemicalusage SET status = ? WHERE cuid = ?";
-    if($stmt = $conn->prepare($query)) {
+    if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("ss", $status, $cuid);
         $stmt->execute();
         if ($stmt->affected_rows >= 1) {
             $response = 'Successful';
         } else {
-           $error = 'No Chemicalin Record is Updated';
+            $error = 'No Chemicalin Record is Updated';
         }
-        
+
         $stmt->close();
     } else {
-         $error = 'Error in updateChemicalUsageApprovalStatus';
+        $error = 'Error in updateChemicalUsageApprovalStatus';
     }
     mysqli_close($conn);
 }

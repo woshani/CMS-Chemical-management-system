@@ -1,4 +1,5 @@
 <?php
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();
@@ -9,19 +10,19 @@ if (empty($_GET['labid'])) {
 } else {
     $labid = $_GET['labid'];
     $query = "SELECT * FROM lab WHERE labid = ?";
-    if($stmt = $conn->prepare($query)) {
+    if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("s", $labid);
         $stmt->execute();
         $result = $stmt->get_result();
         if (mysqli_num_rows($result) >= 1) {
-            $response = $result->fetch_all( MYSQLI_ASSOC );
+            $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $error = 'Lab not found';
         }
-    
+
         $stmt->close();
     } else {
-         $error = 'Error in lab';
+        $error = 'Error in lab';
     }
     mysqli_close($conn);
 }

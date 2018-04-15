@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();
@@ -11,18 +11,18 @@ if (empty($_POST['status']) || empty($_POST['ciid'])) {
     $status = $_POST['status'];
     $ciid = $_POST['ciid'];
     $query = "UPDATE chemicalin SET status = ? WHERE ciid = ?";
-    if($stmt = $conn->prepare($query)) {
+    if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("ss", $status, $ciid);
         $stmt->execute();
         if ($stmt->affected_rows >= 1) {
             $response = 'Successful';
         } else {
-           $error = 'No Chemicalin Record is Updated';
+            $error = 'No Chemicalin Record is Updated';
         }
-        
+
         $stmt->close();
     } else {
-         $error = 'Error in updateChemicalinStatus';
+        $error = 'Error in updateChemicalinStatus';
     }
     mysqli_close($conn);
 }

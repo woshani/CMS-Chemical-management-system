@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();

@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();
@@ -10,19 +10,19 @@ if (empty($_GET['chemicalid'])) {
 } else {
     $chemicalid = $_GET['chemicalid'];
     $query = "SELECT * FROM chemical WHERE chemicalid = ?";
-    if($stmt = $conn->prepare($query)) {
+    if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("s", $chemicalid);
         $stmt->execute();
-         $result = $stmt->get_result();
+        $result = $stmt->get_result();
         if (mysqli_num_rows($result) >= 1) {
-            $response = $result->fetch_all( MYSQLI_ASSOC );
+            $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $error = 'Chemical not found';
         }
 
         $stmt->close();
     } else {
-         $error = 'Error in chemical';
+        $error = 'Error in chemical';
     }
     mysqli_close($conn);
 }

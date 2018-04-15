@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:application/json");
 require __DIR__ . '/../connection/connection.php';
 
 $response = array();
@@ -11,18 +11,18 @@ if (empty($_POST['status']) || empty($_POST['userid'])) {
     $status = $_POST['status'];
     $userid = $_POST['userid'];
     $query = "UPDATE user SET status = ? WHERE userid = ?";
-    if($stmt = $conn->prepare($query)) {
+    if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("ss", $status, $userid);
         $stmt->execute();
         if ($stmt->affected_rows >= 1) {
             $response = 'Successful';
         } else {
-           $error = 'No student record is updated'; 
+            $error = 'No student record is updated';
         }
 
         $stmt->close();
     } else {
-         $error = 'Error in updateStudentStatus';
+        $error = 'Error in updateStudentStatus';
     }
     mysqli_close($conn);
 }
