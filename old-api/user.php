@@ -57,7 +57,7 @@ class UsersController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In login Method User API',
+                    'message' => 'Error in: login Method User API',
                     'code' => 500
                 ]
             ]);
@@ -110,7 +110,7 @@ public function User($userid)
          $error = new HttpResponse(500, 'Internal Server Error', (object)[
             'exception' => (object)[
                 'type' => 'InternalServerErrorException',
-                'message' => 'Error In staff Method Staffs API',
+                'message' => 'Error in: staff Method Staffs API',
                 'code' => 500
             ]
         ]);

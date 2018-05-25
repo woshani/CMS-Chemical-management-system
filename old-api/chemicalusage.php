@@ -30,7 +30,7 @@ class ChemicalUsageController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In myUsage Method ChemicalUsage API',
+                    'message' => 'Error in: myUsage Method ChemicalUsage API',
                     'code' => 500
                 ]
             ]);
@@ -72,7 +72,7 @@ class ChemicalUsageController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In myUsage Method ChemicalUsage API',
+                    'message' => 'Error in: myUsage Method ChemicalUsage API',
                     'code' => 500
                 ]
             ]);
@@ -114,7 +114,7 @@ class ChemicalUsageController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In myUsage Method ChemicalUsage API',
+                    'message' => 'Error in: myUsage Method ChemicalUsage API',
                     'code' => 500
                 ]
             ]);
@@ -155,7 +155,7 @@ class ChemicalUsageController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In updateStudentStatus Method Student API',
+                    'message' => 'Error in: updateStudentStatus Method Student API',
                     'code' => 500
                 ]
             ]);

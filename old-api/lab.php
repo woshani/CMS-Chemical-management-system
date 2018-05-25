@@ -18,7 +18,7 @@ class LabsController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In labs Method Lab API',
+                    'message' => 'Error in: labs Method Lab API',
                     'code' => 500
                 ]
             ]);
@@ -63,7 +63,7 @@ class LabsController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In lab Method Lab API',
+                    'message' => 'Error in: lab Method Lab API',
                     'code' => 500
                 ]
             ]);

@@ -5,7 +5,7 @@ $response = array();
 $error = false;
 
 if (empty($_GET['userid']) || empty($_GET['status'])) {
-	$error = 'Empty params';
+	$error = 'Invalid params';
 } else {
 	$userid = $_GET['userid'];
 	$status = $_GET['status'];
@@ -22,7 +22,7 @@ if (empty($_GET['userid']) || empty($_GET['status'])) {
         
         $stmt->close();
     } else {
-        $error = 'Error In chemicalsIn Method ChemicalIn API';
+        $error = 'Error in: chemicalsIn Method ChemicalIn API';
     }
     mysqli_close($conn);
 }

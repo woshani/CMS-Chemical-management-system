@@ -30,7 +30,7 @@ class StudentsController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In studentsUnderSupervision Method Student API',
+                    'message' => 'Error in: studentsUnderSupervision Method Student API',
                     'code' => 500
                 ]
             ]);
@@ -71,7 +71,7 @@ class StudentsController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In updateStudentStatus Method Student API',
+                    'message' => 'Error in: updateStudentStatus Method Student API',
                     'code' => 500
                 ]
             ]);

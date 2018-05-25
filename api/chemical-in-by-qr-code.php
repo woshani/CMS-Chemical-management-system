@@ -6,28 +6,28 @@ $response = array();
 $error = false;
 $response_code = 200;
 
-if (empty($_GET['userid'])) {
+if (empty($_GET['qrcode'])) {
     $response_code = 400;
     $error = 'Invalid params';
 } else {
-    $userid = $_GET['userid'];
-    $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, status, supervisorid FROM user WHERE supervisorid = ?";
+    $qrcode = $_GET['qrcode'];
+    $query = "SELECT * FROM chemicalin WHERE qrcode = ?";
     if ($stmt = $conn->prepare($query)) {
-        $stmt->bind_param("s", $userid);
+        $stmt->bind_param("s", $qrcode);
         $stmt->execute();
-        
+
         $result = $stmt->get_result();
-        if (mysqli_num_rows($result) >= 1) {
-            $response = $result->fetch_all(MYSQLI_ASSOC);
+        if (mysqli_num_rows($result) === 1) {
+            $response = $result->fetch_assoc();
         } else {
             $response_code = 404;
-            $error = 'No student under supervision';
+            $error = 'ChemicalIn with this QR Code cannot be found';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: supervisees';
+        $error = 'Error in: chemical-in-by-qr-code';
     }
 }
 

@@ -18,7 +18,7 @@ class StaffsController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In staffs Method Staffs API',
+                    'message' => 'Error in: staffs Method Staffs API',
                     'code' => 500
                 ]
             ]);

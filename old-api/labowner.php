@@ -18,7 +18,7 @@ class LabOwnersController extends ApiController
             $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In labowners Method LabOnwers API',
+                    'message' => 'Error in: labowners Method LabOnwers API',
                     'code' => 500
                 ]
             ]);
@@ -60,7 +60,7 @@ class LabOwnersController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In labownerbylab Method LabOwners API',
+                    'message' => 'Error in: labownerbylab Method LabOwners API',
                     'code' => 500
                 ]
             ]);
@@ -102,7 +102,7 @@ class LabOwnersController extends ApiController
              $error = new HttpResponse(500, 'Internal Server Error', (object)[
                 'exception' => (object)[
                     'type' => 'InternalServerErrorException',
-                    'message' => 'Error In labownerbystaff Method LabOwners API',
+                    'message' => 'Error in: labownerbystaff Method LabOwners API',
                     'code' => 500
                 ]
             ]);

@@ -15324,7 +15324,7 @@ class TCPDF {
 		$barcodeobj = new TCPDFBarcode($code, $type);
 		$arrcode = $barcodeobj->getBarcodeArray();
 		if (($arrcode === false) OR empty($arrcode) OR ($arrcode['maxw'] <= 0)) {
-			$this->Error('Error in 1D barcode string');
+			$this->Error('Error in: 1D barcode string');
 		}
 		if ($arrcode['maxh'] <= 0) {
 			$arrcode['maxh'] = 1;
@@ -15643,7 +15643,7 @@ class TCPDF {
 		$barcodeobj = new TCPDF2DBarcode($code, $type);
 		$arrcode = $barcodeobj->getBarcodeArray();
 		if (($arrcode === false) OR empty($arrcode) OR !isset($arrcode['num_rows']) OR ($arrcode['num_rows'] == 0) OR !isset($arrcode['num_cols']) OR ($arrcode['num_cols'] == 0)) {
-			$this->Error('Error in 2D barcode string');
+			$this->Error('Error in: 2D barcode string');
 		}
 		// set default values
 		if (!isset($style['position'])) {
@@ -15695,13 +15695,13 @@ class TCPDF {
 		$rows = $arrcode['num_rows'];
 		$cols = $arrcode['num_cols'];
 		if (($rows <= 0) || ($cols <= 0)){
-			$this->Error('Error in 2D barcode string');
+			$this->Error('Error in: 2D barcode string');
 		}
 		// module width and height
 		$mw = $style['module_width'];
 		$mh = $style['module_height'];
 		if (($mw <= 0) OR ($mh <= 0)) {
-			$this->Error('Error in 2D barcode string');
+			$this->Error('Error in: 2D barcode string');
 		}
 		// get max dimensions
 		if ($this->rtl) {
