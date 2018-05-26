@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['labid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $labid = $_GET['labid'];
     $query = "SELECT * FROM labowner WHERE labid = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['labid'])) {
             $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $response_code = 404;
-            $error = 'LabOwners not found';
+            $error = 'Lab owners not found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: labownerbylab';
+        $error = 'Error in: lab-owner-by-lab.';
     }
 }
 

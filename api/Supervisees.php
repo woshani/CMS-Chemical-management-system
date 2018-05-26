@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['userid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $userid = $_GET['userid'];
     $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, status, supervisorid FROM user WHERE supervisorid = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['userid'])) {
             $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $response_code = 404;
-            $error = 'No student under supervision';
+            $error = 'No student under supervision.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: supervisees';
+        $error = 'Error in: supervisees.';
     }
 }
 

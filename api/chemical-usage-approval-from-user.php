@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['userid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $userid = $_GET['userid'];
     $query = "SELECT cu.cuid, ci.ciid, c.name chemicalname, CONCAT(r.fname, ' ', r.lname) AS requestor, cu.startdate, cu.status FROM chemicalusage cu INNER JOIN chemicalin ci ON ci.ciid = cu.ciid INNER JOIN chemical c ON c.chemicalid = ci.chemicalid INNER JOIN user r ON r.userid = cu.userid WHERE ci.type = 'Private' AND ci.userid = ? ORDER BY cu.startdate DESC";
@@ -21,13 +21,13 @@ if (empty($_GET['userid'])) {
             $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $response_code = 404;
-            $error = 'No request made by User';
+            $error = 'No usage approval found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: chemical-usage-approval-from-user';
+        $error = 'Error in: chemical-usage-approval-from-user.';
     }
 }
 

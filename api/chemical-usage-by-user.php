@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['userid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $userid = $_GET['userid'];
     $query = "SELECT ci.ciid, c.name chemicalname, CONCAT(o.fname, ' ', o.lname) AS owner, ci.expireddate, l.name location, CONCAT(cu.startdate, ' - ', CASE WHEN cu.enddate = CONVERT(0,DATETIME) THEN 'Today' ELSE cu.enddate END) AS usedaterange FROM chemicalusage cu INNER JOIN chemicalin ci ON ci.ciid = cu.ciid INNER JOIN chemical c ON c.chemicalid = ci.chemicalid INNER JOIN user o ON o.userid = ci.userid INNER JOIN lab l ON l.labid = ci.labid WHERE cu.status = 'Approve' AND cu.userid = ? ORDER BY cu.startdate DESC, cu.enddate";
@@ -21,13 +21,13 @@ if (empty($_GET['userid'])) {
             $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $response_code = 404;
-            $error = 'No Usage made by User';
+            $error = 'No Usage made by User.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: chemicalUsageByUser';
+        $error = 'Error in: chemical-usage-by-user.';
     }
 }
 

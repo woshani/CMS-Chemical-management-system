@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['userid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $userid = $_GET['userid'];
     $query = "SELECT userid, fname, lname, email, telno, role, admin, identifyid, status, supervisorid, picture FROM user WHERE userid = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['userid'])) {
             $response = $result->fetch_assoc();
         } else {
             $response_code = 404;
-            $error = 'User not found';
+            $error = 'User not found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: user';
+        $error = 'Error in: user-by-id.';
     }
 }
 

@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['userid']) || empty($_GET['status'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $userid = $_GET['userid'];
     $status = $_GET['status'];
@@ -22,13 +22,13 @@ if (empty($_GET['userid']) || empty($_GET['status'])) {
             $response = $result->fetch_all(MYSQLI_ASSOC);
         } else {
             $response_code = 404;
-            $error = 'No Chemicals with this status was founded';
+            $error = 'No Chemicals with this status was founded.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: chemical-in-by-user-status';
+        $error = 'Error in: chemical-in-by-user-status.';
     }
 }
 

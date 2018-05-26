@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_POST['status']) || empty($_POST['userid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $status = $_POST['status'];
     $userid = $_POST['userid'];
@@ -21,13 +21,13 @@ if (empty($_POST['status']) || empty($_POST['userid'])) {
             $response = 'Successful';
         } else {
             $response_code = 404;
-            $error = 'No student record is updated';
+            $error = 'No student record is updated.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: update-student-status';
+        $error = 'Error in: update-student-status.';
     }
 }
 

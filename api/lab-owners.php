@@ -15,7 +15,7 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->close();
 } else {
     $response_code = 500;
-    $error = 'Error in: lab-owners';
+    $error = 'Error in: lab-owners.';
 }
 
 http_response_code($response_code);

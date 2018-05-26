@@ -15,7 +15,7 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->close();
 } else {
     $response_code = 500;
-    $error = 'Error in: labs';
+    $error = 'Error in: labs.';
 }
 
 http_response_code($response_code);

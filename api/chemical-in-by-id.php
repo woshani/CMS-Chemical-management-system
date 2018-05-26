@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['ciid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $ciid = $_GET['ciid'];
     $query = "SELECT * FROM chemicalin WHERE ciid = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['ciid'])) {
             $response = $result->fetch_assoc();
         } else {
             $response_code = 404;
-            $error = 'Chemicalin cannot be found';
+            $error = 'Chemicalin cannot be found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: chemical-in';
+        $error = 'Error in: chemical-in-by-id.';
     }
 }
 

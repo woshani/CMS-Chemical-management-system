@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['qrcode'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $qrcode = $_GET['qrcode'];
     $query = "SELECT * FROM chemicalin WHERE qrcode = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['qrcode'])) {
             $response = $result->fetch_assoc();
         } else {
             $response_code = 404;
-            $error = 'ChemicalIn with this QR Code cannot be found';
+            $error = 'ChemicalIn with this QR Code cannot be found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: chemical-in-by-qr-code';
+        $error = 'Error in: chemical-in-by-qr-code.';
     }
 }
 

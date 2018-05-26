@@ -41,7 +41,7 @@ $response_code = 200;
 
 if (empty($_POST['identifyid']) || empty($_POST['password'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $identifyid = $_POST['identifyid'];
     $password = $_POST['password'];
@@ -56,13 +56,13 @@ if (empty($_POST['identifyid']) || empty($_POST['password'])) {
             $response["token"] = encrypt_decrypt('encrypt', $result->fetch_assoc()["userid"]);
         } else {
             $response_code = 404;
-            $error = 'User cannot be found';
+            $error = 'User cannot be found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: login';
+        $error = 'Error in: login.';
     }
 }
 

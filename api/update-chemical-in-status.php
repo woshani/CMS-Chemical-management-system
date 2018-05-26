@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_POST['status']) || empty($_POST['ciid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $status = $_POST['status'];
     $ciid = $_POST['ciid'];
@@ -21,13 +21,13 @@ if (empty($_POST['status']) || empty($_POST['ciid'])) {
             $response = 'Successful';
         } else {
             $response_code = 404;
-            $error = 'No Chemicalin Record is Updated';
+            $error = 'No Chemicalin record is updated.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: update-chemical-in-status';
+        $error = 'Error in: update-chemical-in-status.';
     }
 }
 

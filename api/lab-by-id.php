@@ -8,7 +8,7 @@ $response_code = 200;
 
 if (empty($_GET['labid'])) {
     $response_code = 400;
-    $error = 'Invalid params';
+    $error = 'Invalid params.';
 } else {
     $labid = $_GET['labid'];
     $query = "SELECT * FROM lab WHERE labid = ?";
@@ -21,13 +21,13 @@ if (empty($_GET['labid'])) {
             $response = $result->fetch_assoc();
         } else {
             $response_code = 404;
-            $error = 'Lab not found';
+            $error = 'Lab not found.';
         }
 
         $stmt->close();
     } else {
         $response_code = 500;
-        $error = 'Error in: lab';
+        $error = 'Error in: lab-by-id.';
     }
 }
 

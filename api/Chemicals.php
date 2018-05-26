@@ -15,7 +15,7 @@ if ($stmt = $conn->prepare($query)) {
     $stmt->close();
 } else {
     $response_code = 500;
-    $error = 'Error in: chemicals';
+    $error = 'Error in: chemicals.';
 }
 
 http_response_code($response_code);
