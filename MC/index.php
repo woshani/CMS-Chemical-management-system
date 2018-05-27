@@ -18,19 +18,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <title>ZeroWaste | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="../node_modules/Ionicons/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect. -->
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-        <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../node_modules/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="../node_modules/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../dist/css/loading.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Google Font -->
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-              <script type="text/javascript" src="../bower_components/scannerQR/instascan.min.js"></script>
+              <script type="text/javascript" src="../node_modules/scannerQR/instascan.min.js"></script>
 <!--               <style type="text/css">
                 .infohover .hint {
                     display:none;
@@ -248,14 +248,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 3 -->
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <!-- JQUERY UI -->
-        <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="../bower_components/jquery-ui/ui/datepicker.js"></script>
+        <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="../node_modules/jquery-ui/ui/datepicker.js"></script>
         <!-- Bootstrap 3.3.7 -->
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
-        <script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="../node_modules/datatables.net-bs/js/dataTables.bootstrap.js"></script>
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
         <script type="text/javascript">
