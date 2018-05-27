@@ -2,6 +2,6 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "abc123";
+$pass = "";
 $db = "cms";
 $conn = mysqli_connect($host, $user, $pass, $db);
