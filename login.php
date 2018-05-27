@@ -1,5 +1,5 @@
 <?php 
-include 'connection/connection.php';
+include '/connection/connection.php';
 session_start();
 $userid = $_POST['userid'];
 $pass = $_POST['password'];
@@ -23,7 +23,7 @@ if($result->num_rows > 0){
         $_SESSION["status"]=$row['status'];
 
         if($row['picture']==""){
-          $_SESSION["picture"] = "../img/profiledefault.png";
+          $_SESSION["picture"] = "/img/profiledefault.png";
         }else{
           $_SESSION["picture"]=$row['picture'];  
         }

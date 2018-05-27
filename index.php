@@ -90,7 +90,7 @@
           success:function(databack){
             console.log(databack);
             if(databack.trim()==="valid"){
-              window.location.href="dashboard/dashboard.php";
+              window.location.href="/dashboard/dashboard.php";
             }else if(databack.trim()==="pending"){
               alert("Your account still pending verivication from supervisor,please contact your supervisor");
             }else if(databack.trim()==="reject"){
