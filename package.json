@@ -1,13 +1,13 @@
 {
-  "name": "admin-lte",
-  "version": "2.4.2",
+  "name": "zerowaste",
+  "version": "0.0.1",
   "main": "dist/js/adminlte.min.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
   },
   "scripts": {
-    "postinstall": "bower cache clean && bower install"
+    "postinstall": "npm install"
   },
   "license": "MIT",
   "devDependencies": {
@@ -32,7 +32,6 @@
     "less": "^2.7.2"
   },
   "dependencies": {
-    "bower": "~1.8.4",
     "bootstrap": "^3.3.7",
     "bootstrap-colorpicker": "^2.5.1",
     "bootstrap-datepicker": "^1.7.0",
