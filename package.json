@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
   },
+  "scripts": {
+    "postinstall": "bower cache clean && bower install"
+  },
   "license": "MIT",
   "devDependencies": {
     "R2": "^1.4.3",
