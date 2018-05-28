@@ -1,6 +1,4 @@
 <?php
-echo __DIR__;
-echo $_SERVER['DOCUMENT_ROOT'];
 include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 session_start();
 $userid = $_POST['userid'];

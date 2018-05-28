@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 session_start();
 $qrcode = $_POST['QrCode'];
 
-$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email ,ci.type as ctype,u.userid as ownerid
+$query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email ,ci.type as ctype,u.userid as ownerid, ci.remaining_quantity
             FROM chemical c, chemicalIn ci, user u 
             WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."' AND ci.status='Available'";
 $resultSelect = mysqli_query($conn, $query);
@@ -46,7 +46,8 @@ while ($row = mysqli_fetch_array($resultSelect)){
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Initial Quantity :</label>
                     <div class="col-md-6">
-                        <input type="text" name="initial_quantity" id="initial_quantity" placeholder="ml/l/g/kg"></div>
+                        <input type="text" name="initial_quantity" id="initial_quantity" placeholder="ml/l/g/kg" value="<?php echo $row['remaining_quantity'];?>">
+                    </div>
                 </div>
                
 
