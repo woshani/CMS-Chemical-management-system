@@ -29,12 +29,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.1.2/css/ionicons.min.css" />
   <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
-  <link rel="stylesheet" href="/dist/css/loading.css" />
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css" />
+  <link rel="stylesheet" href="../dist/css/loading.css" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap.min.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -210,7 +210,7 @@ desired effect
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 <script src="../dist/js/manageStudent.js"></script>
 <script type="text/javascript">
   var $body = $("body");

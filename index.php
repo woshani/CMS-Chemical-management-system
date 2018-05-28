@@ -13,10 +13,10 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.1.2/css/ionicons.min.css" />
   <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
   <!-- iCheck -->
 <!--   <link rel="stylesheet" href="plugins/iCheck/square/purple.css"> -->
-  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,11 +63,11 @@
 
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/plugins/md5/jquery.md5.js"></script>
+<script src="plugins/md5/jquery.md5.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="/plugins/iCheck/icheck.min.js"></script>
+<script src="plugins/iCheck/icheck.min.js"></script>
 <script>
     $('#btnSignIn').on('click',function(){
         login();
@@ -90,7 +90,7 @@
           success:function(databack){
             console.log(databack);
             if(databack.trim()==="valid"){
-              window.location.href="/dashboard/dashboard.php";
+              window.location.href="dashboard/dashboard.php";
             }else if(databack.trim()==="pending"){
               alert("Your account still pending verivication from supervisor,please contact your supervisor");
             }else if(databack.trim()==="reject"){

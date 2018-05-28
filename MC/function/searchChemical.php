@@ -1,5 +1,5 @@
 <?php 
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../../connection/connection.php';
 $chemical = $_POST['input'];
 
 $query = "SELECT chemicalid,name,physicaltype,engcontrol,ppe FROM chemical WHERE name LIKE '%".$chemical."%'";

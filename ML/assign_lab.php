@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../connection/connection.php';
 $query = "SELECT labid, name FROM lab";
 $resultSelect = mysqli_query($conn, $query);
 

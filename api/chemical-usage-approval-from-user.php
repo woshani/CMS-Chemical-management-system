@@ -1,6 +1,6 @@
 <?php
 header("Content-type:application/json");
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../connection/connection.php';
 
 $response = array();
 $error = false;

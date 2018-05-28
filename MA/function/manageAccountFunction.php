@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+	include '../../connection/connection.php';
 $method = $_POST['method'];
 $key = $_POST['key'];
 $userid = $_POST['userid'];

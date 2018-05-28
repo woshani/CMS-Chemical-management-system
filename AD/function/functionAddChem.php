@@ -1,6 +1,6 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../../connection/connection.php';
 $chem_name = $_POST['chem_name'];
 $phystype = $_POST['phystype'];
 $engControl = $_POST['engControl'];

@@ -15,7 +15,7 @@
 					</tr>
 				</thead>
 				<?php 
-				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+				include '../connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname, concat(u.fname,' ',u.lname) as owner,cu.status as usagestatus
 							  FROM chemical a 

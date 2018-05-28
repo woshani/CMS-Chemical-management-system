@@ -11,7 +11,7 @@
 						<th class="text-center">Role</th>
 				</thead>
 				<?php 
-				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+				include '../connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT * FROM user WHERE status = 'Approve' AND role!='Student'";
 				$selectResult = mysqli_query($conn,$selectSql);

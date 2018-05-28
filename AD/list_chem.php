@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                 <?php 
-				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+				include '../connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT * FROM chemical";
 				$selectResult = mysqli_query($conn,$selectSql);

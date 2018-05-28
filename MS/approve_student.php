@@ -14,7 +14,7 @@
 					</tr>
 				</thead>
 				<?php 
-				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+				include '../connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT * FROM user WHERE status = 'Pending' AND supervisorid=".$user_id;
 				$selectResult = mysqli_query($conn,$selectSql);

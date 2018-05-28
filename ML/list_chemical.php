@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+	include '../connection/connection.php';
 	$user_id = $_SESSION['userid'];
 
 	$selectLab = "SELECT l.labid,l.staffid,n.name FROM labowner l JOIN lab n on n.labid = l.labid WHERE staffid = '".$user_id."'"; 

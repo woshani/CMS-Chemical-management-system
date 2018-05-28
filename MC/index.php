@@ -24,14 +24,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.1.2/css/ionicons.min.css" />
         <!-- Theme style -->
-        <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+        <link rel="stylesheet" href="../dist/css/AdminLTE.min.css" />
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect. -->
-        <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+        <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap.min.css" />
-        <link rel="stylesheet" href="/dist/css/loading.css" />
+        <link rel="stylesheet" href="../dist/css/loading.css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Google Font -->
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-              <script src="/plugins/instascan/instascan.min.js"></script>
+              <script src="../plugins/instascan/instascan.min.js"></script>
 <!--               <style type="text/css">
                 .infohover .hint {
                     display:none;
@@ -256,7 +256,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="/dist/js/adminlte.min.js"></script>
+        <script src="../dist/js/adminlte.min.js"></script>
         <script type="text/javascript">
             var $body = $("body");
             var role = "<?php echo $_SESSION['role'];?>";

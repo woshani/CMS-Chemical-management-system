@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../connection/connection.php';
 session_start();
 $userid = $_POST['userid'];
 $pass = $_POST['password'];

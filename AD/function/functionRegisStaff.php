@@ -1,6 +1,6 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
+include '../../connection/connection.php';
 $idstaff = $_POST['staffid'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];

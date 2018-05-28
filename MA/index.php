@@ -24,11 +24,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.1.2/css/ionicons.min.css" />
   <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -198,11 +198,11 @@ desired effect
 
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/plugins/md5/jquery.md5.js"></script>
+<script src="../plugins/md5/jquery.md5.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
   var ori = "<?php echo $_SESSION['password'];?>";
   var userkey = "<?php echo $_SESSION['userid'];?>";

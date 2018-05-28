@@ -31,11 +31,11 @@ if (!isset($_SESSION['userid'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap.min.css"
     />
     <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +52,7 @@ if (!isset($_SESSION['userid'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- AdminLTE App -->
-    <script src="/dist/js/adminlte.min.js"></script>
+    <script src="../dist/js/adminlte.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
 </head>
@@ -262,7 +262,7 @@ desired effect
         var role = "<?php echo $_SESSION['role']; ?>";
         var admin = "<?php echo $_SESSION['admin']; ?>";
     </script>
-    <script src="/dist/js/manageAdmin.js"></script>
+    <script src="../dist/js/manageAdmin.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
