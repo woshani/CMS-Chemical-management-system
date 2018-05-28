@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 // $id_chemical = $_POST['id_chemical'];
  $id_owner = $_POST['id_owner'];
 // $id_lab = $_POST['id_lab'];

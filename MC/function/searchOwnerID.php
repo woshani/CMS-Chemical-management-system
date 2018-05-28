@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 $supervisor = $_POST['input'];
 
 $query = "SELECT userid,email FROM user WHERE role IN ('Lecturer','PJ') AND (CONCAT(fname,' ', lname) ='".$supervisor."');";

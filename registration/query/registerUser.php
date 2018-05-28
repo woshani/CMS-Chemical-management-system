@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 
 	// require_once("../../plugins/phpmailer/class.phpmailer.php");
 	use PHPMailer\PHPMailer\PHPMailer;

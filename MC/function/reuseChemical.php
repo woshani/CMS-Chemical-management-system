@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 session_start();
 $qrcode = $_POST['QrCode'];
 

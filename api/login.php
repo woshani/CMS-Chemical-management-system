@@ -1,6 +1,6 @@
 <?php
 header("Content-type:application/json");
-require __DIR__ . '/../connection/connection.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 
 /**
  * simple method to encrypt or decrypt a plain text string

@@ -16,7 +16,7 @@
 					</tr>
 				</thead>
 				<?php 
-				include "../connection/connection.php";
+				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 				$user_id2 = $_SESSION['userid'];
 				$selectSql2 = "SELECT  CONCAT(d.fname,' ',d.lname) as fullname, d.identifyid,d.email,d.telno,a.name as chemical_name,b.registration_status as regisStat,ciid as cid
 							  FROM chemical a 

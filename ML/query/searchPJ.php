@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 $supervisor = $_POST['input'];
 
 $query = "SELECT fname,lname,userid,identifyid FROM user WHERE role = 'PJ' AND (CONCAT(fname,' ', lname) LIKE '%".$supervisor."%')";

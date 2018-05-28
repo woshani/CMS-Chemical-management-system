@@ -1,5 +1,5 @@
 <?php
-	include "../../connection/connection.php";
+	include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 	$labid = $_POST['labid'];
 				$selectSql = "SELECT *,DATE_FORMAT(b.expireddate,'%d-%m-%Y') AS expdate, a.name AS chemicalname ,concat(u.fname,' ',u.lname) as owner
 							  FROM chemical a 

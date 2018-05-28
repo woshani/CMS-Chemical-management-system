@@ -14,7 +14,7 @@
 					</tr>
 				</thead>
 				<?php 
-				include "../connection/connection.php";
+				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT * FROM user WHERE status = 'Approve' AND role='Student' AND supervisorid=".$user_id;
 				$selectResult = mysqli_query($conn,$selectSql);

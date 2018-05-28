@@ -1,5 +1,5 @@
 <?php 
-include "../../connection/connection.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 $chemical = $_POST['input'];
 
 $query = "SELECT chemicalid,name,physicaltype,engcontrol,ppe,class,ghs FROM chemical WHERE name ='".$chemical."';";

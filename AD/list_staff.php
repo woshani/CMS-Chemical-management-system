@@ -1,5 +1,4 @@
 <p>
-
 	<div class="table-responsive">
 		<center>
 			<table id="tableStaff" class="table table-striped table-bordered table-hover text-center">
@@ -12,7 +11,7 @@
 						<th class="text-center">Role</th>
 				</thead>
 				<?php 
-				include "../connection/connection.php";
+				include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 				$user_id = $_SESSION['userid'];
 				$selectSql = "SELECT * FROM user WHERE status = 'Approve' AND role!='Student'";
 				$selectResult = mysqli_query($conn,$selectSql);

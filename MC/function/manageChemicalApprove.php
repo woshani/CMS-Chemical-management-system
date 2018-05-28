@@ -1,5 +1,5 @@
 <?php
-	include "../../connection/connection.php";
+	include $_SERVER['DOCUMENT_ROOT'] . '/connection/connection.php';
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
