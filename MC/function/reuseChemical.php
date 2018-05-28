@@ -4,7 +4,7 @@ session_start();
 $qrcode = $_POST['QrCode'];
 
 $query = "SELECT ci.ciid, c.name, u.fname, u.lname, ci.status, ci.expireddate, ci.sds, u.email ,ci.type as ctype,u.userid as ownerid, ci.remaining_quantity
-            FROM chemical c, chemicalIn ci, user u 
+            FROM chemical c, chemicalin ci, user u 
             WHERE c.chemicalid = ci.chemicalid AND ci.userid = u.userid AND qrcode = '".$qrcode."' AND ci.status='Available'";
 $resultSelect = mysqli_query($conn, $query);
 if($resultSelect->num_rows > 0){
